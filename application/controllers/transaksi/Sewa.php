@@ -62,4 +62,9 @@ class Sewa extends CI_Controller {
 		);
 		echo json_encode($pages_array);
 	}
+
+	public function getJarak($latitude1, $longitude1, $latitude2, $longitude2, $unit)
+	{
+		echo json_encode(getDistanceBetween($latitude1, $longitude1, $latitude2, $longitude2,'Km'));
+	}
 }

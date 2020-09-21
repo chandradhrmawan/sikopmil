@@ -23,4 +23,9 @@ class Transaksi_model extends CI_Model {
 		return $this->db->get()->row();
 	}
 	
+	public function doSavePesanan($data)
+	{
+		$this->db->insert('tx_sewa', $data);
+		return true;
+	}
 }

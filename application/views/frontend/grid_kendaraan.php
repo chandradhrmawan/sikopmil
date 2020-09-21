@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <ol class="breadcrumb">
-                                <li><a href="home.html"><i class="icon fa fa-home"></i></a>
+                                <li><a href="#"><i class="icon fa fa-home"></i></a>
                                 </li>
                                 <li class="active">Vehicle Inventry</li>
                             </ol>
@@ -131,9 +131,10 @@
                             <div class="goods-group-2 list-goods list-goods_th">
                                 <?php foreach($list_kendaraan as $valx): 
                                 if($valx->status == 1){
-                                    $status = 'Tersedia';
+                                    /*<span class="text-bg bg-primary">feugiat delicata liberavisse id cum</span>*/
+                                    $status = '<span class="text-bg bg-second">Tersedia</span>';
                                 }else{
-                                    $status = 'Tidak Tersedia';
+                                    $status = '<span class="text-bg bg-primary">Tidak Tersedia</span>';
                                 }
                                 ?>
                                 <section class="b-goods-1 b-goods-1_mod-a">
@@ -144,8 +145,8 @@
                                             </a>
                                         </div>
                                         <div class="b-goods-1__inner">
-                                            <div class="b-goods-1__header"><a class="b-goods-1__choose hidden-th" href="listing-1.html"><i class="icon fa fa-heart-o"></i></a>
-                                                <h2 class="b-goods-1__name"><a href="car-details.html"><?=$valx->judul?></a></h2>
+                                            <div class="b-goods-1__header"><a class="b-goods-1__choose hidden-th" href="#"></a>
+                                                <h2 class="b-goods-1__name"><a href="#" onclick="doPesan(<?=$valx->id_kendaraan?>)"><?=$valx->judul?></a></h2>
                                             </div>
                                             <div class="b-goods-1__info"><?=$valx->deskripsi?>
                                             </div>
@@ -286,6 +287,39 @@
         <script src="<?=base_url()?>assets/frontend/plugins/noUiSlider/wNumb.js"></script>
         <!-- Animations-->
         <script src="<?=base_url()?>assets/frontend/plugins/scrollreveal/scrollreveal.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/sweet/sweetalert.min.js"></script>
+        <link href="<?php echo base_url(); ?>assets/sweet/sweetalert.css" rel="stylesheet" type="text/css" />
     </body>
 
 </html>
+
+<script type="text/javascript">
+    const doPesan = (id_kendaraan) => {
+
+        let id_user = "<?=$this->session->userdata('id_user')?>";
+
+        if(id_user == ""){
+            swal("Cancelled", "Silahkan Login Terlebih Dahulu", "error");
+        }else{
+                swal({
+                title: "Konfirmasi",
+                text: "Apakah anda yakin, ingin memesan Kendaraan ini?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#0097c2',
+                confirmButtonText: 'Ya',
+                cancelButtonText: "Tidak",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm){
+                if (isConfirm){
+                  window.location = "<?=base_url()?>index/form_pesan/"+id_kendaraan
+                } else {
+                  swal("Cancelled", "Kendaraan Batal dipesan", "error");
+                  return false
+                }
+              });
+        }
+    }
+</script>

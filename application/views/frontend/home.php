@@ -748,9 +748,9 @@
         <!-- Main slider-->
         <script src="<?=base_url()?>assets/frontend/plugins/slider-pro/jquery.sliderPro.min.js"></script>
         <!-- User map-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQ_bBw186KJnMcRByvn5ffZueg88wp1E"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQ_bBw186KJnMcRByvn5ffZueg88wp1E"></script> -->
         <!-- Maps customization-->
-        <script src="<?=base_url()?>assets/frontend/js/map-custom.js"></script>
+        <!-- <script src="<?=base_url()?>assets/frontend/js/map-custom.js"></script> -->
     </body>
 
 </html>

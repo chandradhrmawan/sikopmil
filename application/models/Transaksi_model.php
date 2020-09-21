@@ -28,4 +28,15 @@ class Transaksi_model extends CI_Model {
 		$this->db->insert('tx_sewa', $data);
 		return true;
 	}
+
+	public function getRiwayatSewaByIduser($id_user)
+	{
+		$this->db->select("*");
+		$this->db->from("tx_sewa a");
+		$this->db->join("mst_users b","b.id_user = a.id_user");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
+		$this->db->join("mst_supir d","d.id_supir = a.id_supir","left");
+		$this->db->where("a.id_user",$id_user);
+		return $this->db->get()->result();
+	}
 }

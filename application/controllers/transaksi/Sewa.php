@@ -15,10 +15,11 @@ class Sewa extends CI_Controller {
 
 	public function index()
 	{				
-		$data['breadcump'] 		= "Kendaraan";
-		$data['title_page']		= "Kendaraan";
-		$data['content_view']	= "transaksi/list_kendaraan";
-		$data['list_kendaraan'] = $this->transaksi_model->getAllKendaraan();
+		$data['breadcump'] 		= "Data Pemesanan";
+		$data['title_page']		= "Data Pemesanan";
+		$data['content_view']	= "transaksi/list_pemesanan";
+		$data['data_pemesanan'] = $this->transaksi_model->getAllRiwayatSewa();
+		$data['data_supir']  	= $this->master_model->getAll('mst_supir');
 		$this->load->view('layout_admin/index',$data);	
 	}
 
@@ -31,40 +32,34 @@ class Sewa extends CI_Controller {
 		$this->load->view('layout_admin/index',$data);	
 	}
 
-	public function getDetailDataKendaraan($id_kendaraan)
+	public function updateStatusSewa()
 	{
-		$data = $this->transaksi_model->getDetailByIdkendaraan($id_kendaraan);
-		echo json_encode($data); 
-	}
-
-	public function example()
-	{
-		$this->load->view('transaksi/example');	
-	}
-
-	public function data()
-	{
-		$pages_array = array(
-		     array(
-		         'name' => 'Indonesia',
-		         'code' => 'Id'
-		     ),
-
-		     array(
-		         'name' => 'Jakarta',
-		         'code' => 'CGK'
-		     ),
-
-		     array(
-		         'name' => 'Bandung',
-		         'code' => 'CGK'
-		     )
+		$id_sewa =  $this->input->post('id_sewa');
+		$data = array(
+			'status_sewa' 	=> $this->input->post('status_sewa'),
+			'id_supir' 		=> $this->input->post('id_supir'),
+			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
-		echo json_encode($pages_array);
+		$update = $this->transaksi_model->updateStatusSewa($id_sewa,$data);
+		
+		if($update){
+			$ret = array (
+				'status' => TRUE,
+				'data'   => $data
+			);
+		}else{
+			$ret = array (
+				'status' => FALSE,
+				'data'   => $data
+			);
+		}
+		echo json_encode($ret);
+
 	}
 
 	public function getJarak($latitude1, $longitude1, $latitude2, $longitude2, $unit)
 	{
 		echo json_encode(getDistanceBetween($latitude1, $longitude1, $latitude2, $longitude2,'Km'));
 	}
+
 }

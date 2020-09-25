@@ -105,7 +105,42 @@
            <div class="form-group">
               <label class="control-label col-md-2">No Mesin</label>
               <div class="col-md-9">
-                <input name="no_mesin" id="no_mesin" placeholder="No Polisi" class="form-control" type="text">
+                <input name="no_mesin" id="no_mesin" placeholder="No Mesin" class="form-control" type="text">
+             </div>
+           </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-2">Judul</label>
+              <div class="col-md-9">
+                <input name="judul" id="judul" placeholder="Judul" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Deskripsi</label>
+              <div class="col-md-9">
+                <input name="deskripsi" id="deskripsi" placeholder="Deskripsi" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Model</label>
+              <div class="col-md-9">
+                <input name="model" id="model" placeholder="Model" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Transmisi</label>
+              <div class="col-md-9">
+                <input name="transmisi" id="transmisi" placeholder="Transmisi" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Tenaga</label>
+              <div class="col-md-9">
+                <input name="tenaga" id="tenaga" placeholder="Tenaga" class="form-control" type="text">
              </div>
            </div>
 
@@ -275,6 +310,16 @@
           $('[name="no_mesin"]').val(data.no_mesin);
           $('[name="status"]').val(data.status);
           $('[name="path"]').val(data.path);
+
+
+          $('[name="judul"]').val(data.judul);
+          $('[name="deskripsi"]').val(data.deskripsi);
+          $('[name="model"]').val(data.model);
+          $('[name="transmisi"]').val(data.transmisi);
+          $('[name="tenaga"]').val(data.tenaga);
+
+        
+
 
           $("#image_edit").html('<img src="<?=base_url()?>uploads/kendaraan/'+data.path + '" style="width: 200px;height: 200px;" />');
           $("#prev").hide();

@@ -9,7 +9,7 @@ class Kendaraan extends CI_Controller {
 	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga','path');
 
 	//param for view
-	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Model','Transmisi','Tenaga','Foto','Aksi');
+	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Deskripsi','Model','Transmisi','Tenaga','Foto','Aksi');
 
 	public function __construct()
 	{

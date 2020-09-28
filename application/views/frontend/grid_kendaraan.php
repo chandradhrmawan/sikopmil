@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Motor Land / Portfolio</title>
+        <title>SIKOPMIL / List Kendaraan</title>
         <meta content="" name="description" />
         <meta content="" name="keywords" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -117,12 +117,12 @@
                             <div class="filter-goods">
                                 <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of total<strong> 35</strong>
                                 </div>
-                                <div class="filter-goods__select"><span class="hidden-xs">Sort</span>
-                                    <select class="selectpicker" data-width="172">
+                                <div class="filter-goods__select"><span class="hidden-xs">Layout</span>
+                                    <!-- <select class="selectpicker" data-width="172">
                                         <option>Most Revelant</option>
                                         <option>A-Z</option>
                                         <option>Z-A</option>
-                                    </select>
+                                    </select> -->
                                     <div class="btns-switch"><i class="btns-switch__item js-view-th icon fa fa-th-large active"></i><i class="btns-switch__item js-view-list active icon fa fa-th-list"></i>
                                     </div>
                                 </div>
@@ -131,10 +131,11 @@
                             <div class="goods-group-2 list-goods list-goods_th">
                                 <?php foreach($list_kendaraan as $valx): 
                                 if($valx->status == 1){
-                                    /*<span class="text-bg bg-primary">feugiat delicata liberavisse id cum</span>*/
                                     $status = '<span class="text-bg bg-second">Tersedia</span>';
+                                    $aju = '<a href="#" onclick="doPesan('.$valx->id_kendaraan.')"><span class="text-bg bg-second" style="padding: 8px; background-color:#00a41c;">Ajukan</span></a>';
                                 }else{
                                     $status = '<span class="text-bg bg-primary">Tidak Tersedia</span>';
+                                    $aju = '-';
                                 }
                                 ?>
                                 <section class="b-goods-1 b-goods-1_mod-a">
@@ -155,7 +156,7 @@
                                                 <div class="collapse in" id="desc-1">
                                                     <ul class="b-goods-1__desc list-unstyled">
                                                         <li class="b-goods-1__desc-item"><?=$valx->model?></li>
-                                                        <li class="b-goods-1__desc-item"><?=$valx->tenaga?></li>
+                                                        <li class="b-goods-1__desc-item"><?=$aju?></li>
                                                         <li class="b-goods-1__desc-item"><?=$status?></li>
                                                     </ul>
                                                 </div>
@@ -168,16 +169,14 @@
                             </div>
                             <!-- end .goods-group-2-->
                             <ul class="pagination text-center">
-                                <li><a href="#"><i class="icon fa fa-angle-double-left"></i></a>
-                                </li>
-                                <li><a href="#">1</a>
-                                </li>
-                                <li class="active"><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#"><i class="icon fa fa-angle-double-right"></i></a>
-                                </li>
+                                <!-- <li><a href="#"><i class="icon fa fa-angle-double-left"></i></a></li> -->
+                                <?php for ($i=1; $i <= $page; $i++): ?>
+                                   <li><a href="#" onclick="changePage(<?=$i?>)"><?=$i?></a></li>
+                                <?php endfor; ?>
+                                <!-- <li><a href="#">1</a></li>
+                                <li class="active"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li> -->
+                                <!-- <li><a href="#"><i class="icon fa fa-angle-double-right"></i></a></li> -->
                             </ul>
                         </main>
                         <!-- end .l-main-content-->
@@ -185,59 +184,54 @@
                     <div class="col-md-3 col-md-pull-9">
                         <aside class="l-sidebar">
                             <form class="b-filter-2 bg-grey">
-                                <h3 class="b-filter-2__title">search options</h3>
+                                <h3 class="b-filter-2__title">Pencarian</h3>
                                 <div class="b-filter-2__inner">
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">keyword</div>
-                                        <input class="form-control" type="text" placeholder="Keyword..." />
+                                        <div class="b-filter-2__group-title">Judul</div>
+                                        <input class="form-control" type="text" placeholder="Judul Kendaaran..." id="keyword" />
                                     </div>
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">Vehicle Type</div>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>All Types</option>
-                                            <option>Type 1</option>
-                                            <option>Type 2</option>
-                                            <option>Type 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">Make</div>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>All Makes</option>
-                                            <option>Make 1</option>
-                                            <option>Make 2</option>
+                                        <div class="b-filter-2__group-title">Jenis</div>
+                                        <select class="selectpicker" data-width="100%" id="id_jenis">
+                                            <option value="">----</option>
+                                            <?php foreach ($data_jenis as $key => $value): ?>
+                                            <?php if($value->id_jenis == $_GET['id_jenis']): ?>
+                                                <option value="<?=$value->id_jenis?>" selected><?=$value->nm_jenis?></option>
+                                            <?php else: ?>
+                                                <option value="<?=$value->id_jenis?>"><?=$value->nm_jenis?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">Model</div>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>All Models</option>
-                                            <option>Model 1</option>
-                                            <option>Model 2</option>
-                                            <option>Model 3</option>
+                                        <div class="b-filter-2__group-title">Merk</div>
+                                        <select class="selectpicker" data-width="100%" id="id_merk">
+                                            <option value="">----</option>
+                                            <?php foreach ($data_merk as $key => $value): ?>
+                                            <?php if($value->id_merk == $_GET['id_merk']): ?>
+                                                <option value="<?=$value->id_merk?>" selected><?=$value->nm_merk?></option>
+                                            <?php else: ?>
+                                                <option value="<?=$value->id_merk?>"><?=$value->nm_merk?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">Model Year</div>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>Min Year</option>
-                                            <option>Year 1</option>
-                                            <option>Year 2</option>
-                                        </select>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>Max Year</option>
-                                            <option>Year 1</option>
-                                            <option>Year 2</option>
+                                        <div class="b-filter-2__group-title">Tipe</div>
+                                        <select class="selectpicker" data-width="100%" id="id_tipe">
+                                            <option value="">----</option>
+                                            <?php foreach ($data_tipe as $key => $value): ?>
+                                            <?php if($value->id_tipe == $_GET['id_tipe']): ?>
+                                                <option value="<?=$value->id_tipe?>" selected><?=$value->nm_tipe?></option>
+                                            <?php else: ?>
+                                                <option value="<?=$value->id_tipe?>"><?=$value->nm_tipe?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">fuel type</div>
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>All Fuel Types</option>
-                                            <option>Type 1</option>
-                                            <option>Type 2</option>
-                                            <option>Type 3</option>
-                                        </select>
+                                         <button class="btn btn-default" type="button" onclick="changePage()" style="background-color: #0097c2; color: #ffffff">filter</button>
+                                         <button class="btn btn-default" type="button" onclick="resetForm()" style="background-color: #d01818; color: #ffffff">reset</button>
                                     </div>
                                 </div>
                             </form>
@@ -321,5 +315,20 @@
                 }
               });
         }
+    }
+
+    const changePage = (page=1) => {
+        let keyword = $('#keyword').val();
+        let jenis = $('#id_jenis').val();
+        let merk = $('#id_merk').val();
+        let tipe = $('#id_tipe').val();
+
+        let url = `<?=base_url()?>index/list_kendaraan?page=${page}&keyword=${keyword}&id_jenis=${jenis}&id_merk=${merk}&id_tipe=${tipe}`;
+        window.location.href = url
+    }
+
+    const resetForm = () => {
+        let url = `<?=base_url()?>index/list_kendaraan?page=1`
+        window.location.href = url
     }
 </script>

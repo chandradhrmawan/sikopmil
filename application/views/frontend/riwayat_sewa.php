@@ -31,8 +31,6 @@
 
     <body>
         <!-- Loader-->
-        <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span>
-        </div>
         <!-- Loader end-->
         <!-- ==========================-->
         <!-- MOBILE MENU-->
@@ -167,7 +165,7 @@
                                             <td><?=$value->tujuan_perjalanan?></td>
                                             <td><?=$value->jarak?></td>
                                             <td><?=$status_sewa?></td>
-                                            <td><button class="btn btn-primary" type="button" style="margin-bottom: 15px;">Detail <span class="fa fa-eye"></span></button></td>
+                                            <td><button class="btn btn-primary" type="button" onclick="modalDetail(<?=$value->id_sewa?>)" style="margin-bottom: 15px;">Detail <span class="fa fa-eye"></span></button></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -183,6 +181,98 @@
             <!-- .footer-->
         </div>
         <!-- end layout-theme-->
+
+
+        <!-- Large modal -->
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+
+        <!-- Bootstrap modal -->
+        <div class="modal fade" id="modal_detail" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title"></h3>
+              </div>
+              <div class="modal-body form">
+                <form action="#" id="form" class="form-horizontal">
+                  <input type="hidden" value="" name="id_role"/> 
+                  <div class="form-body">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Nama Kendaraan</label>
+                      <div class="col-md-9">
+                        <input name="judul" id="judul" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Deskripsi</label>
+                      <div class="col-md-9">
+                        <input name="deskripsi" id="deskripsi" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Lokasi Tujuan</label>
+                      <div class="col-md-9">
+                        <input name="lokasi_tujuan" id="lokasi_tujuan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Jarak</label>
+                      <div class="col-md-9">
+                        <input name="jarak" id="jarak" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tujuan Perjalanan</label>
+                      <div class="col-md-9">
+                        <input name="tujuan_perjalanan" id="tujuan_perjalanan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Sewa</label>
+                      <div class="col-md-9">
+                        <input name="tgl_sewa" id="tgl_sewa" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Pinjam</label>
+                      <div class="col-md-9">
+                        <input name="tgl_pinjam" id="tgl_pinjam" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Kembali</label>
+                      <div class="col-md-9">
+                        <input name="tgl_kembali" id="tgl_kembali" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Keterangan</label>
+                      <div class="col-md-9">
+                        <input name="keterangan" id="keterangan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                  </div>
+                 </form>
+               </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <!-- <button type="button" id="btnSave" onclick="save()" class="btn btn-primary btn-flat">Kirim</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Bootstrap modal -->
 
 
         <!-- ++++++++++++-->
@@ -233,4 +323,33 @@
     $(document).ready(function() {
         $('#example').DataTable();
     });
+
+    const modalDetail = (id_sewa) => {
+        $('#modal_detail').modal('show');
+
+        $.ajax({
+        url : "<?php echo site_url('index/getDetailSewaByIdSewa')?>/" + id_sewa,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+
+            $('#judul').val(data.judul)
+            $('#deskripsi').val(data.deskripsi)
+            $('#lokasi_tujuan').val(data.lokasi_tujuan)
+            $('#tujuan_perjalanan').val(data.tujuan_perjalanan)
+            $('#jarak').val(data.jarak)
+            $('#tgl_sewa').val(data.tgl_sewa)
+            $('#tgl_pinjam').val(data.tgl_pinjam)
+            $('#tgl_kembali').val(data.tgl_kembali)
+            $('#keterangan').val(data.keterangan)
+                   
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            alert('Error get data from ajax');
+          }
+        });
+
+    }
 </script>

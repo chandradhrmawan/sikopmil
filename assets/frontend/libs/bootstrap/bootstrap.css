@@ -5215,7 +5215,7 @@ button.close {
           background-clip: padding-box;
   outline: 0;
 }
-.modal-backdrop {
+/*.modal-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -5223,15 +5223,15 @@ button.close {
   left: 0;
   z-index: 1040;
   background-color: #000000;
-}
+}*/
 .modal-backdrop.fade {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-.modal-backdrop.in {
+/*.modal-backdrop.in {
   opacity: 0.5;
   filter: alpha(opacity=50);
-}
+}*/
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;

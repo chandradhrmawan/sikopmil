@@ -158,7 +158,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <input class="form-control" type="text" name="user-name" value="Nama Pemesan : <?=$detail_kendaraan->judul?>" disabled />
+                                                        <input class="form-control" type="text" name="user-name" value="Nama Pemesan : <?=$this->session->userdata('username')?>" disabled />
                                                     </div>
                                                      <div class="form-group">
                                                         <input class="form-control datepicker" type="text" id="tgl_pesan" placeholder="Tanggal Pesan" required="required" /><i class="form-control-feedback icon fa fa-calendar"></i>

@@ -43,16 +43,20 @@
                 <tbody>
                 <?php 
                     foreach ($data_pemesanan as $key => $value):
+                    $btn_stat = '';
                     if($value->status_sewa == 1){
                         $status_sewa = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
                     }elseif($value->status_sewa == 2){
                         $status_sewa = '<span class="label label-success">Sudah Disetujui Atasan</span>';
+                        $btn_stat = 'disabled';
                     }elseif($value->status_sewa == 3){
                         $status_sewa = '<span class="label label-info">Dalam Proses Peminjaman</span>';
                     }elseif($value->status_sewa == 4){
-                        $status_sewa = '<span class="label label-default">Peminjaman Selesai</span>';;
+                        $status_sewa = '<span class="label label-default">Peminjaman Selesai</span>';
+                        $btn_stat = 'disabled';
                     }elseif($value->status_sewa == 5){
                         $status_sewa = '<span class="label label-danger">Permohonan Ditolak</span>';
+                        $btn_stat = 'disabled';
                     } 
 
                 ?>
@@ -68,8 +72,8 @@
                         <td><?=$value->tujuan_perjalanan?></td>
                         <td><?=$value->jarak?></td>
                         <td><?=$status_sewa?></td>
-                        <td><button class="btn btn-info btn-flat btn-sm" type="button">Detail <span class="fa fa-eye"></span></button>
-                          <button class="btn btn-primary btn-flat btn-sm" type="button" onClick="modalProses(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
+                        <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_sewa?>)">Detail <span class="fa fa-eye"></span></button>
+                          <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProses(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -83,7 +87,7 @@
 </div>
 <!-- ./row -->
 
-<!-- Bootstrap modal -->
+<!-- Bootstrap modal proses -->
 <div class="modal fade" id="modal_form" role="dialog">
   <div class="modal-dialog" style="width: 750px;">
     <div class="modal-content">
@@ -138,7 +142,95 @@
     </div>
   </div>
 </div>
-<!--End Bootstrap modal -->
+<!--End Bootstrap modal proses -->
+
+<!-- Bootstrap modal detail -->
+        <div class="modal fade" id="modal_detail" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title"></h3>
+              </div>
+              <div class="modal-body form">
+                <form action="#" id="form" class="form-horizontal">
+                  <input type="hidden" value="" name="id_role"/> 
+                  <div class="form-body">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Nama Kendaraan</label>
+                      <div class="col-md-9">
+                        <input name="judul" id="judul" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Deskripsi</label>
+                      <div class="col-md-9">
+                        <input name="deskripsi" id="deskripsi" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Lokasi Tujuan</label>
+                      <div class="col-md-9">
+                        <input name="lokasi_tujuan" id="lokasi_tujuan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Jarak</label>
+                      <div class="col-md-9">
+                        <input name="jarak" id="jarak" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tujuan Perjalanan</label>
+                      <div class="col-md-9">
+                        <input name="tujuan_perjalanan" id="tujuan_perjalanan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Sewa</label>
+                      <div class="col-md-9">
+                        <input name="tgl_sewa" id="tgl_sewa" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Pinjam</label>
+                      <div class="col-md-9">
+                        <input name="tgl_pinjam" id="tgl_pinjam" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Kembali</label>
+                      <div class="col-md-9">
+                        <input name="tgl_kembali" id="tgl_kembali" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Keterangan</label>
+                      <div class="col-md-9">
+                        <input name="keterangan" id="keterangan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                  </div>
+                 </form>
+               </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <!-- <button type="button" id="btnSave" onclick="save()" class="btn btn-primary btn-flat">Kirim</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Bootstrap modal detail-->
 
 
 
@@ -280,5 +372,35 @@
           return false
         }
       });
+    }
+
+    const modalDetail = (id_sewa) => {
+        $('#modal_detail').modal('show');
+         $('.modal-title').text('Detail Data'); // Set Title to Bootstrap modal title
+
+        $.ajax({
+        url : "<?php echo site_url('index/getDetailSewaByIdSewa')?>/" + id_sewa,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+
+            $('#judul').val(data.judul)
+            $('#deskripsi').val(data.deskripsi)
+            $('#lokasi_tujuan').val(data.lokasi_tujuan)
+            $('#tujuan_perjalanan').val(data.tujuan_perjalanan)
+            $('#jarak').val(data.jarak)
+            $('#tgl_sewa').val(data.tgl_sewa)
+            $('#tgl_pinjam').val(data.tgl_pinjam)
+            $('#tgl_kembali').val(data.tgl_kembali)
+            $('#keterangan').val(data.keterangan)
+                   
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            alert('Error get data from ajax');
+          }
+        });
+
     }
 </script>

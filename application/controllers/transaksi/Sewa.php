@@ -40,9 +40,13 @@ class Sewa extends CI_Controller {
 			'id_supir' 		=> $this->input->post('id_supir'),
 			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
-		$update = $this->transaksi_model->updateStatusSewa($id_sewa,$data);
+		$data2 = array(
+			'status' 	 	=> 1
+		);
+		$update 	= $this->transaksi_model->updateStatusSewa($id_sewa,$data);
+		$data_supir = $this->transaksi_model->updateStatusSupir($this->input->post('id_supir'),$data2);
 		
-		if($update){
+		if($update && $data_supir){
 			$ret = array (
 				'status' => TRUE,
 				'data'   => $data

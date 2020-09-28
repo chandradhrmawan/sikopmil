@@ -23,7 +23,19 @@ class Index extends CI_Controller {
 	{				
 		$data['breadcump'] 		= "List Kendaraan";
 		$data['title_page']		= "List Kendaraan";
-		$data['list_kendaraan'] = $this->transaksi_model->getAllKendaraan();
+
+		$limit = 10;
+		$page  = isset($_GET['page']) ? $this->input->get('page') : 1 ;
+		$start = ($page>1) ? ($page * $limit) - $limit : 0;
+		$where = $this->input->get();
+
+		$data['list_kendaraan']  = $this->transaksi_model->getAllKendaraan($start,$limit,$where);
+		$data['total_kendaraan'] = count($data['list_kendaraan']);
+		$data['page'] 			 = ceil($this->transaksi_model->countAllKendaraan() / $limit);
+		
+		$data['data_jenis'] 	= $this->master_model->getAll('mst_jenis');
+		$data['data_merk'] 		= $this->master_model->getAll('mst_merk');
+		$data['data_tipe'] 		= $this->master_model->getAll('mst_tipe');
 		$this->load->view('frontend/grid_kendaraan',$data);	
 	}
 
@@ -114,5 +126,11 @@ class Index extends CI_Controller {
 		}
 
 		echo  json_encode($ret);
+	}
+
+	public function getDetailSewaByIdSewa($id_sewa)
+	{
+		$data = $this->transaksi_model->getDetailSewaByIdSewa($id_sewa);
+		echo json_encode($data);
 	}
 }

@@ -40,4 +40,38 @@ class Surat_jalan extends CI_Controller {
 		$this->load->view('transaksi/file',$data);	
 	}
 
+	public function updateStatusJalan()
+	{
+		$id_sewa = $this->input->post('id_sewa');
+		$status  = $this->input->post('status');
+
+		$data = array(
+			'status_perjalanan' => $status,
+			'lon_kordinat' 		=> $this->input->post('lon'),
+			'lat_kordinat' 		=> $this->input->post('lat'),
+			'last_update' 		=> date('Y-m-d h:i:s')
+		);
+
+		$update = $this->transaksi_model->updateKordinat($id_sewa,$data);
+
+		echo json_encode(array('status' => TRUE));
+
+	}
+
+	public function updateRealTime()
+	{
+		$id_sewa = $this->input->post('id_sewa');
+		
+		$data = array(
+			'lon_kordinat' 		=> $this->input->post('lon'),
+			'lat_kordinat' 		=> $this->input->post('lat'),
+			'last_update' 		=> date('Y-m-d h:i:s')
+		);
+
+		$update = $this->transaksi_model->updateKordinat($id_sewa,$data);
+
+		echo json_encode(array('status' => TRUE));
+
+	}
+
 }

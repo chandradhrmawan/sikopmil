@@ -295,6 +295,10 @@
         if(id_user == ""){
             swal("Cancelled", "Silahkan Login Terlebih Dahulu", "error");
         }else{
+
+
+            let validasi_pesan = doValidatePesan(id_user);
+            if(validasi_pesan != 0){
                 swal({
                 title: "Konfirmasi",
                 text: "Apakah anda yakin, ingin memesan Kendaraan ini?",
@@ -314,6 +318,9 @@
                   return false
                 }
               });
+            }else{
+               swal("Cancelled", "Anda Sedang Melakukan Sewa Kendaraan Yang Sedang Berjalan", "error"); 
+            }
         }
     }
 
@@ -330,5 +337,25 @@
     const resetForm = () => {
         let url = `<?=base_url()?>index/list_kendaraan?page=1`
         window.location.href = url
+    }
+
+    const doValidatePesan = (id_user) => {
+        var url = "<?=base_url()?>index/validatePesanUser/"+id_user
+        let count = 0;
+        $.ajax({
+            url : url,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+              count = data
+              //setTimeout(function(){  window.location.replace("<?=base_url()?>index/riwayat_sewa") }, 2000);
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              alert('Error adding / update data');
+            }
+        });
+        return count;
     }
 </script>

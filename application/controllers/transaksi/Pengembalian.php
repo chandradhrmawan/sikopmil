@@ -15,12 +15,12 @@ class Pengembalian extends CI_Controller {
 
 	public function index()
 	{				
-		$data['breadcump'] 		= "Pengembalian";
-		$data['title_page']		= "Pengembalian";
-		$data['content_view']	= "transaksi/list_pengembalian";
+		$data['breadcump'] 		   = "Pengembalian";
+		$data['title_page']		   = "Pengembalian";
+		$data['content_view']	   = "transaksi/list_pengembalian";
 		$data['data_pengembalian'] = $this->transaksi_model->getDataPengembalian($this->session->userdata('id_user'));
-		$data['data_sewa'] 		= $this->transaksi_model->getDataSewaByIdSupir($this->session->userdata('id_user'));
-		$data['data_supir']  	= $this->master_model->getAllSupir();
+		$data['data_sewa'] 		   = $this->transaksi_model->getDataSewaByIdSupir($this->session->userdata('id_user'));
+		$data['data_supir']  	   = $this->master_model->getAllSupir();
 		$this->load->view('layout_admin/index',$data);	
 	}
 

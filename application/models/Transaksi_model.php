@@ -36,6 +36,14 @@ class Transaksi_model extends CI_Model {
 		return $this->db->get()->num_rows();
 	}
 
+	public function countSewa($id_user)
+	{
+		$this->db->select("*");
+		$this->db->from("tx_sewa a");
+		$this->db->where("a.id_user",$id_user);
+		$this->db->where("a.status_sewa != ",4);
+		return $this->db->get()->num_rows();
+	}
 
 	public function getDetailByIdkendaraan($id_kendaraan)
 	{
@@ -51,6 +59,12 @@ class Transaksi_model extends CI_Model {
 	public function doSavePesanan($data)
 	{
 		$this->db->insert('tx_sewa', $data);
+		return true;
+	}
+
+	public function insTxKordinat($data)
+	{
+		$this->db->insert('tx_kordinat', $data);
 		return true;
 	}
 
@@ -88,7 +102,7 @@ class Transaksi_model extends CI_Model {
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
-		$this->db->join("mst_supir d","d.id_supir = a.id_supir","left");
+		//$this->db->join("mst_supir d","d.id_supir = a.id_supir","left");
 		$this->db->where("a.id_user",$id_user);
 		return $this->db->get()->result();
 	}
@@ -118,12 +132,19 @@ class Transaksi_model extends CI_Model {
 		return true;
 	}
 
+	public function updateKordinat($id_sewa,$data)
+	{
+		$this->db->where('id_sewa', $id_sewa);
+		$this->db->update('tx_kordinat', $data);
+		return true;
+	}
+
 	public function getDetailSewaByIdSewa($id_sewa)
 	{
 		$this->db->select("*,d.nama as nama_supir");
 		$this->db->from("tx_sewa a");
-		$this->db->join("mst_users b","b.id_user = a.id_user");
-		$this->db->join("mst_users d","d.id_user = a.id_supir");
+		$this->db->join("mst_users b","b.id_user = a.id_user","inner");
+		$this->db->join("mst_users d","d.id_user = a.id_supir","left");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
 		$this->db->where("a.id_sewa",$id_sewa);
 		return $this->db->get()->row();
@@ -131,10 +152,11 @@ class Transaksi_model extends CI_Model {
 
 	public function getAllRiwayatSewaByIdSupir($id_supir)
 	{
-		$this->db->select("*");
+		$this->db->select("a.*,b.*,c.*,d.status_perjalanan,d.id_kordinat,d.lat_kordinat,d.lon_kordinat");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
+		$this->db->join("tx_kordinat d","a.id_sewa = d.id_sewa","left");
 		$this->db->where("a.id_supir",$id_supir);
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
@@ -147,6 +169,7 @@ class Transaksi_model extends CI_Model {
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
 		$this->db->where("a.id_supir",$id_supir);
+		$this->db->where("a.status_sewa",2);
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
 	}

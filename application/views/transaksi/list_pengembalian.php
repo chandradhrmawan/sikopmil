@@ -85,7 +85,7 @@
                       <label class="control-label col-md-2">No Polisi</label>
                       <div class="col-md-9">
                         <select class="form-control" name="no_polisi" id="no_polisi" onchange="fillDataSewa(this.value)">
-                            <option> -- Pilih No Polisi</option>
+                            <option value=""> -- Pilih No Polisi</option>
                             <?php foreach ($data_sewa as $key => $value): ?>
                               <option value="<?=$value->id_sewa?>"><?=$value->no_plat?></option>
                             <?php endforeach; ?>
@@ -188,7 +188,7 @@
                  </form>
                </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-warning btn-flat" data-dismiss="modal">Tutup</button>
                 <button type="button" id="btnSave" onclick="savePengembalian()" class="btn btn-primary btn-flat">Kirim</button>
               </div>
             </div>
@@ -275,7 +275,18 @@
 
   const savePengembalian = () => {
 
-    // ajax adding data to database
+    let msg = "";
+    let stat = true
+    if($('#no_polisi').val() == ""){
+        msg += 'Kendaraan Tidak Boleh Kosong\n'
+        stat = false
+    }
+    if($('#km_selesai').val() == ""){
+      msg+= 'Km Selesai Tidak Boleh Kosong\n'
+      stat = false
+    }
+
+    if(stat){
       var form = $("#form");
       var formData = new FormData(form[0]);
       var url = "<?php echo site_url('transaksi/Pengembalian/doSavePengembalian')?>"
@@ -295,11 +306,11 @@
           if(data.status==true){
             $('#modal_detail').modal('hide');
             swal('Pesan','Simpan Data Berhasil', 'success');
+            setTimeout(function(){  window.location.reload() }, 2000);
         
           }else{
             $('#modal_detail').modal('hide');
             swal('Pesan','Simpan Data Gagal', 'error');           
-
           }
          },
          error: function (jqXHR, textStatus, errorThrown)
@@ -307,6 +318,9 @@
           alert('Error adding / update data');
          }
       });
+     }else{
+       swal('Pesan',msg, 'error');    
+     }
   }
 
   const modalSuratJalan = (id_sewa) => {

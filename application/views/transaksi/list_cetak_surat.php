@@ -13,7 +13,8 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body pad">
-        
+        <input type="hidden" name="lon" id="lon">
+        <input type="hidden" name="lat" id="lat">
             <div class="row tambah">
                 <div class="col-md-6">
                 </div>                
@@ -30,8 +31,9 @@
                         <th>Tanggal Sewa</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
+                        <th>Status Berangkat</th>
                         <th>Status</th>
-                        <th style="width: 130px;">Aksi</th>
+                        <th style="width: 100px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +61,12 @@
                         <td><?=view_date_hi($value->tgl_sewa)?></td>
                         <td><?=view_date_hi($value->tgl_pinjam)?></td>
                         <td><?=view_date_hi($value->tgl_kembali)?></td>
+                        <td>
+                          <select <?=($value->status_perjalanan == 1) ? 'disabled' : '' ?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
+                              <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
+                              <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>
+                          </select> 
+                        </td>
                         <td><?=$status_sewa?></td>
                         <td align="center">
                           <button class="btn btn-primary btn-flat btn-sm" type="button" onClick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak <span class="fa fa-file-o"></span></button></td>
@@ -111,7 +119,30 @@
         "processing": true, //Feature control the processing indicator.
         "serverSide": false //Feature control DataTables' server-side processing mode.
       });
+      getLocation()
+
+
+
     });
+
+
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((e)=>{
+          let lon      = e.coords.longitude
+          let lat      = e.coords.latitude
+          
+          $('#lon').val(lon)
+          $('#lat').val(lat)
+
+        });
+      } else { 
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+
+
 
     function modalProses(id_sewa){
       $('#form')[0].reset(); // reset form on modals
@@ -253,4 +284,30 @@
       let url = '<?php echo site_url('transaksi/Surat_jalan/file/')?>'+id_sewa+''
       window.open(url, '_blank');
     }
+
+    const updateStatusJalan = (status,id_sewa) => {
+          let lon = $('#lon').val()
+          let lat = $('#lat').val()
+          $.ajax({
+            url : "<?php echo site_url('transaksi/Surat_jalan/updateStatusJalan')?>",
+            type: "POST",
+            data:{"status":status,"id_sewa":id_sewa,"lon":lon,"lat":lat},
+            dataType: "JSON",
+          success: function(data)
+          {
+            if(data.status==true){
+              swal('Pesan', 'Data berhasil diubah', 'success');
+              setTimeout(function(){  window.location.reload() }, 2000);
+            }else{
+              swal('Pesan', 'Data Gagal diubah', 'error');
+            }
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            alert('Error get data from ajax');
+          }
+        });
+        
+    }
+
 </script>

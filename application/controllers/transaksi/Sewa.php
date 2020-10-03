@@ -41,11 +41,13 @@ class Sewa extends CI_Controller {
 			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
 		$data2 = array(
-			'status' 	 	=> 1
+			'id_sewa' 			=> $id_sewa,
+			'status_perjalanan' => 0
 		);
-		$update 	= $this->transaksi_model->updateStatusSewa($id_sewa,$data);
+		$update1  = $this->transaksi_model->updateStatusSewa($id_sewa,$data);
+		$update2 = $this->transaksi_model->insTxKordinat($data2);
 		
-		if($update){
+		if($update1 && $update2){
 			$ret = array (
 				'status' => TRUE,
 				'data'   => $data

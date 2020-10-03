@@ -164,21 +164,21 @@
                     <div class="sp-slides">
                         <!-- Slide 1-->
                         <div class="sp-slide">
-                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/1.jpg" alt="slider" />
+                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/tank1.jpg" alt="slider" />
                             <div class="main-slider__wrap sp-layer" data-width="" data-position="centerLeft" data-horizontal="62%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
-                                <div class="main-slider__title">mercedes benz<span class="main-slider__label bg-primary">model 2018</span>
+                                <div class="main-slider__title">KMW Leopard<span class="main-slider__label bg-primary">model 2020</span>
                                 </div>
-                                <div class="main-slider__subtitle">smart drive</div><a class="main-slider__btn btn btn-white btn-lg" href="services.html"><span class="main-slider__btn-label">Starting</span><span class="main-slider__btn-price"> $<strong>560/M</strong></span></a><a class="main-slider__btn btn btn-primary btn-lg"
-                                href="services.html">book now</a>
+                                <div class="main-slider__subtitle">2A4 MTB</div><a class="main-slider__btn btn btn-white btn-lg" href="<?=base_url()?>index/list_kendaraan"><span class="main-slider__btn-label">TERSEDIA</span></a><a class="main-slider__btn btn btn-primary btn-lg"
+                                href="<?=base_url()?>index/list_kendaraan">PESAN SEKARANG</a>
                             </div>
                         </div>
                         <!-- Slide 2-->
                         <div class="sp-slide">
-                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/2.jpg" alt="slider" />
+                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/jet1.jpg" alt="slider" />
                             <div class="main-slider__wrap sp-layer" data-width="" data-position="centerLeft" data-horizontal="62%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
-                                <div class="main-slider__title">mercedes benz<span class="main-slider__label bg-primary">model 2018</span>
+                                <div class="main-slider__title">Lockheed Martin F-35<span class="main-slider__label bg-primary">model 2020</span>
                                 </div>
-                                <div class="main-slider__subtitle">smart drive</div><a class="main-slider__btn btn btn-white" href="services.html">Starting<span class="main-slider__btn-price"> $<strong>560/M</strong></span></a><a class="main-slider__btn btn btn-primary" href="services.html">book now</a>
+                                <div class="main-slider__subtitle">Lightning II</div><a class="main-slider__btn btn btn-white" href="<?=base_url()?>index/list_kendaraan">TERSEDIA<span class="main-slider__btn-price"> </span></a><a class="main-slider__btn btn btn-primary" href="<?=base_url()?>index/list_kendaraan">PESAN SEKARANG</a>
                             </div>
                         </div>
                     </div>

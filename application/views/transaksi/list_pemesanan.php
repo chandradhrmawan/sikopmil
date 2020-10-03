@@ -289,6 +289,7 @@
           if(data.status==true){
             $('#modal_form').modal('hide');
             swal('Pesan','Update Data Berhasil', 'success');
+            setTimeout(function(){  window.location.reload(); }, 2000);
             //window.location.reload();
             // reload_table();
         

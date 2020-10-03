@@ -466,7 +466,7 @@ function save_pesan()
             success: function(data)
             {
               swal('Pesan','Sewa Kendaran Berhasil Silahkan Tunggu Informasi Di  Riwayat Sewa', 'success');
-              setTimeout(function(){ alert("Hello"); }, 3000);
+              setTimeout(function(){  window.location.replace("<?=base_url()?>index/riwayat_sewa") }, 2000);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

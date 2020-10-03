@@ -3,9 +3,9 @@
 </div>
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2019 <a href="https://adminlte.io">SI-KOPMIL</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 SI-KOPMIL.</strong> All rights
     reserved.
   </footer>
 
@@ -38,6 +38,9 @@
 <script src="<?=base_url()?>assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="<?=base_url()?>assets/admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Morris.js charts -->
+<script src="<?=base_url()?>assets/admin/bower_components/raphael/raphael.min.js"></script>
+<script src="<?=base_url()?>assets/admin/bower_components/morris.js/morris.min.js"></script>
 <script>
   $(function () {
      $('.select2').select2()

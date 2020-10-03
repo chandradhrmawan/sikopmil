@@ -1,0 +1,326 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-info">
+      <div class="box-header">
+        <!-- tools box -->
+        <div class="pull-right box-tools">
+          <!-- <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                  title="Collapse">
+            <i class="fa fa-minus"></i></button> -->
+         
+        </div>
+        <!-- /. tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body pad">
+        
+            <div class="row tambah">
+                <div class="col-md-6">
+                       <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="add()">Kembalikan <span class="fa fa-plus"></span></button> 
+                </div>                
+            </div>
+        
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover table-checkable order-column table-sm" id="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor Polisi</th>
+                        <th>Nama Kendaraan</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Tanggal Kembali</th>
+                        <th>Total Biaya</th>
+                        <th>Lampiran</th>
+                        <th style="width: 130px;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    foreach ($data_pengembalian as $key => $value): 
+
+                      if(!empty($value->lampiran)){
+                        $img = "<img src='".base_url()."uploads/pengembalian/".$value->lampiran."' width='100' height='100'>";
+                      }else{
+                        $img = "<img src='".base_url()."assets/img/no_img.png' width='100' height='100'>";
+                      }
+                ?>
+                    <tr>
+                        <td><?=$key+1?></td>
+                        <td><?=$value->no_plat?></td>
+                        <td><?=$value->judul?></td>
+                        <td><?=view_date_hi($value->tgl_pinjam)?></td>
+                        <td><?=view_date_hi($value->tgl_pengembalian)?></td>
+                        <td><?=$value->total_biaya?></td>
+                        <td><?=$img?></td>
+                        <td><button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Surat Perjalanan <span class="fa fa-floppy-o"></span></button></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col-->
+</div>
+<!-- ./row -->
+
+<!-- Bootstrap modal detail -->
+        <div class="modal fade" id="modal_detail" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title"></h3>
+              </div>
+              <div class="modal-body form">
+                <form action="#" id="form" class="form-horizontal">
+                  <input type="hidden" name="id_sewa" id="id_sewa" value="">
+                  <input type="hidden" name="id_supir" id="id_supir" value="">
+
+                  <div class="form-body">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">No Polisi</label>
+                      <div class="col-md-9">
+                        <select class="form-control" name="no_polisi" id="no_polisi" onchange="fillDataSewa(this.value)">
+                            <option> -- Pilih No Polisi</option>
+                            <?php foreach ($data_sewa as $key => $value): ?>
+                              <option value="<?=$value->id_sewa?>"><?=$value->no_plat?></option>
+                            <?php endforeach; ?>
+                        </select>
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Nama Kendaraan</label>
+                      <div class="col-md-9">
+                        <input name="judul" id="judul" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Deskripsi</label>
+                      <div class="col-md-9">
+                        <input name="deskripsi" id="deskripsi" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Lokasi Tujuan</label>
+                      <div class="col-md-9">
+                        <input name="lokasi_tujuan" id="lokasi_tujuan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Jarak</label>
+                      <div class="col-md-9">
+                        <input name="jarak" id="jarak" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tujuan Perjalanan</label>
+                      <div class="col-md-9">
+                        <input name="tujuan_perjalanan" id="tujuan_perjalanan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Sewa</label>
+                      <div class="col-md-9">
+                        <input name="tgl_sewa" id="tgl_sewa" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Pinjam</label>
+                      <div class="col-md-9">
+                        <input name="tgl_pinjam" id="tgl_pinjam" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Tgl Kembali</label>
+                      <div class="col-md-9">
+                        <input name="tgl_kembali" id="tgl_kembali" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Keterangan</label>
+                      <div class="col-md-9">
+                        <input name="keterangan" id="keterangan" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Km Awal</label>
+                      <div class="col-md-9">
+                        <input name="km_awal" id="km_awal" class="form-control" type="text" disabled="true">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-2">Km Akhir</label>
+                      <div class="col-md-9">
+                        <input name="km_selesai" id="km_selesai" class="form-control" type="text" placeholder="input km terakir kendaraan">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Total Biaya Perjalanan</label>
+                      <div class="col-md-9">
+                        <input name="total_biaya" id="total_biaya" class="form-control" type="text" placeholder="input total biaya operasional">
+                     </div>
+                   </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Upload Lampiran Bukti</label>
+                      <div class="col-md-9">
+                        <input name="bukti" id="bukti" class="form-control" type="file">
+                     </div>
+                   </div>
+
+                  </div>
+                 </form>
+               </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <button type="button" id="btnSave" onclick="savePengembalian()" class="btn btn-primary btn-flat">Kirim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Bootstrap modal detail-->
+
+
+<!-- Bootstrap modal detail -->
+<div class="modal fade" id="modal_print" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body form">
+        <input type="hidden" name="id_sewa" id="id_sewa">
+       <div id="surat-jalan">
+       </div>
+       </div>
+        <div class="modal-footer">
+        <button type="button" id="btnSave" onclick="openNewTab()" class="btn btn-primary btn-flat">Buka</button>
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Bootstrap modal detail-->
+
+
+
+<script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    var save_method; //for save method string
+    var table;
+
+    $(document).ready(function() { 
+      //TAMPIL DATA TABLE SERVER SIDE
+      table = $('#table').DataTable({ 
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": false //Feature control DataTables' server-side processing mode.
+      });
+    });
+
+    const add = () => {
+      $('#modal_detail').modal('show');
+      $('.modal-add').text('Tambah Data');
+    }
+
+    const fillDataSewa = (id_sewa) => {
+      $.ajax({
+        url : "<?php echo site_url('index/getDetailSewaByIdSewa')?>/" + id_sewa,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          $('#judul').val(data.judul)
+          $('#deskripsi').val(data.deskripsi)
+          $('#lokasi_tujuan').val(data.lokasi_tujuan)
+          $('#tujuan_perjalanan').val(data.tujuan_perjalanan)
+          $('#jarak').val(data.jarak)
+          $('#tgl_sewa').val(data.tgl_sewa)
+          $('#tgl_pinjam').val(data.tgl_pinjam)
+          $('#tgl_kembali').val(data.tgl_kembali)
+          $('#keterangan').val(data.keterangan)
+          $('#km_awal').val(data.km_akhir+' Km')
+          $('#id_sewa').val(id_sewa)
+          $('#id_supir').val(data.id_supir)
+                
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          alert('Error get data from ajax');
+        }
+      });
+    }
+
+    const modalKembali = (id_sewa) => {
+        $('#modal_detail').modal('show');
+        $('.modal-title').text('Detail Data'); // Set Title to Bootstrap modal title
+    }
+
+  const savePengembalian = () => {
+
+    // ajax adding data to database
+      var form = $("#form");
+      var formData = new FormData(form[0]);
+      var url = "<?php echo site_url('transaksi/Pengembalian/doSavePengembalian')?>"
+
+       $.ajax({
+        url : url,
+        type: "POST",
+        data: formData,
+        dataType: "JSON",
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data)
+        {
+
+          //console.log(data);
+          if(data.status==true){
+            $('#modal_detail').modal('hide');
+            swal('Pesan','Simpan Data Berhasil', 'success');
+        
+          }else{
+            $('#modal_detail').modal('hide');
+            swal('Pesan','Simpan Data Gagal', 'error');           
+
+          }
+         },
+         error: function (jqXHR, textStatus, errorThrown)
+         {
+          alert('Error adding / update data');
+         }
+      });
+  }
+
+  const modalSuratJalan = (id_sewa) => {
+        $('#modal_print').modal('show');
+        $('.modal-title').text('Cetak Nota Perjalanan'); // Set Title to Bootstrap modal title
+        $("#id_sewa").val(id_sewa);
+
+        let iframe = '<iframe src="<?php echo site_url('transaksi/Pengembalian/file/')?>'+id_sewa+'" height="500" width="870" title="Iframe Example"></iframe>'
+        $("#surat-jalan").html(iframe).fadeIn();   
+  }
+
+  const openNewTab = () => {
+      let id_sewa = $("#id_sewa").val();
+      let url = '<?php echo site_url('transaksi/Surat_jalan/file/')?>'+id_sewa+''
+      window.open(url, '_blank');
+  }
+</script>

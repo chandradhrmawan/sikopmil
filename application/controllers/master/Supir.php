@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Supir extends CI_Controller {
 
 	//param for model
-	var $table = 'mst_supir';
-	var $pk    = 'id_supir';
-	var $field = array('id_supir','nm_supir');
+	var $table = 'mst_users';
+	var $pk    = 'id_user';
+	var $field = array('id_user','nama','username','nip','id_jabatan','status','id_role','alamat');
 
 	//param for view
-	var $view_list = array('No','Nama Supir','Action');
+	var $view_list = array('No','Nama','Username','Nip','Alamat');
 
 	public function __construct()
 	{
@@ -43,16 +43,24 @@ class Supir extends CI_Controller {
 
 			$row[] = $no;
 			
+			if($regulasi->id_role != 4){
+				continue;
+			}
 			foreach ($field as $fields){
-				$row[] = $regulasi->$fields;	
+
+				if($fields == 'id_jabatan' || $fields == 'id_role' || $fields == 'status'){
+					continue;
+				}else{
+					$row[] = $regulasi->$fields;	
+				}
 			}
 
-			$row[] = '<a  href="#" title="Edit" onclick="edit_data('."'".$regulasi->id_supir."'".')" >
+			/*$row[] = '<a  href="#" title="Edit" onclick="edit_data('."'".$regulasi->id_user."'".')" >
 						<i class="fa fa-pencil"></i> Edit
 					  </a> &nbsp; |		 
-					  <a class="delete" href="#" title="Delete" onclick="delete_data('."'".$regulasi->id_supir."'".')" >
+					  <a class="delete" href="#" title="Delete" onclick="delete_data('."'".$regulasi->id_user."'".')" >
 					  <i class="fa fa-trash"></i> Delete
-					  </a>';
+					  </a>';*/
 			$data[] = $row;
 		}
 
@@ -77,6 +85,7 @@ class Supir extends CI_Controller {
 			foreach($field as $fields):
 				$data[$fields] = $this->input->post($fields);
 			endforeach;
+			$data['status'] = $this->input->post('status');
 
 			$insert = $this->crud_model->save($this->table,$data);
 			echo  ($insert!=0) ? json_encode(array("status" => TRUE)) : json_encode(array("status" => FALSE));
@@ -99,6 +108,7 @@ class Supir extends CI_Controller {
 		foreach($field as $fields):
 			$data[$fields] = $this->input->post($fields);
 		endforeach;
+		$data['status'] = $this->input->post('status');
 
 		$update =  $this->crud_model->update($this->table,$this->pk,$this->input->post('id_supir'),$data);
 

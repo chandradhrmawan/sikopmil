@@ -17,10 +17,10 @@
             <div class="row tambah">
                 <div class="col-md-6">
                   
-                        <a href="#" onclick="add()">
+                       <!--  <a href="#" onclick="add()">
                           <button id="" class="btn btn-info" style="border-radius: 0;"> Add New
                             <i class="fa fa-plus"></i>
-                        </button></a>
+                        </button></a> -->
                     
                 </div>                
             </div>
@@ -65,6 +65,15 @@
                 <input name="nm_supir" id="nm_supir" placeholder="Nama Supir" class="form-control" type="text">
              </div>
            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2">Status</label>
+              <div class="col-md-9">
+                <select name="status" id="status" class="form-control">
+                  <option value="0">Tersedia</option>
+                  <option value="1">Tidak Tersedia</option>
+                </select>
+             </div>
+           </div>
 
           </div>
          </form>
@@ -103,7 +112,7 @@
         //Set column definition initialisation properties.
         "columnDefs": [
         { 
-          "targets": [2], //last column
+          "targets": [3], //last column
           "class":"text-center",
           "orderable": false, //set not orderable
         },
@@ -190,6 +199,7 @@
 
           $('[name="id_supir"]').val(data.id_supir);
           $('[name="nm_supir"]').val(data.nm_supir);
+          $('[name="status"]').val(data.status);
                    
           },
           error: function (jqXHR, textStatus, errorThrown)

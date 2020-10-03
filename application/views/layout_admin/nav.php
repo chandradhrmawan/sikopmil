@@ -17,14 +17,16 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?=base_url()?>admin">
+          <a href="<?=base_url()?>main/dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <?php 
-          $menu = $this->general_model->get_menu(2);
+          $menu = $this->general_model->get_menu(2,$this->session->userdata('id_role'));
           foreach($menu as $key => $value):
+
+          $list_role =explode(",", $value->role);
             
           $detail_menu = $this->general_model->get_detail_menu($value->id);
           
@@ -38,7 +40,7 @@
                 </span>
 
               </a>
-              <ul class="treeview-menu" style="display: block;">
+              <ul class="treeview-menu" style="display: none;">
                 
                 <?php foreach ($detail_menu as $keyx => $valuex): ?>
                   <li><a href="<?=base_url().''.$valuex->slug_url?>"><i class="fa fa-circle-o"></i><?=$valuex->title?></a></li>

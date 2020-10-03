@@ -38,11 +38,11 @@
 
     <form id="form" method="post">
       <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" placeholder="Username">
+        <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -74,6 +74,24 @@
 <script src="<?php echo base_url(); ?>assets/sweet/sweetalert.min.js"></script>
 <link href="<?php echo base_url(); ?>assets/sweet/sweetalert.css" rel="stylesheet" type="text/css" />
 <script>
+
+  $('#username').keypress(function (e) {
+     var key = e.which;
+     if(key == 13)  // the enter key code
+      {
+        login();
+      }
+    });
+
+    $('#password').keypress(function (e) {
+     var key = e.which;
+     if(key == 13)  // the enter key code
+      {
+        login();
+      }
+    });
+
+
   const login = () => {
     var form = $("#form");
     var formData = new FormData(form[0]);

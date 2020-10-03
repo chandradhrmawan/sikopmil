@@ -74,7 +74,11 @@ function getDistanceBetween($latitude1, $longitude1, $latitude2, $longitude2, $u
 }
 
 function formatDate($date)
-{
-	$create=date_create($date);
-	return date_format($create,"Y/m/d H:i");
+{		
+	if(empty($date)){
+		return null;
+	}else{
+		$create=date_create($date);
+		return date_format($create,"Y/m/d H:i");
+	}
 }

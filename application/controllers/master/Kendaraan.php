@@ -9,7 +9,7 @@ class Kendaraan extends CI_Controller {
 	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga','path');
 
 	//param for view
-	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Deskripsi','Model','Transmisi','Tenaga','Foto','Aksi');
+	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Model','Transmisi','Tenaga','Foto','Aksi');
 
 	public function __construct()
 	{
@@ -54,8 +54,25 @@ class Kendaraan extends CI_Controller {
 					$row[] = getMasterData('nm_merk','mst_merk','id_merk',$regulasi->$fields);
 				}elseif($fields == 'id_tipe'){
 					$row[] = getMasterData('nm_tipe','mst_tipe','id_tipe',$regulasi->$fields);
+				}elseif($fields == 'deskripsi'){
+					continue;
 				}elseif($fields == 'status'){
-					$row[] = getStatusKendaraan($regulasi->$fields);
+
+					if($regulasi->$fields == 1){
+                        $row[] = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
+                    }elseif($regulasi->$fields == 2){
+                        $row[] = '<span class="label label-success">Sudah Disetujui Atasan</span>';
+                    }elseif($regulasi->$fields == 3){
+                        $row[] = '<span class="label label-info">Dalam Proses Peminjaman</span>';
+                    }elseif($regulasi->$fields == 4){
+                        $row[] = '<span class="label label-default">Peminjaman Selesai</span>';
+                    }elseif($regulasi->$fields == 5){
+                        $row[] = '<span class="label label-danger">Permohonan Ditolak</span>';
+                    }elseif($regulasi->$fields == 0){
+                        $row[] = '<span class="label label-info">Tersedia</span>';
+                    } 
+
+
 				}elseif($fields == 'path'){
 
 					if(!empty($regulasi->$fields)){

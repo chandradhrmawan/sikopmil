@@ -19,7 +19,7 @@ class Sewa extends CI_Controller {
 		$data['title_page']		= "Data Pemesanan";
 		$data['content_view']	= "transaksi/list_pemesanan";
 		$data['data_pemesanan'] = $this->transaksi_model->getAllRiwayatSewa();
-		$data['data_supir']  	= $this->master_model->getAll('mst_supir');
+		$data['data_supir']  	= $this->master_model->getAllSupir();
 		$this->load->view('layout_admin/index',$data);	
 	}
 
@@ -37,16 +37,15 @@ class Sewa extends CI_Controller {
 		$id_sewa =  $this->input->post('id_sewa');
 		$data = array(
 			'status_sewa' 	=> $this->input->post('status_sewa'),
-			'id_supir' 		=> $this->input->post('id_supir'),
+			'id_supir' 		=> $this->input->post('id_user'),
 			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
 		$data2 = array(
 			'status' 	 	=> 1
 		);
 		$update 	= $this->transaksi_model->updateStatusSewa($id_sewa,$data);
-		$data_supir = $this->transaksi_model->updateStatusSupir($this->input->post('id_supir'),$data2);
 		
-		if($update && $data_supir){
+		if($update){
 			$ret = array (
 				'status' => TRUE,
 				'data'   => $data

@@ -33,9 +33,9 @@
                         <th>Tanggal Sewa</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
-                        <th>Lokasi Tujuan</th>
+                        <!-- <th>Lokasi Tujuan</th>
                         <th>Tujuan Perjalanan</th>
-                        <th>Jarak Perjalanan</th>
+                        <th>Jarak Perjalanan</th> -->
                         <th>Status</th>
                         <th style="width: 130px;">Aksi</th>
                     </tr>
@@ -68,9 +68,9 @@
                         <td><?=view_date_hi($value->tgl_sewa)?></td>
                         <td><?=view_date_hi($value->tgl_pinjam)?></td>
                         <td><?=view_date_hi($value->tgl_kembali)?></td>
-                        <td><?=$value->lokasi_tujuan?></td>
+                        <!-- <td><?=$value->lokasi_tujuan?></td>
                         <td><?=$value->tujuan_perjalanan?></td>
-                        <td><?=$value->jarak?></td>
+                        <td><?=$value->jarak?></td> -->
                         <td><?=$status_sewa?></td>
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_sewa?>)">Detail <span class="fa fa-eye"></span></button>
                           <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProses(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
@@ -116,10 +116,10 @@
             <div class="form-group" id="label_supir">
               <label class="control-label col-md-2">Supir</label>
               <div class="col-md-9">
-                <select class="form-control" name="id_supir" id="id_supir">
+                <select class="form-control" name="id_user" id="id_user">
                     <option>--</option>
                     <?php foreach ($data_supir as $key => $value): ?>
-                      <option value="<?=$value->id_supir?>"><?=$value->nm_supir?></option>
+                      <option value="<?=$value->id_user?>"><?=$value->nama?></option>
                     <?php endforeach; ?>
                 </select>
              </div>

@@ -134,7 +134,7 @@
                                              <div class="form-group">
                                                 <input class="form-control" type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
                                             </div>
-                                            <button class="btn btn-primary" onclick="doLogin()">Login</button>
+                                            <button class="btn btn-primary" id="btn-login" onclick="doLogin()">Login</button>
                                     </div>
                                     </div>
                                 </div>
@@ -192,6 +192,23 @@
 </html>
 
 <script type="text/javascript">
+
+    $('#username').keypress(function (e) {
+     var key = e.which;
+     if(key == 13)  // the enter key code
+      {
+        doLogin();
+      }
+    });
+
+    $('#password').keypress(function (e) {
+     var key = e.which;
+     if(key == 13)  // the enter key code
+      {
+        doLogin();
+      }
+    });
+
     const doLogin = () => {
        
         var url = "<?=base_url()?>index/doLogin";

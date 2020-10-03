@@ -131,6 +131,10 @@ class Index extends CI_Controller {
 	public function getDetailSewaByIdSewa($id_sewa)
 	{
 		$data = $this->transaksi_model->getDetailSewaByIdSewa($id_sewa);
+		$data->tgl_sewa 	= view_date_hi($data->tgl_sewa);
+		$data->tgl_kembali  = view_date_hi($data->tgl_kembali);
+		$data->tgl_pinjam   = view_date_hi($data->tgl_pinjam);
+
 		echo json_encode($data);
 	}
 }

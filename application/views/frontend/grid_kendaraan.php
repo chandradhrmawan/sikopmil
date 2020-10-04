@@ -298,7 +298,7 @@
 
 
             let validasi_pesan = doValidatePesan(id_user);
-            if(validasi_pesan != 0){
+            if(validasi_pesan == 0){
                 swal({
                 title: "Konfirmasi",
                 text: "Apakah anda yakin, ingin memesan Kendaraan ini?",

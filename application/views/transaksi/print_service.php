@@ -1,9 +1,9 @@
-<div class="pad margin no-print">
+<!-- <div class="pad margin no-print">
   <div class="callout callout-info" style="margin-bottom: 0!important;">
     <h4><i class="fa fa-info"></i> Note:</h4>
     This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
   </div>
-</div>
+</div> -->
 
   <!-- Main content -->
   <section class="invoice">
@@ -79,7 +79,18 @@
     <div class="row">
       <!-- accepted payments column -->
       <div class="col-xs-6">
-        <p class="lead">Keterangan:</p>
+        <?php
+          $status = "";
+          if($data_hdr_service->status == 1){
+             $status = "Belum Lunas";
+          }elseif($data_hdr_service->status == 2){
+              $status = "Lunas";
+          }elseif($data_hdr_service->status == 3){
+              $status = "Ditolak";
+          }
+        ?>
+        <p class="lead">Status : <b><?=$status?></b></p>
+        <p>Deskripsi Service:</p>
         
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
           <?=$data_hdr_service->note?>
@@ -105,7 +116,7 @@
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-xs-12">
-        <a href="#" target="_blank" onclick="print()" class="btn btn-primary btn-flat"><i class="fa fa-print"></i> Print</a>
+        <a href="#" onclick="print()" class="btn btn-primary btn-flat"><i class="fa fa-print"></i> Print</a>
         <!-- <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
         </button> -->
         <button type="button" class="btn btn-danger pull-right btn-flat" style="margin-right: 5px;" onclick="kembali()">

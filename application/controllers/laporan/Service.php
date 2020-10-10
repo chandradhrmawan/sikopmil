@@ -25,7 +25,8 @@ class Service extends CI_Controller {
 	{
 		$data =	array(
 			'tgl_awal'  => formatDate($this->input->get('tgl_awal')),
-			'tgl_akhir' => formatDate($this->input->get('tgl_akhir'))
+			'tgl_akhir' => formatDate($this->input->get('tgl_akhir')),
+			'status' 	=> $this->input->get('status')
 		);
 		$result = $this->transaksi_model->getReportService($data);
 		$content = "";

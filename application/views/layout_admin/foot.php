@@ -10,6 +10,8 @@
   </footer>
 
 </div>
+<input type="hidden" name="lon_hid" id="lon_hid">
+<input type="hidden" name="lat_hid" id="lat_hid">
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
@@ -43,15 +45,59 @@
 <script src="<?=base_url()?>assets/admin/bower_components/morris.js/morris.min.js"></script>
 <script>
   $(function () {
+    getGeoLocation()
      $('.select2').select2()
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //CKEDITOR.replace('editor1')
-    //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
     $('.datepicker').datepicker({
       autoclose: true
     })
+
+    let id_role = "<?=$this->session->userdata('id_role')?>";
+
+    setInterval(()=>{ 
+     
+      if(id_role == 4){
+        updateLoc("<?=$this->session->userdata('id_user')?>")
+      }
+
+    }, 5000);
+
+    function updateLoc(id_user)
+    {
+      let lon = $('#lon_hid').val()
+      let lat = $('#lat_hid').val()
+
+      $.ajax({
+        url: '<?=base_url()?>transaksi/Monitoring/updateLoc/'+id_user,
+        method: 'POST',
+        data:{"lon":lon,"lat":lat},
+        dataType: "JSON",
+        success: function(response) {
+         console.log(response)
+        },
+        error: function (jqXHR, textStatus, errorThrown){
+          alert('Error adding / update data');
+        }
+      });
+    }
+
+
+    function getGeoLocation(){
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((e)=>{
+          let lon      = e.coords.longitude
+          let lat      = e.coords.latitude
+          
+          $('#lon_hid').val(lon)
+          $('#lat_hid').val(lat)
+
+        });
+      } else { 
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+
   })
 </script>
 </body>

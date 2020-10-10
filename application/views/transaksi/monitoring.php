@@ -1,72 +1,20 @@
-<style type="text/css">
+<!-- <style type="text/css">
 #lat, #lon { text-align:right }
 #map { width:100%;height: 500px; }
 .address { cursor:pointer }
 .address:hover { color:#AA0000;text-decoration:underline }
-</style>
+</style> -->
 
 <div class="row">
   <div class="col-md-12">
     <div class="box box-info">
-      <div class="box-header">
-        <h3 class="box-title">Monitoring Kendaraan</h3>   
-        <!-- tools box -->
-        <div class="pull-right">
-        </div>
-        <!-- /. tools -->
-      </div>
-      <!-- /.box-header -->
       <div class="box-body pad">
-       <form name="form" id="form" enctype="multipart/form-data" method="post">
 
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label>Lokasi Tujuan</label>
-                <input type="text" class="form-control" id="addr" name="addr" placeholder="<?=$location['desc']?>">
-              </div>
-            </div>
-
-            <div class="col-sm-12">
-              <div class="form-group">
-                <button name="save" onclick="addr_search()" type="button" id="save" class="btn btn-info btn-flat"><span class="fa fa-search"></span> Cari</button>
-              </div>
-            </div>
-
-             <div class="col-sm-6">
-              <div class="form-group">
-                <label>Latitude</label>
-                <input type="text" class="form-control" id="lat" name="lat">
-              </div>
-            </div>
-
-             <div class="col-sm-6">
-              <div class="form-group">
-                <label>Longitude</label>
-                <input type="text" class="form-control" id="lon" name="lon">
-              </div>
-            </div>
-
-             <div class="col-sm-12">
-              <div class="form-group">
-                <div id="results"></div>
-              </div>
-            </div>
-
-            <div class="col-sm-12">
-              <div class="form-group">
-                 <div id="map"></div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-12">
-              <div class="form-group">
-                <button name="simpan" onclick="save_new_loc()" type="button" id="simpan" class="btn btn-primary btn-flat"><span class="fa fa-save"></span> Simpan</button>
-              </div>
-            </div>
-
-
-        </form>
+      <div class="col-sm-12">
+        <div class="form-group">
+           <div id="container-map"></div>
+        </div>
+      </div>
 
       </div>
     </div>
@@ -77,152 +25,80 @@
     
 </div>
 
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_form" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="" name="id_role"/> 
+          <div class="form-body">
+
+            <div class="form-group">
+              <label class="control-label col-md-2">Lokasi</label>
+              <div class="col-md-9">
+                <textarea name="lokasi" id="lokasi" class="form-control" cols="5" rows=5 disabled></textarea>
+             </div>
+           </div>
+
+          </div>
+         </form>
+       </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Bootstrap modal -->
+
 
 
 
 <script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript">
-// New York
-/*var startlat = -6.17539420;
-var startlon = 106.82718300;*/
 
-var greenIcon = L.icon({
-    iconUrl: 'https://img.pngio.com/company-icons-free-download-png-and-svg-company-icon-png-200_200.png',
-    // shadowUrl: 'https://img.pngio.com/company-icons-free-download-png-and-svg-company-icon-png-200_200.png',
-
-    iconSize:     [50, 50], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-    // shadowSize:   [50, 64], // size of the shadow
-    // shadowAnchor: [4, 62],  // the same for the shadow
-});
-
-
-var startlat = "<?=$location['lat']?>";
-var startlon = "<?=$location['lon']?>";
-
-var options = {
- center: [startlat, startlon],
- zoom: 12
-}
-
-document.getElementById('lat').value = startlat;
-document.getElementById('lon').value = startlon;
-
-var map = L.map('map', options);
-var nzoom = 25;
-
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(map);
-
-var myMarker = L.marker([startlat, startlon],{icon: greenIcon},{title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map).on('dragend', function() {
- var lat = myMarker.getLatLng().lat.toFixed(8);
- var lon = myMarker.getLatLng().lng.toFixed(8);
- var czoom = map.getZoom();
- if(czoom < 18) { nzoom = czoom + 2; }
- if(nzoom > 18) { nzoom = 18; }
- if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
- document.getElementById('lat').value = lat;
- document.getElementById('lon').value = lon;
- myMarker.bindPopup("Latz " + lat + "<br />Lon " + lon).openPopup();
- // L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
-
-
- //confirm_addr(lat,lon)
-
-
-});
-
-/* map.on('click', function(e) {
-    var myMarker = L.marker([e.latlng.lat, e.latlng.lng], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map)
-    myMarker.bindPopup("Lat " + e.latlng.lat + "<br />Lon " + e.latlng.lng).openPopup();
-});*/
-
-function chooseAddr(lat1, lng1)
-{
- myMarker.closePopup();
- map.setView([lat1, lng1],18);
- myMarker.setLatLng([lat1, lng1]);
- lat = lat1.toFixed(8);
- lon = lng1.toFixed(8);
- document.getElementById('lat').value = lat;
- document.getElementById('lon').value = lon;
- myMarker.bindPopup("Lats " + lat + "<br />Lon " + lon).openPopup();
-}
-
-function myFunction(arr)
-{
- var out = "<br />";
- var i;
-
- if(arr.length > 0)
- {
-  for(i = 0; i < arr.length; i++)
-  {
-
-   out += "<div class='address' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ");return false;'>" + arr[i].display_name + "</div>";
-  }
-  document.getElementById('results').innerHTML = out;
- }
- else
- {
-  document.getElementById('results').innerHTML = "Sorry, no results...";
- }
-
-}
-
-function addr_search()
-{
- var inp = document.getElementById("addr");
- var xmlhttp = new XMLHttpRequest();
- var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
- xmlhttp.onreadystatechange = function()
- {
-   if (this.readyState == 4 && this.status == 200)
-   {
-    var myArr = JSON.parse(this.responseText);
-    myFunction(myArr);
-   }
- };
- xmlhttp.open("GET", url, true);
- xmlhttp.send();
-}
-
-function confirm_addr(lat,lon)
-{
-  console.log(lat+''+lon);
-}
-
-function save_new_loc(){
-  var lat = $('#lat').val();
-  var lon = $('#lon').val();
-
-  // ajax adding data to database
-  var url = "<?=base_url()?>master/config/saveStartPoint"
-   $.ajax({
-    url : url,
-    type: "POST",
-    data: {"lat":lat,"lon":lon},
-    dataType: "JSON",
-    success: function(data)
-    {
-      if(data.status==true){
-        swal('Pesan',data.pesan, 'success');    
-      }else{
-        $('#modal_form').modal('hide');
-        swal('Pesan',data.pesan, 'error');          
-
-      }
-     },
-     error: function (jqXHR, textStatus, errorThrown)
-     {
+const markerOnClick = (e) =>{
+  $('#form')[0].reset(); // reset form on modals
+  $('#modal_form').modal('show'); // show bootstrap modal
+  $('.modal-title').text('Tambah Data User'); // Set Title to Bootstrap modal title
+  $.ajax({
+    url: 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+ e.latlng.lat +'&lon='+e.latlng.lng,
+    method: 'GET',
+    success: function(response) {
+      let full = (response.display_name+"\n"+response.address.state_district);
+      $('#lokasi').val(full);
+    },
+    error: function (jqXHR, textStatus, errorThrown){
       alert('Error adding / update data');
-     }
+    }
   });
-
 }
+
+
+const loadMap = () => {
+   $.ajax({
+    url: '<?=base_url()?>transaksi/Monitoring/loadMap',
+    method: 'GET',
+    success: function(response) {
+      $('#container-map').html(response);
+    },
+    error: function (jqXHR, textStatus, errorThrown){
+      alert('Error adding / update data');
+    }
+  });
+}
+
+loadMap();
+setInterval(()=>{ 
+ loadMap();
+}, 10000);
+
+
 
 </script>
-
-
-

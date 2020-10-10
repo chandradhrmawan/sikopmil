@@ -13,12 +13,13 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body pad">
-        
+        <?php if($this->session->userdata('id_role') == 4): ?>
             <div class="row tambah">
                 <div class="col-md-6">
                        <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="add()">Kembalikan <span class="fa fa-plus"></span></button> 
                 </div>                
             </div>
+        <?php endif; ?>
         
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover table-checkable order-column table-sm" id="table">
@@ -31,7 +32,8 @@
                         <th>Tanggal Kembali</th>
                         <th>Total Biaya</th>
                         <th>Lampiran</th>
-                        <th style="width: 130px;">Aksi</th>
+                        <th>Status</th>
+                        <th style="width: 200px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +45,16 @@
                       }else{
                         $img = "<img src='".base_url()."assets/img/no_img.png' width='100' height='100'>";
                       }
+
+                      $status = "";
+                      if($value->status == 1){
+                        $status = '<span class="label label-warning">Menunggu Persetujuan</span>';
+                      }else if($value->status == 2){
+                         $status = '<span class="label label-success">Diterima</span>';
+                      }else if($value->status == 3){
+                         $status = '<span class="label label-danger">Ditolak</span>';
+                      }
+
                 ?>
                     <tr>
                         <td><?=$key+1?></td>
@@ -52,7 +64,16 @@
                         <td><?=view_date_hi($value->tgl_pengembalian)?></td>
                         <td><?=$value->total_biaya?></td>
                         <td><?=$img?></td>
-                        <td><button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Surat Perjalanan <span class="fa fa-floppy-o"></span></button></td>
+                        <td><?=$status?></td>
+                        <td>
+                          
+                          <?php if($this->session->userdata('id_role') == 4): ?>
+                            <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Surat Perjalanan <span class="fa fa-floppy-o"></span></button>
+                          <?php else: ?>
+                            <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalSuratJalanProses(<?=$value->id_pengembalian?>)">Proses Nota <span class="fa fa-floppy-o"></span></button>
+                          <?php endif; ?>
+
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -219,6 +240,40 @@
 </div>
 <!--End Bootstrap modal detail-->
 
+<!-- Bootstrap modal detail -->
+<div class="modal fade" id="modal_surat_jalan_proses" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"></h3>
+      </div>
+        <form action="#" id="form1" class="form-horizontal">
+        <div class="modal-body form">
+        <input type="hidden" name="id_pengembalian" id="id_pengembalian">
+
+          <div class="form-group">
+            <label class="control-label col-md-2">Status</label>
+            <div class="col-md-9">
+              <select name="status_proses" id="status_proses" class="form-control">
+                <option value="2">Diterima</option>
+                <option value="3">Ditolak</option>
+              </select>
+           </div>
+          </div>
+
+      
+        <div class="modal-footer">
+        <button type="button" id="btnSave" onclick="updatePengembalian()" class="btn btn-primary btn-flat">Update</button>
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Tutup</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Bootstrap modal detail-->
+
 
 
 <script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
@@ -337,4 +392,34 @@
       let url = '<?php echo site_url('transaksi/Surat_jalan/file/')?>'+id_sewa+''
       window.open(url, '_blank');
   }
+
+  const modalSuratJalanProses = (id_pengembalian) => {
+      $('#modal_surat_jalan_proses').modal('show');
+      $('.modal-title').text('Proses'); // Set Title to Bootstrap modal title
+      $("#id_pengembalian").val(id_pengembalian);
+  }
+
+  const updatePengembalian = () => {
+    let postData = {
+      id_pengembalian:$('#id_pengembalian').val(),
+      status_proses:$('#status_proses').val()
+    }
+
+    $.ajax({
+        url : "<?php echo site_url('transaksi/Pengembalian/updatePengembalianStatus')?>",
+        type: "POST",
+        dataType: "JSON",
+        data:postData,
+        success: function(data)
+        {
+          swal('Pesan','Simpan Data Berhasil', 'success');
+          setTimeout(function(){  window.location.reload() }, 2000);  
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          alert('Error get data from ajax');
+        }
+      });
+  }
+
 </script>

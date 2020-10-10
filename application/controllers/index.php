@@ -142,4 +142,25 @@ class Index extends CI_Controller {
 		$count = $this->transaksi_model->countSewa($id_user);
 		echo json_encode($count);
 	}
+
+	public function cancelBooking()
+	{
+		$id_sewa  	= $this->input->post('id_sewa');
+		$keterangan = $this->input->post('keterangan');
+		$data  		= array('keterangan' => $keterangan);
+		$this->transaksi_model->doCancelBooking($id_sewa,$data);
+		echo json_encode(array('status' => true));
+	}
+
+	public function getNotifSewa()
+	{
+		$data = $this->model->getRiwayatSewaByIduserNotif($this->session->userdata('id_user'));
+		return $data;
+	}
+
+	public function updateIsRead($id_sewa)
+	{
+		$this->transaksi_model->updateIsRead($id_sewa);
+		echo json_encode(array('status' => true));
+	}
 }

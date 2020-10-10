@@ -25,10 +25,11 @@ class General_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	public function get_detail_menu($id_menu)
+	public function get_detail_menu($id_menu,$role)
 	{
 		$this->db->select("*");
 		$this->db->from("mst_detail_menu");
+		$this->db->like('role',$role);
 		$this->db->where("id_menu",$id_menu);
 		return $this->db->get()->result();
 	}

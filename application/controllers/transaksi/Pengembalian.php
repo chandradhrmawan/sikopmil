@@ -27,13 +27,14 @@ class Pengembalian extends CI_Controller {
 	public function doSavePengembalian()
 	{	
 
-		$data = array('id_sewa' 	=> $this->input->post('id_sewa'),
-					  'total_biaya' => $this->input->post('total_biaya'),
-					  'lampiran' 	=> $this->input->post('lampiran'),
-					  'km_selesai'  => $this->input->post('km_selesai'),
-					  'id_supir' 	=> $this->input->post('id_supir'),
+		$data = array('id_sewa' 		 => $this->input->post('id_sewa'),
+					  'total_biaya' 	 => $this->input->post('total_biaya'),
+					  'lampiran' 		 => $this->input->post('lampiran'),
+					  'km_selesai'  	 => $this->input->post('km_selesai'),
+					  'id_supir' 		 => $this->input->post('id_supir'),
 					  'tgl_pengembalian' => date('Y-m-d h:i:s'),
-					  'lampiran' 	=> $this->_uploadImage(date('dmYhis'))
+					  'status' 			 => 1,
+					  'lampiran' 		 => $this->_uploadImage(date('dmYhis'))
 		);
 
 		$insert = $this->transaksi_model->savePengembalian($data);
@@ -87,6 +88,16 @@ class Pengembalian extends CI_Controller {
 		$data['data_sewa']			= $this->transaksi_model->getDetailSewaByIdSewa($id_sewa);
 		$data['data_pengembalian'] 	= $this->transaksi_model->getDataPengembalianByIdSewa($id_sewa);
 		$this->load->view('transaksi/surat_perjalaan',$data);	
+	}
+
+	public function updatePengembalianStatus()
+	{	
+		$id_pengembalian = $this->input->post('id_pengembalian');
+		$data = array(
+			'status' => $this->input->post('status_proses')
+		);
+		$this->transaksi_model->updatePengembalianStatus($id_pengembalian,$data);
+		echo json_encode(array('status' => true));
 	}
 
 }

@@ -127,4 +127,15 @@ class Service extends CI_Controller {
 		$data['data_pengembalian'] 	= $this->transaksi_model->getDataPengembalianByIdSewa($id_sewa);
 		$this->load->view('transaksi/surat_perjalaan',$data);	
 	}
+
+	public function updateData()
+	{	
+		$id_hdr_service = $this->input->post('id_hdr_service');
+		$update = array(
+					'status' 	 => $this->input->post('status'),
+					'keterangan' => $this->input->post('keterangan'),
+				);
+		$ret = $this->transaksi_model->updateDataService($id_hdr_service,$update);
+		echo json_encode(array('status' => true));
+	}
 }

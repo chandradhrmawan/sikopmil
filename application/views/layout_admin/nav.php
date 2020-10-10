@@ -28,7 +28,7 @@
 
           $list_role =explode(",", $value->role);
             
-          $detail_menu = $this->general_model->get_detail_menu($value->id);
+          $detail_menu = $this->general_model->get_detail_menu($value->id,$this->session->userdata('id_role'));
           
           if(!empty($detail_menu)): ?>
             <li class="treeview">

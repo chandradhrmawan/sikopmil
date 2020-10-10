@@ -41,7 +41,8 @@ class Transaksi_model extends CI_Model {
 		$this->db->select("*");
 		$this->db->from("tx_sewa a");
 		$this->db->where("a.id_user",$id_user);
-		$this->db->where("a.status_sewa != ",4);
+		$status_allow = array(4,5);
+		$this->db->where_not_in('a.status_sewa', $status_allow);
 		return $this->db->get()->num_rows();
 	}
 
@@ -96,15 +97,48 @@ class Transaksi_model extends CI_Model {
 		return true;
 	}
 
+	public function doCancelBooking($id,$data)
+	{
+		$dt = array(
+	        'keterangan'  => $data['keterangan'],
+	        'status_sewa' => 6
+		);
+		$this->db->where('id_sewa', $id);
+		$this->db->update('tx_sewa', $dt);
+		return true;
+	}
+
+	public function updateIsRead($id_sewa)
+	{
+		$dt = array(
+	        'is_read'  	  => 1
+		);
+		$this->db->where('id_sewa', $id_sewa);
+		$this->db->update('tx_sewa', $dt);
+		return true;
+	}
+
 	public function getRiwayatSewaByIduser($id_user)
 	{
 		$this->db->select("*");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
-		//$this->db->join("mst_supir d","d.id_supir = a.id_supir","left");
 		$this->db->where("a.id_user",$id_user);
+		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
+	}
+
+	public function getRiwayatSewaByIduserNotif($id_user)
+	{
+		$this->db->select("*");
+		$this->db->from("tx_sewa a");
+		$this->db->join("mst_users b","b.id_user = a.id_user");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
+		$this->db->where("a.id_user",$id_user);
+		$this->db->where("a.is_read",0);
+		$this->db->order_by("a.id_sewa","desc");
+		return $this->db->get()->num_rows();
 	}
 
 	public function getAllRiwayatSewa()
@@ -168,7 +202,9 @@ class Transaksi_model extends CI_Model {
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
-		$this->db->where("a.id_supir",$id_supir);
+		if($this->session->userdata('id_role') == 4){
+			$this->db->where("a.id_supir",$id_supir);
+		}
 		$this->db->where("a.status_sewa",2);
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
@@ -176,12 +212,14 @@ class Transaksi_model extends CI_Model {
 
 	public function getDataPengembalian($id_supir)
 	{
-		$this->db->select("*");
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.id_sewa,d.tgl_pinjam");
 		$this->db->from("tx_pengembalian a");
 		$this->db->join("mst_users b","b.id_user = a.id_supir");
 		$this->db->join("tx_sewa d","d.id_sewa = a.id_sewa");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = d.id_kendaraan");
-		$this->db->where("a.id_supir",$id_supir);
+		if($this->session->userdata('id_role') == 4){
+			$this->db->where("a.id_supir",$id_supir);
+		}
 		$this->db->order_by("a.id_pengembalian","desc");
 		return $this->db->get()->result();
 	}
@@ -219,11 +257,33 @@ class Transaksi_model extends CI_Model {
 		return true;
 	}
 
+	public function updateDataService($id_hdr_service,$data)
+	{
+		$dt = array(
+	        'status' => $data['status'],
+	        'keterangan' => $data['keterangan'],
+		);
+		$this->db->where('id_hdr_service', $id_hdr_service);
+		$this->db->update('tx_hdr_service', $dt);
+		return true;
+	}
+
+	public function updatePengembalianStatus($id_pengembalian,$data)
+	{
+		$dt = array(
+	        'status' => $data['status']
+		);
+		$this->db->where('id_pengembalian', $id_pengembalian);
+		$this->db->update('tx_pengembalian', $dt);
+		return true;
+	}
+
 	public function getDataService()
 	{
-		$this->db->select("*");
+		$this->db->select("a.*,b.judul,b.no_plat");
 		$this->db->from("tx_hdr_service a");
 		$this->db->join("mst_kendaraan b","a.id_kendaraan = b.id_kendaraan","inner");
+		$this->db->order_by("a.id_hdr_service","desc");
 		return $this->db->get()->result();
 	}
 
@@ -235,6 +295,9 @@ class Transaksi_model extends CI_Model {
 		if(!empty($where['tgl_awal']) && !empty($where['tgl_akhir'])){
 			$this->db->where('a.tgl_service >= ', $where['tgl_awal']);
 			$this->db->where('a.tgl_service <= ', $where['tgl_akhir']);	
+		}
+		if(!empty($where['status'])){
+			$this->db->where('a.status = ', $where['status']);
 		}
 		return $this->db->get()->result();
 	}
@@ -292,6 +355,50 @@ class Transaksi_model extends CI_Model {
 		
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
+	}
+
+	public function getLocSupir()
+	{
+		$this->db->select("a.id_kordinat,a.id_sewa,a.status_perjalanan,a.lat_kordinat,a.lon_kordinat,a.last_update,
+						  c.judul,c.no_plat,d.nama");
+		$this->db->from("tx_kordinat a");
+		$this->db->join("tx_sewa b","a.id_sewa = b.id_sewa");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = b.id_kendaraan");
+		$this->db->join("mst_users d","d.id_user = b.id_supir");
+		return $this->db->get()->result();
+	}
+
+	public function updateLoc($id_user,$data)
+	{
+		$sql = "SELECT * FROM 
+				tx_sewa 
+				WHERE id_supir = '$id_user' 
+				AND status_sewa = '2'";
+		$data1 = $this->db->query($sql)->row();
+
+
+		if(isset($data1)){
+			$sql2=  "SELECT * FROM 
+				 tx_kordinat
+				 WHERE id_sewa = '$data1->id_sewa'
+				 AND status_perjalanan = '1'";
+			$data2 = $this->db->query($sql2)->row();
+
+			if(isset($data2)){
+				$id_kordinat = $data2->id_kordinat;
+				$start = $data2->counter;
+				$counter = $start + 1;
+				$update_date = date('Y-m-d h:i:s');
+				$sql3 = "UPDATE tx_kordinat SET lon_kordinat = '".$data['lon']."',
+											lat_kordinat = '".$data['lat']."',
+											counter = '".$counter."',
+											last_update = '".$update_date."'
+						WHERE id_kordinat = '".$id_kordinat."'";
+				$data3 = $this->db->query($sql3);
+				return true;
+			}
+		}
+		return true;
 	}
 
 	public function getReportUsers($where)

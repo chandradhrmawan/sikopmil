@@ -150,6 +150,8 @@
                                             $status_sewa = '<div class="alert alert-info"><i class="icon icon_lightbulb_alt"></i>Peminjaman Selesai</div>';
                                         }elseif($value->status_sewa == 5){
                                             $status_sewa = '<div class="alert alert-warning"><i class="icon icon_error-circle_alt"></i>Permohonan Di Tolak</div>';
+                                        }else{
+                                          $status_sewa = '<div class="alert alert-warning"><i class="icon icon_error-circle_alt"></i>Permohonan Di Batalkan</div>';
                                         } 
 
                                     ?>
@@ -165,7 +167,13 @@
                                             <td><?=$value->tujuan_perjalanan?></td>
                                             <td><?=$value->jarak?></td>
                                             <td><?=$status_sewa?></td>
-                                            <td><button class="btn btn-primary" type="button" onclick="modalDetail(<?=$value->id_sewa?>)" style="margin-bottom: 15px;">Detail <span class="fa fa-eye"></span></button></td>
+                                            <td>
+                                              <button class="btn btn-primary" type="button" onclick="modalDetail(<?=$value->id_sewa?>)" style="margin-bottom: 15px;">Detail <span class="fa fa-eye"></span></button>
+
+                                            <?php if($value->status_sewa == 1): ?>
+                                              <button class="btn btn-default" type="button" onclick="modalBatal(<?=$value->id_sewa?>)" style="margin-bottom: 15px;">Batal <span class="fa fa-times"></span></button>
+                                            <?php endif; ?>
+                                            </td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -266,13 +274,45 @@
                  </form>
                </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" onclick="tutupModal()" data-dismiss="modal">Tutup</button>
                 <!-- <button type="button" id="btnSave" onclick="save()" class="btn btn-primary btn-flat">Kirim</button> -->
               </div>
             </div>
           </div>
         </div>
         <!--End Bootstrap modal -->
+
+        <!-- Bootstrap modal Batal -->
+        <div class="modal fade" id="modal_batal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title"></h3>
+              </div>
+              <div class="modal-body form">
+                <form action="#" id="form_batal" class="form-horizontal">
+                  <input type="hidden" value="" name="id_sewa" id="id_sewa" /> 
+                  <div class="form-body">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Alasan Batal</label>
+                      <div class="col-md-9">
+                        <textarea name="keterangan_batal" id="keterangan_batal" class="form-control" type="text" cols="5" rows="5"></textarea>
+                     </div>
+                   </div>
+
+                  </div>
+                 </form>
+               </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                <button type="button" id="btnSave" onclick="saveBatal()" class="btn btn-primary btn-flat">Kirim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Bootstrap modal Batal -->
 
 
         <!-- ++++++++++++-->
@@ -327,6 +367,7 @@
     const modalDetail = (id_sewa) => {
         $('#modal_detail').modal('show');
 
+        updateStatusRead(id_sewa)
         $.ajax({
         url : "<?php echo site_url('index/getDetailSewaByIdSewa')?>/" + id_sewa,
         type: "GET",
@@ -343,6 +384,7 @@
             $('#tgl_pinjam').val(data.tgl_pinjam)
             $('#tgl_kembali').val(data.tgl_kembali)
             $('#keterangan').val(data.keterangan)
+
                    
           },
           error: function (jqXHR, textStatus, errorThrown)
@@ -350,6 +392,59 @@
             alert('Error get data from ajax');
           }
         });
+    }
+
+    const updateStatusRead = (id_sewa) => {
+      $.ajax({
+        url : "<?php echo site_url('index/updateIsRead')?>/" + id_sewa,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+           console.log(data);           
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          alert('Error get data from ajax');
+        }
+        });
+    }
+
+    const modalBatal = (id_sewa) => {
+       $('#modal_batal').modal('show');
+       $('#id_sewa').val(id_sewa);
+    }
+
+    const tutupModal = () => {
+      window.location.reload();
+    }
+
+    const saveBatal = () => {
+      let id_sewa    = $('#id_sewa').val()
+      let keterangan = $('#keterangan_batal').val()
+
+      let postData = {
+        id_sewa    : id_sewa,
+        keterangan : keterangan
+      }
+
+      $.ajax({
+        url : "<?php echo site_url('index/cancelBooking')?>",
+        type: "POST",
+        data:postData,
+        dataType: "JSON",
+        success: function(data)
+        { 
+           swal("Pesan", "Sukses Membatalkan Booking", "success");  
+           setTimeout(function(){  window.location.reload() }, 2000);      
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          alert('Error get data from ajax');
+        }
+      });
 
     }
+
+
 </script>

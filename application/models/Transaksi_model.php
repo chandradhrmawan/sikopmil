@@ -175,9 +175,12 @@ class Transaksi_model extends CI_Model {
 
 	public function getDetailSewaByIdSewa($id_sewa)
 	{
-		$this->db->select("*,d.nama as nama_supir");
+		$this->db->select("a.*,b.nama,b.nip,e.nm_jabatan,d.nama as nama_supir,
+						c.km_akhir,b.alamat,c.no_plat,c.judul,
+						c.model,c.transmisi,c.tenaga,c.no_mesin");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user","inner");
+		$this->db->join("mst_jabatan e","e.id_jabatan = b.id_jabatan","inner");
 		$this->db->join("mst_users d","d.id_user = a.id_supir","left");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
 		$this->db->where("a.id_sewa",$id_sewa);
@@ -191,7 +194,11 @@ class Transaksi_model extends CI_Model {
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
 		$this->db->join("tx_kordinat d","a.id_sewa = d.id_sewa","left");
-		$this->db->where("a.id_supir",$id_supir);
+
+		if($this->session->userdata('id_role') == 4){
+			$this->db->where("a.id_supir",$id_supir);
+		}
+		
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
 	}
@@ -243,7 +250,8 @@ class Transaksi_model extends CI_Model {
 		$km_old = $dataSewa->km_akhir;
 
 		$dtKendaraan = array(
-	        'km_akhir' => $km_old + $data['km_selesai']
+	        'km_akhir' => $km_old + $data['km_selesai'],
+	        'status'   => 1
 		);
 		$this->db->where('id_kendaraan', $dataSewa->id_kendaraan);
 		$this->db->update('mst_kendaraan', $dtKendaraan);
@@ -262,6 +270,16 @@ class Transaksi_model extends CI_Model {
 		$dt = array(
 	        'status' => $data['status'],
 	        'keterangan' => $data['keterangan'],
+		);
+		$this->db->where('id_hdr_service', $id_hdr_service);
+		$this->db->update('tx_hdr_service', $dt);
+		return true;
+	}
+
+	public function updateStatusLunas($id_hdr_service,$data)
+	{
+		$dt = array(
+	        'status_lunas' => $data['status_lunas']
 		);
 		$this->db->where('id_hdr_service', $id_hdr_service);
 		$this->db->update('tx_hdr_service', $dt);

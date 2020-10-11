@@ -55,10 +55,11 @@ class Service extends CI_Controller {
 	public function doSaveService()
 	{	
 
-		$dataHdr = array('id_kendaraan' => $this->input->post('no_polisi'),
-						  'tgl_service' => date('Y-m-d h:i:s'),
-						  'note' 		=> $this->input->post('keperluan'),
-						  'status' 		=> 1
+		$dataHdr = array('id_kendaraan'  => $this->input->post('no_polisi'),
+						  'tgl_service'  => date('Y-m-d h:i:s'),
+						  'note' 		 => $this->input->post('keperluan'),
+						  'status' 		 => 1,
+						  'status_lunas' => 0
 		);
 
 		$insertHdr = $this->transaksi_model->saveHdrService($dataHdr);
@@ -136,6 +137,16 @@ class Service extends CI_Controller {
 					'keterangan' => $this->input->post('keterangan'),
 				);
 		$ret = $this->transaksi_model->updateDataService($id_hdr_service,$update);
+		echo json_encode(array('status' => true));
+	}
+
+	public function updateStatusLunas()
+	{	
+		$id_hdr_service = $this->input->post('id_hdr_service');
+		$update = array(
+					'status_lunas' 	 => $this->input->post('status_lunas')
+				);
+		$ret = $this->transaksi_model->updateStatusLunas($id_hdr_service,$update);
 		echo json_encode(array('status' => true));
 	}
 }

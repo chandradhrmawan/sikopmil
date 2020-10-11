@@ -37,6 +37,7 @@ class Surat_jalan extends CI_Controller {
 		$data['breadcump'] 		  = "Form Pesan Kendaraan";
 		$data['title_page']		  = "Form Pesan Kendaraan";
 		$data['data_sewa']	      = $this->transaksi_model->getDetailSewaByIdSewa($id_sewa);
+		
 		$this->load->view('transaksi/file',$data);	
 	}
 

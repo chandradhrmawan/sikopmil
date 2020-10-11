@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2020 at 11:36 AM
+-- Generation Time: Oct 11, 2020 at 02:54 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -322,23 +322,24 @@ CREATE TABLE IF NOT EXISTS `tx_hdr_service` (
   `total` bigint(255) DEFAULT NULL,
   `status` int(255) DEFAULT NULL,
   `note` varchar(500) DEFAULT NULL,
-  `keterangan` varchar(500) DEFAULT NULL
+  `keterangan` varchar(500) DEFAULT NULL,
+  `status_lunas` int(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_hdr_service`
 --
 
-INSERT INTO `tx_hdr_service` (`id_hdr_service`, `tgl_service`, `id_kendaraan`, `total`, `status`, `note`, `keterangan`) VALUES
-(1, '2020-10-03 21:15:48.000000', 1, 1500, 1, NULL, NULL),
-(2, '2020-10-03 11:20:05.000000', 12, NULL, 1, ' Ganti Oli', NULL),
-(3, '2020-10-03 11:21:13.000000', 12, NULL, 1, ' Ganti Oli', NULL),
-(4, '2020-10-03 11:31:10.000000', 12, NULL, 1, ' Ganti Oli', NULL),
-(5, '2020-10-03 11:31:38.000000', 12, NULL, 1, ' Ganti Oli', NULL),
-(6, '2020-10-03 11:32:09.000000', 2, NULL, 1, ' 12323', NULL),
-(7, '2020-10-03 11:32:38.000000', 12, NULL, 1, ' 232323', NULL),
-(8, '2020-10-03 11:33:17.000000', 14, 50000, 3, 'service rutin', ''),
-(9, '2020-10-04 08:06:38.000000', 4, 100000, 2, ' Service rutin bulnanan', 'Coba Terima ya');
+INSERT INTO `tx_hdr_service` (`id_hdr_service`, `tgl_service`, `id_kendaraan`, `total`, `status`, `note`, `keterangan`, `status_lunas`) VALUES
+(1, '2020-10-03 21:15:48.000000', 1, 1500, 1, NULL, NULL, 0),
+(2, '2020-10-03 11:20:05.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
+(3, '2020-10-03 11:21:13.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
+(4, '2020-10-03 11:31:10.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
+(5, '2020-10-03 11:31:38.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
+(6, '2020-10-03 11:32:09.000000', 2, NULL, 1, ' 12323', NULL, 0),
+(7, '2020-10-03 11:32:38.000000', 12, NULL, 1, ' 232323', NULL, 0),
+(8, '2020-10-03 11:33:17.000000', 14, 50000, 3, 'service rutin', '', 0),
+(9, '2020-10-04 08:06:38.000000', 4, 100000, 2, ' Service rutin bulnanan', 'Coba Terima ya', 1);
 
 -- --------------------------------------------------------
 

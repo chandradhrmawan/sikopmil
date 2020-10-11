@@ -37,6 +37,7 @@
                         <th>Total</th>
                         <th>Note</th>
                         <th>Status</th>
+                        <th>Status Lunas</th>
                         <th style="width: 200px;">Aksi</th>
                     </tr>
                 </thead>
@@ -51,6 +52,12 @@
                       }else if($value->status == 3){
                         $status = '<span class="label label-danger">Ditolak</span>';
                       }
+
+                      if($value->status_lunas == 0){
+                        $status_lunas = '<span class="label label-warning">Belum Lunas</span>';
+                      }else{
+                        $status_lunas = '<span class="label label-success">Lunas</span>';
+                      }
                 ?>
                     <tr>
                         <td><?=$key+1?></td>
@@ -60,10 +67,12 @@
                         <td>Rp.<?=($value->total)?$value->total:0?></td>
                         <td><?=$value->note?></td>
                         <td><?=$status?></td>
+                        <td><?=$status_lunas?></td>
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_hdr_service?>)">Detail <span class="fa fa-eye"></span></button>
                             <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalCetak(<?=$value->id_hdr_service?>)">Cetak <span class="fa fa-file-o"></span></button>
                         <?php if($this->session->userdata('id_role') == 1){ ?>
                             <button class="btn btn-warning btn-flat btn-sm" type="button" onclick="modalProses(<?=$value->id_hdr_service?>)">Proses <span class="fa fa-floppy-o"></span></button>
+                            <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalProsesBayar(<?=$value->id_hdr_service?>)">Proses Pembayaran <span class="fa fa-money"></span></button>
                         <?php  } ?>
 
 
@@ -126,6 +135,44 @@
 </div>
 <!--End Bootstrap modal proses -->
 
+<!-- Bootstrap modal proses -->
+<div class="modal fade" id="modal_bayar" role="dialog">
+  <div class="modal-dialog" style="width: 750px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="form2" class="form-horizontal">
+          <input type="hidden" name="id_hdr_service1" id="id_hdr_service1">
+          <div class="form-body">
+
+            <div class="form-group">
+              <label class="control-label col-md-2">Status</label>
+              <div class="col-md-9">
+                
+                <select class="form-control" name="status1" id="status1">
+                   <option>--</option>
+                    <option value="0">Belum Lunas</option>
+                    <option value="1">Lunas</option>
+                </select>
+
+             </div>
+           </div>
+
+          </div>
+         </form>
+       </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Tutup</button>
+        <button type="button" id="btnSave" onclick="doUpdateStatusLunas()" class="btn btn-primary btn-flat">Kirim</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Bootstrap modal proses -->
+
 
 <script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -162,6 +209,12 @@
       $('#id_hdr_service').val(id_hdr_service);
     }
 
+    const modalProsesBayar = (id_hdr_service) => {
+      $('#modal_bayar').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Proses Data'); // Set Title to Bootstrap modal title
+      $('#id_hdr_service1').val(id_hdr_service);
+    }
+
     const updateProses = () => {
       var id_hdr_service  = $('#id_hdr_service').val();
       var status          = $('#status').val();
@@ -171,6 +224,32 @@
         url : "<?php echo site_url('transaksi/Service/updateData')?>",
         type: "POST",
         data:{"id_hdr_service":id_hdr_service,"status":status,"keterangan":keterangan},
+        dataType: "JSON",
+      success: function(data)
+      {
+        if(data.status==true){
+          swal('Pesan', 'Data berhasil Diupdate', 'success');
+          setTimeout(function(){ window.location.reload() }, 3000);
+        }else{
+          swal('Pesan', 'Data Gagal Diupdate', 'error');
+          setTimeout(function(){ window.location.reload() }, 3000);
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        alert('Error get data from ajax');
+      }
+    });
+    }
+
+    const doUpdateStatusLunas = () => {
+      var id_hdr_service  = $('#id_hdr_service1').val();
+      var status          = $('#status1').val();
+
+      $.ajax({
+        url : "<?php echo site_url('transaksi/Service/updateStatusLunas')?>",
+        type: "POST",
+        data:{"id_hdr_service":id_hdr_service,"status_lunas":status},
         dataType: "JSON",
       success: function(data)
       {

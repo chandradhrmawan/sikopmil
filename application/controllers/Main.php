@@ -24,7 +24,11 @@ class Main extends CI_Controller {
 
 	public function isLogin()
 	{
-		$this->dashboard();
+		if($this->session->userdata('id_role') == 1){
+			$this->dashboard();
+		}else{
+			$this->dashboardUser();
+		}
 	}
 
 	public function dashboard()
@@ -41,6 +45,15 @@ class Main extends CI_Controller {
 		$data['jml_kendaraan'] 	= $this->master_model->jmlData('mst_kendaraan');
 		$data['jml_users'] 		= $this->master_model->jmlData('mst_users');
 		$data['jml_service'] 	= $this->master_model->TotalService()->total;
+		$this->load->view('layout_admin/index',$data);
+	}
+
+	public function dashboardUser()
+	{
+		$year  					= date('Y');
+		$data['breadcump'] 		= "Dashboard";
+		$data['title_page']		= "Dashboard";
+		$data['content_view']	= "main/indexUser";
 		$this->load->view('layout_admin/index',$data);
 	}
 

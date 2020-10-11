@@ -134,6 +134,11 @@
 							
 						</tr>
 						<tr>
+							<td><h2>Nama Jabatan : </h2></td>
+							<td><h2>'.$data_sewa->nm_jabatan.'</h2></td>
+							
+						</tr>
+						<tr>
 							<td><h2>Tanggal Sewa : </h2></td>
 							<td><h2>'.view_date_hi($data_sewa->tgl_sewa).'</h2></td>
 							

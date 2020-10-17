@@ -183,7 +183,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div class="form-group">
-                                                        <input class="form-control" id="tujuan_perjalanan" type="text" name="tujuan_perjalanan" placeholder="Tujuan Perjalanan" required="required" />
+                                                        <input class="form-control" id="tujuan_perjalanan" type="text" name="tujuan_perjalanan" placeholder="Keperluan Perjalanan" required="required" />
                                                     </div>
 
 

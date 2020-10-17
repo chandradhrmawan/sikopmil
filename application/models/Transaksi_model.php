@@ -21,7 +21,7 @@ class Transaksi_model extends CI_Model {
 			$this->db->where('a.id_merk', $where['id_merk']);	
 		}
 
-		$this->db->order_by("a.judul","asc");
+		$this->db->order_by("a.id_kendaraan","desc");
 		return $this->db->get()->result();
 	}
 
@@ -120,7 +120,7 @@ class Transaksi_model extends CI_Model {
 
 	public function getRiwayatSewaByIduser($id_user)
 	{
-		$this->db->select("*");
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
@@ -201,6 +201,17 @@ class Transaksi_model extends CI_Model {
 		
 		$this->db->order_by("a.id_sewa","desc");
 		return $this->db->get()->result();
+	}
+
+	public function getTugasSupirByIdSupir($id_supir)
+	{
+		$this->db->select("c.no_plat");
+		$this->db->from("tx_sewa a");
+		$this->db->join("mst_users b","b.id_user = a.id_user");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
+		$this->db->where("a.id_supir",$id_supir);
+		$this->db->order_by("a.id_sewa","desc");
+		return $this->db->get()->row();
 	}
 
 	public function getDataSewaByIdSupir($id_supir)

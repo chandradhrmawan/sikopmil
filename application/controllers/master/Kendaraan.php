@@ -6,7 +6,7 @@ class Kendaraan extends CI_Controller {
 	//param for model
 	var $table = 'mst_kendaraan';
 	var $pk    = 'id_kendaraan';
-	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga','path');
+	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga','path','daya_angkut','kapasitas_bbm','bahan_bakar');
 
 	//param for view
 	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Model','Transmisi','Tenaga','Foto','Aksi');
@@ -54,7 +54,7 @@ class Kendaraan extends CI_Controller {
 					$row[] = getMasterData('nm_merk','mst_merk','id_merk',$regulasi->$fields);
 				}elseif($fields == 'id_tipe'){
 					$row[] = getMasterData('nm_tipe','mst_tipe','id_tipe',$regulasi->$fields);
-				}elseif($fields == 'deskripsi'){
+				}elseif($fields == 'deskripsi'||$fields == 'daya_angkut'||$fields =='kapasitas_bbm'||$fields == 'bahan_bakar' ){
 					continue;
 				}elseif($fields == 'status'){
 
@@ -129,7 +129,7 @@ class Kendaraan extends CI_Controller {
 				}
 
 			endforeach;
-
+			$data['km_akhir'] = 0;
 
 			$insert = $this->crud_model->save($this->table,$data);
 			if($insert!=0){

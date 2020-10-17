@@ -44,6 +44,11 @@ class Sewa extends CI_Controller {
 			'id_sewa' 			=> $id_sewa,
 			'status_perjalanan' => 0
 		);
+
+		if($this->session->userdata('id_role') == 1){
+			$data['status_sewa'] = 2;
+		}
+
 		$update1  = $this->transaksi_model->updateStatusSewa($id_sewa,$data);
 		$update2 = $this->transaksi_model->insTxKordinat($data2);
 		

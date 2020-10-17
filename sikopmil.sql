@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2020 at 02:54 PM
+-- Generation Time: Oct 17, 2020 at 01:03 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -87,7 +87,7 @@ INSERT INTO `mst_jabatan` (`id_jabatan`, `nm_jabatan`) VALUES
 CREATE TABLE IF NOT EXISTS `mst_jenis` (
 `id_jenis` int(255) NOT NULL,
   `nm_jenis` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_jenis`
@@ -98,7 +98,9 @@ INSERT INTO `mst_jenis` (`id_jenis`, `nm_jenis`) VALUES
 (2, 'Van'),
 (3, 'Truck'),
 (4, 'Bus'),
-(5, 'Motor');
+(5, 'Motor'),
+(6, 'Truck'),
+(7, 'Jeep');
 
 -- --------------------------------------------------------
 
@@ -111,34 +113,39 @@ CREATE TABLE IF NOT EXISTS `mst_kendaraan` (
   `id_jenis` varchar(255) DEFAULT NULL,
   `id_merk` varchar(255) DEFAULT NULL,
   `id_tipe` varchar(255) DEFAULT NULL,
-  `no_plat` varchar(255) DEFAULT NULL,
-  `no_mesin` varchar(255) DEFAULT NULL,
   `judul` varchar(255) DEFAULT NULL,
   `deskripsi` varchar(4000) DEFAULT NULL,
+  `no_plat` varchar(255) DEFAULT NULL,
+  `no_mesin` varchar(255) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
+  `daya_angkut` varchar(255) DEFAULT NULL,
   `transmisi` varchar(255) DEFAULT NULL,
+  `kapasitas_bbm` varchar(255) DEFAULT NULL,
+  `bahan_bakar` varchar(255) DEFAULT NULL,
   `tenaga` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `km_akhir` bigint(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
-  `km_akhir` bigint(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `status` int(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_kendaraan`
 --
 
-INSERT INTO `mst_kendaraan` (`id_kendaraan`, `id_jenis`, `id_merk`, `id_tipe`, `no_plat`, `no_mesin`, `judul`, `deskripsi`, `model`, `transmisi`, `tenaga`, `status`, `path`, `km_akhir`) VALUES
-(1, '1', '1', '1', 'B1231', '123456789', 'FERRARI F650 SCUDERIA', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'Mobil-City-Car-Murah-Honda.png', 31700),
-(2, '1', '2', '2', '12323', '232323', 'LEXUS GX 490I HYBIRD', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'Harga-Toyota-Rush-Kebumen.png', 300),
-(3, '2', '1', '1', '23', '23', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 0, 'exterior_2L_1.png', 100),
-(4, '1', '1', '1', 'B2138129', '7487283728', 'MERCEDES-AMG GT 2018', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'Daihatsu_Terios_L_1.png', 100),
-(5, '1', '1', '1', 'B2138129', '7487283728', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'yaris_01.png', 100),
-(12, '1', '1', '1', '12311', '21333', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'agya_01.png', 100),
-(13, '1', '2', '1', '2323', '2323', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'color-bronze-mica-metallic.png', 3723),
-(14, '1', '2', '1', '1215477', '27272727', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, '805286128p.png', 100),
-(15, '1', '1', '2', '23', '23', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'agya_01.png', 100),
-(16, '2', '2', '1', '123', '123', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2019', 'Auto', '1000 hp', 1, 'agya_01.png', 100),
-(17, '2', '1', '2', '123123', '123123', '123', '123', '2018', '123', '1123123', 1, '25092020042434.png', 100);
+INSERT INTO `mst_kendaraan` (`id_kendaraan`, `id_jenis`, `id_merk`, `id_tipe`, `judul`, `deskripsi`, `no_plat`, `no_mesin`, `model`, `daya_angkut`, `transmisi`, `kapasitas_bbm`, `bahan_bakar`, `tenaga`, `km_akhir`, `path`, `status`) VALUES
+(1, '1', '1', '1', 'FERRARI F650 SCUDERIA', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', 'B1231', '123456789', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 31700, 'Mobil-City-Car-Murah-Honda.png', 1),
+(2, '1', '2', '2', 'LEXUS GX 490I HYBIRD', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '12323', '232323', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 300, 'Harga-Toyota-Rush-Kebumen.png', 1),
+(3, '2', '1', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '23', '23', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'exterior_2L_1.png', 0),
+(4, '1', '1', '1', 'MERCEDES-AMG GT 2018', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', 'B2138129', '7487283728', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'Daihatsu_Terios_L_1.png', 1),
+(5, '1', '1', '1', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', 'B2138129', '7487283728', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'yaris_01.png', 1),
+(12, '1', '1', '1', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '12311', '21333', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
+(13, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2323', '2323', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 3723, 'color-bronze-mica-metallic.png', 1),
+(14, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '1215477', '27272727', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, '805286128p.png', 1),
+(15, '1', '1', '2', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '23', '23', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
+(16, '2', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '123', '123', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
+(17, '2', '1', '2', '123', '123', '123123', '123123', '2018', NULL, '123', NULL, NULL, '1123123', 100, '25092020042434.png', 1),
+(18, '7', '5', '4', 'Turbo Diesel 4-Cylinder, 16 Valce DOHC', 'Braket senjata kaliber 7,62 mm, Pemadam kebakaran (APAR)', 'F6172J', '123123', '2019', '4 Orang', 'Manual 6 Speed', '80 liter', 'Diesel', '1000cc', 0, '17102020110257.png', 1),
+(19, '2', '2', '3', '123', '23', '123', '123', '232', '2323', '323', '2323', '2323', '23', 0, '17102020110433.png', 1);
 
 -- --------------------------------------------------------
 
@@ -161,12 +168,12 @@ CREATE TABLE IF NOT EXISTS `mst_menu` (
 
 INSERT INTO `mst_menu` (`id`, `slug_url`, `title`, `status`, `icon`, `role`) VALUES
 (7, '#', 'Master', 2, 'fa fa-database', '1'),
-(9, 'transaksi/sewa', 'Data Sewa', 2, 'fa fa-car', '1,2'),
+(9, 'transaksi/sewa', 'Data Pinjam', 2, 'fa fa-car', '1,2'),
 (10, 'master/config', 'Startpoint', 2, 'fa fa-map', '1'),
 (12, 'transaksi/monitoring', 'Monitoring', 2, 'fa fa-desktop', '1'),
-(13, 'transaksi/surat_jalan', 'Cetak Surat Jalan', 2, 'fa fa-files-o', '1,4'),
+(13, 'transaksi/surat_jalan', 'Cetak Surat Jalan', 2, 'fa fa-files-o', '1,4,2'),
 (14, 'transaksi/service', 'Service Kendaraan', 2, 'fa fa-cog', '1,5'),
-(15, 'transaksi/pengembalian', 'Pengembalian Kendaraan', 2, 'fa fa-address-book-o', '1,4,2'),
+(15, 'transaksi/pengembalian', 'Pengembalian Kendaraan', 2, 'fa fa-address-book-o', '1,4'),
 (17, '#', 'Laporan', 2, 'fa fa-file', '1,2,5'),
 (18, 'login/auth/doLogout', 'Logout', 2, 'fa fa-trash', '1,4,2,5');
 
@@ -179,7 +186,7 @@ INSERT INTO `mst_menu` (`id`, `slug_url`, `title`, `status`, `icon`, `role`) VAL
 CREATE TABLE IF NOT EXISTS `mst_merk` (
 `id_merk` int(255) NOT NULL,
   `nm_merk` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_merk`
@@ -189,7 +196,8 @@ INSERT INTO `mst_merk` (`id_merk`, `nm_merk`) VALUES
 (1, 'Toyota'),
 (2, 'Avanza'),
 (3, 'Xenia'),
-(4, 'Honda');
+(4, 'Honda'),
+(5, 'Pindad');
 
 -- --------------------------------------------------------
 
@@ -242,7 +250,7 @@ INSERT INTO `mst_start_point` (`id_loc`, `lon`, `lat`, `desc`) VALUES
 CREATE TABLE IF NOT EXISTS `mst_tipe` (
 `id_tipe` int(255) NOT NULL,
   `nm_tipe` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_tipe`
@@ -251,7 +259,8 @@ CREATE TABLE IF NOT EXISTS `mst_tipe` (
 INSERT INTO `mst_tipe` (`id_tipe`, `nm_tipe`) VALUES
 (1, 'Coupe'),
 (2, 'Hatcback'),
-(3, 'Minivan');
+(3, 'Minivan'),
+(4, 'Kendaraan Taktis');
 
 -- --------------------------------------------------------
 
@@ -355,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
   `lon_kordinat` varchar(255) DEFAULT NULL,
   `last_update` datetime DEFAULT NULL,
   `counter` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_kordinat`
@@ -363,7 +372,8 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
 
 INSERT INTO `tx_kordinat` (`id_kordinat`, `id_sewa`, `status_perjalanan`, `lat_kordinat`, `lon_kordinat`, `last_update`, `counter`) VALUES
 (1, 20, 1, '-6.1940851', '106.8616141', '2020-10-07 04:14:43', 22),
-(2, 27, 1, '-6.1898751999999995', '106.86300159999999', '2020-10-07 01:27:37', 12);
+(2, 27, 1, '-6.132874', '106.980442', '2020-10-07 01:27:37', 12),
+(6, 32, 1, '-7.9691776', '112.6531072', '2020-10-17 12:30:08', 32);
 
 -- --------------------------------------------------------
 
@@ -423,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `tx_sewa` (
   `keterangan` varchar(500) DEFAULT NULL,
   `flag_berangkat` int(1) DEFAULT NULL,
   `is_read` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_sewa`
@@ -442,7 +452,8 @@ INSERT INTO `tx_sewa` (`id_sewa`, `id_user`, `id_kendaraan`, `tgl_sewa`, `tgl_pi
 (28, 9, 13, '2020-10-05 14:40:54.000000', '2020-10-05 14:40:00.000000', '2020-10-31 14:40:00.000000', 'sppd', 'banten', '106.16369470', '-6.03276100', '80.54 Km', 5, NULL, NULL, NULL, NULL),
 (29, 9, 2, '2020-10-07 16:21:32.000000', '2020-10-07 16:21:00.000000', '2020-10-31 16:21:00.000000', 'meeting', 'priok', '106.87079323', '-6.12885785', '1.9 Km', 6, NULL, '', NULL, NULL),
 (30, 9, 2, '2020-10-07 16:39:25.000000', '2020-10-07 16:39:00.000000', '2020-10-31 16:39:00.000000', 'meeting', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 6, NULL, 'coba batalkan', NULL, 1),
-(31, 9, 2, '2020-10-07 16:48:19.000000', '2020-10-07 16:47:00.000000', '2020-10-31 16:48:00.000000', 'meeting', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 1, NULL, NULL, NULL, 1);
+(31, 9, 2, '2020-10-07 16:48:19.000000', '2020-10-07 16:47:00.000000', '2020-10-31 16:48:00.000000', 'meeting', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 6, NULL, 'coba batalkan', NULL, 1),
+(32, 9, 18, '2020-10-17 11:20:20.000000', '2020-10-17 11:19:00.000000', '2020-10-18 11:00:00.000000', 'sppd', 'menteng', '106.83222420', '-6.19502650', '6.63 Km', 2, 7, '', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -551,12 +562,12 @@ MODIFY `id_jabatan` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `mst_jenis`
 --
 ALTER TABLE `mst_jenis`
-MODIFY `id_jenis` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_jenis` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `mst_kendaraan`
 --
 ALTER TABLE `mst_kendaraan`
-MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `mst_menu`
 --
@@ -566,7 +577,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 -- AUTO_INCREMENT for table `mst_merk`
 --
 ALTER TABLE `mst_merk`
-MODIFY `id_merk` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id_merk` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `mst_role`
 --
@@ -576,7 +587,7 @@ MODIFY `id_role` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 -- AUTO_INCREMENT for table `mst_tipe`
 --
 ALTER TABLE `mst_tipe`
-MODIFY `id_tipe` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id_tipe` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `mst_users`
 --
@@ -596,7 +607,7 @@ MODIFY `id_hdr_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `tx_kordinat`
 --
 ALTER TABLE `tx_kordinat`
-MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tx_pengembalian`
 --
@@ -606,7 +617,7 @@ MODIFY `id_pengembalian` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 -- AUTO_INCREMENT for table `tx_sewa`
 --
 ALTER TABLE `tx_sewa`
-MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

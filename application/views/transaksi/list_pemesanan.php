@@ -16,9 +16,7 @@
         
             <div class="row tambah">
                 <div class="col-md-6">
-                  
-                        
-                    
+                        <?php //debux($this->session->userdata('id_role')) ?>
                 </div>                
             </div>
         
@@ -44,10 +42,14 @@
                 <?php 
                     foreach ($data_pemesanan as $key => $value):
                     $btn_stat = '';
+                    $status_sewa = '';
                     if($value->status_sewa == 1){
                         $status_sewa = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
+                    }elseif($value->status_sewa == 11){
+                        $status_sewa = '<span class="label label-success">Menunggu Persetujuan Admin</span>';
+                        $btn_stat = '';
                     }elseif($value->status_sewa == 2){
-                        $status_sewa = '<span class="label label-success">Sudah Disetujui Atasan</span>';
+                        $status_sewa = '<span class="label label-success">Sudah Disetujui Admin</span>';
                         $btn_stat = 'disabled';
                     }elseif($value->status_sewa == 3){
                         $status_sewa = '<span class="label label-info">Dalam Proses Peminjaman</span>';
@@ -57,7 +59,11 @@
                     }elseif($value->status_sewa == 5){
                         $status_sewa = '<span class="label label-danger">Permohonan Ditolak</span>';
                         $btn_stat = 'disabled';
+                    }elseif($value->status_sewa == 6){
+                        $status_sewa = '<span class="label label-danger">Permohonan Dibatalkan Penyewa</span>';
+                        $btn_stat = 'disabled';
                     } 
+
 
                 ?>
                     <tr>
@@ -73,7 +79,14 @@
                         <td><?=$value->jarak?></td> -->
                         <td><?=$status_sewa?></td>
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_sewa?>)">Detail <span class="fa fa-eye"></span></button>
-                          <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProses(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
+
+                        <?php if($this->session->userdata('id_role') == 2): ?>
+                          <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesApprove(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
+                        <?php else: ?>
+                          <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesAdmin(<?=$value->id_sewa?>)">Pilih Supir <span class="fa fa-file-o"></span></button></td>
+                        <?php endif; ?>
+
+                          
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -96,7 +109,7 @@
         <h3 class="modal-title"></h3>
       </div>
       <div class="modal-body form">
-        <form action="#" id="form" class="form-horizontal">
+        <form action="#" id="form1" class="form-horizontal">
           <input type="hidden" name="id_sewa" id="id_sewa">
           <div class="form-body">
 
@@ -104,9 +117,13 @@
               <label class="control-label col-md-2">Status Sewa</label>
               <div class="col-md-9">
                 
-                <select class="form-control" name="status_sewa" id="status_sewa" onchange="change_stat(this.value)">
+                <select class="form-control" name="status_sewa" id="status_sewa" onchange="change_stat(this.value)" <?=($this->session->userdata('id_role') == 1)?'disabled':'' ?>>
                    <option>--</option>
-                    <option value="2">Pemesanan Diterima</option>
+                    <?php if($this->session->userdata('id_role') == 2): ?>
+                      <option value="11">Pemesanan Diterima</option>
+                    <?php else: ?>
+                      <option value="2">Pemesanan Diterima</option>
+                    <?php endif; ?>
                     <option value="5">Pemesanan Ditolak</option>
                 </select>
 
@@ -249,7 +266,7 @@
     });
 
     function modalProses(id_sewa){
-      $('#form')[0].reset(); // reset form on modals
+      $('#form1')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
       $('.modal-title').text('Proses Data'); // Set Title to Bootstrap modal title
       $('#id_sewa').val(id_sewa);
@@ -257,11 +274,40 @@
       $('#label_reject').hide();
     }
 
+    function modalProsesApprove(id_sewa){
+      $('#form1')[0].reset(); // reset form on modals
+      $('#modal_form').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Proses Data'); // Set Title to Bootstrap modal title
+      $('#id_sewa').val(id_sewa);
+      $('#label_supir').hide();
+      $('#label_reject').hide();
+    }
+
+    function modalProsesAdmin(id_sewa){
+      $('#form1')[0].reset(); // reset form on modals
+      $('#modal_form').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Proses Data'); // Set Title to Bootstrap modal title
+      $('#id_sewa').val(id_sewa);
+      $('#status_sewa').val(2);
+      $('#label_supir').show();
+      $('#label_reject').hide();
+    }
+
     function change_stat(stat)
     {
+
+      var id_role = "<?=$this->session->userdata('id_role')?>";
+     
        if(stat == 2) {
+
+        if(id_role != 2){
           $('#label_supir').show();
           $('#label_reject').hide();
+        }else{
+          $('#label_supir').hide();
+          $('#label_reject').hide();
+        }
+
        }else if(stat == 5){
           $('#label_supir').hide();
           $('#label_reject').show();
@@ -282,7 +328,7 @@
        $.ajax({
         url : url,
         type: "POST",
-        data: $('#form').serialize(),
+        data: $('#form1').serialize(),
         dataType: "JSON",
         success: function(data)
         {
@@ -307,73 +353,6 @@
          }
       });
      }
-
-     function edit_data(id)
-     {
-      save_method = 'update';
-      $('#type').val("edit");
-      $('#form')[0].reset(); 
-      $('#modal_form').modal('show');
-      $('.modal-title').text('Edit Data User'); 
-      //Ajax Load data from ajax
-      $.ajax({
-        url : "<?php echo site_url('master/Jabatan/ajax_get_data_by_id')?>/" + id,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-
-          $('[name="id_jabatan"]').val(data.id_jabatan);
-          $('[name="nm_jabatan"]').val(data.nm_jabatan);
-                   
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-            alert('Error get data from ajax');
-          }
-        });
-    }
-
-    function delete_data(id){
-
-      swal({
-        title: "Konfirmasi Hapus Data",
-        text: "Apakah anda yakin, ingin menghapus Data ini?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Ya',
-        cancelButtonText: "Tidak",
-        closeOnConfirm: true,
-        closeOnCancel: true
-      },
-      function(isConfirm){
-        if (isConfirm){
-          $.ajax({
-            url : "<?php echo site_url('master/Jabatan/delete_via_ajax')?>",
-            type: "POST",
-            data:{"id":id},
-            dataType: "JSON",
-          success: function(data)
-          {
-            if(data.status==true){
-              swal('Pesan', 'Data berhasil dihapus', 'success');
-            }else{
-              swal('Pesan', 'Data Gagal dihapus', 'error');
-            }
-            reload_table();
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-            alert('Error get data from ajax');
-          }
-        });
-        } else {
-          swal("Cancelled", "Data Batal dihapus", "error");
-          return false
-        }
-      });
-    }
 
     const modalDetail = (id_sewa) => {
         $('#modal_detail').modal('show');

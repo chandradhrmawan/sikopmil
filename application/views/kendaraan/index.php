@@ -145,6 +145,27 @@
            </div>
 
            <div class="form-group">
+              <label class="control-label col-md-2">Daya Angkut</label>
+              <div class="col-md-9">
+                <input name="daya_angkut" id="daya_angkut" placeholder="Daya Angkut Penumpang" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Bahan Bakar</label>
+              <div class="col-md-9">
+                <input name="bahan_bakar" id="bahan_bakar" placeholder="Bahan Bakar" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
+              <label class="control-label col-md-2">Kapasitas BBM</label>
+              <div class="col-md-9">
+                <input name="kapasitas_bbm" id="kapasitas_bbm" placeholder="Kapasitas Bahan Bakar" class="form-control" type="text">
+             </div>
+           </div>
+
+           <div class="form-group">
               <label class="control-label col-md-2">Status</label>
               <div class="col-md-9">
                 <select name="status" id="status" class="form-control">
@@ -311,14 +332,15 @@
           $('[name="status"]').val(data.status);
           $('[name="path"]').val(data.path);
 
-
           $('[name="judul"]').val(data.judul);
           $('[name="deskripsi"]').val(data.deskripsi);
           $('[name="model"]').val(data.model);
           $('[name="transmisi"]').val(data.transmisi);
           $('[name="tenaga"]').val(data.tenaga);
 
-        
+          $('[name="daya_angkut"]').val(data.daya_angkut);
+          $('[name="kapasitas_bbm"]').val(data.kapasitas_bbm);
+          $('[name="bahan_bakar"]').val(data.bahan_bakar);
 
 
           $("#image_edit").html('<img src="<?=base_url()?>uploads/kendaraan/'+data.path + '" style="width: 200px;height: 200px;" />');

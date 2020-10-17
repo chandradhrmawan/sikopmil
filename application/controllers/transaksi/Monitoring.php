@@ -20,6 +20,7 @@ class Monitoring extends CI_Controller {
 		$data['content_view']		= "transaksi/monitoring";
 		$data['location'] 			= $this->general_model->getStartPoint();
 		$data['data_supir'] 		= json_encode($this->transaksi_model->getLocSupir());
+		$data['list_data_supir'] 	= $this->transaksi_model->getLocSupir();
 		$this->load->view('layout_admin/index',$data);	
 	}
 

@@ -50,8 +50,8 @@ class Index extends CI_Controller {
 
 	public function riwayat_sewa()
 	{	
-		$data['breadcump'] 		= "Riwayat Sewa";
-		$data['title_page']		= "Riwayat Sewa";
+		$data['breadcump'] 		= "Riwayat Pinjam";
+		$data['title_page']		= "Riwayat Pinjam";
 		$data['list_data'] 		= $this->transaksi_model->getRiwayatSewaByIduser($this->session->userdata('id_user'));
 		$this->load->view('frontend/riwayat_sewa',$data);	
 

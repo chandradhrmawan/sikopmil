@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Riwayat Sewa</title>
+        <title>Riwayat Pinjam</title>
         <meta content="" name="description" />
         <meta content="" name="keywords" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,7 +93,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h1 class="b-title-page bg-primary_a">Riwayat Sewa</h1>
+                                <h1 class="b-title-page bg-primary_a">Riwayat Pinjam</h1>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                             <ol class="breadcrumb">
                                 <li><a href="home.html"><i class="icon fa fa-home"></i></a>
                                 </li>
-                                <li class="active">Riwayat Sewa</li>
+                                <li class="active">Riwayat Pinjam</li>
                             </ol>
                         </div>
                     </div>
@@ -138,19 +138,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
+                                    <?php
+                                        $status_sewa = ""; 
                                         foreach ($list_data as $key => $value):
                                         if($value->status_sewa == 1){
                                             $status_sewa = '<div class="alert alert-1"><i class="icon icon_question_alt2"></i>Menunggu Persetujuan Atasan</div>';
+                                        }if($value->status_sewa == 11){
+                                            $status_sewa = '<div class="alert alert-1"><i class="icon icon_question_alt2"></i>Menunggu Persetujuan Admin</div>';
                                         }elseif($value->status_sewa == 2){
-                                            $status_sewa = '<div class="alert alert-success"><i class="icon icon_check_alt2"></i>Sudah Di Setujuan</div>';
+                                            $status_sewa = '<div class="alert alert-success"><i class="icon icon_check_alt2"></i>Sudah Di Setujui Admin</div>';
                                         }elseif($value->status_sewa == 3){
                                             $status_sewa = '<div class="alert alert-2"><i class="icon icon_lifesaver"></i>Sedang Dalam Proses Peminjaman</div>';
                                         }elseif($value->status_sewa == 4){
                                             $status_sewa = '<div class="alert alert-info"><i class="icon icon_lightbulb_alt"></i>Peminjaman Selesai</div>';
                                         }elseif($value->status_sewa == 5){
                                             $status_sewa = '<div class="alert alert-warning"><i class="icon icon_error-circle_alt"></i>Permohonan Di Tolak</div>';
-                                        }else{
+                                        }elseif($value->status_sewa == 6){
                                           $status_sewa = '<div class="alert alert-warning"><i class="icon icon_error-circle_alt"></i>Permohonan Di Batalkan</div>';
                                         } 
 

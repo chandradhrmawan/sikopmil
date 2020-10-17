@@ -132,7 +132,7 @@
                                 <?php foreach($list_kendaraan as $valx): 
                                 if($valx->status == 1){
                                     $status = '<span class="text-bg bg-second">Tersedia</span>';
-                                    $aju = '<a href="#" onclick="doPesan('.$valx->id_kendaraan.')"><span class="text-bg bg-second" style="padding: 8px; background-color:#00a41c;">Ajukan</span></a>';
+                                    $aju = '<a href="#" onclick="doPesan('.$valx->id_kendaraan.')"><span class="text-bg bg-second" style="padding: 8px; background-color:#00a41c;">Pilih</span></a>';
                                 }else{
                                     $status = '<span class="text-bg bg-primary">Tidak Tersedia</span>';
                                     $aju = '-';
@@ -142,7 +142,7 @@
                                     <div class="row">
                                         <div class="b-goods-1__img">
                                             <a class="js-zoom-images" href="<?=base_url()?>uploads/kendaraan/<?=$valx->path?>">
-                                                <img class="img-responsive" src="<?=base_url()?>uploads/kendaraan/<?=$valx->path?>" alt="foto" />
+                                                <img class="img-responsive" src="<?=base_url()?>uploads/kendaraan/<?=$valx->path?>" alt="foto" style="height: 200px !important;"/>
                                             </a>
                                         </div>
                                         <div class="b-goods-1__inner">
@@ -171,7 +171,7 @@
                             <ul class="pagination text-center">
                                 <!-- <li><a href="#"><i class="icon fa fa-angle-double-left"></i></a></li> -->
                                 <?php for ($i=1; $i <= $page; $i++): ?>
-                                   <li><a href="#" onclick="changePage(<?=$i?>)"><?=$i?></a></li>
+                                   <li style="margin: 0px !important;"><a style="margin: 0px !important;" href="#" onclick="changePage(<?=$i?>)"><?=$i?></a></li>
                                 <?php endfor; ?>
                                 <!-- <li><a href="#">1</a></li>
                                 <li class="active"><a href="#">2</a></li>
@@ -187,8 +187,8 @@
                                 <h3 class="b-filter-2__title">Pencarian</h3>
                                 <div class="b-filter-2__inner">
                                     <div class="b-filter-2__group">
-                                        <div class="b-filter-2__group-title">Judul</div>
-                                        <input class="form-control" type="text" placeholder="Judul Kendaaran..." id="keyword" />
+                                        <div class="b-filter-2__group-title">Nama Kendaraan</div>
+                                        <input class="form-control" type="text" placeholder="Masukan Nama Kendaaran..." id="keyword" />
                                     </div>
                                     <div class="b-filter-2__group">
                                         <div class="b-filter-2__group-title">Jenis</div>

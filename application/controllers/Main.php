@@ -26,6 +26,8 @@ class Main extends CI_Controller {
 	{
 		if($this->session->userdata('id_role') == 1){
 			$this->dashboard();
+		}elseif($this->session->userdata('id_role') == 4){
+			$this->dashboardSupir();
 		}else{
 			$this->dashboardUser();
 		}
@@ -54,6 +56,16 @@ class Main extends CI_Controller {
 		$data['breadcump'] 		= "Dashboard";
 		$data['title_page']		= "Dashboard";
 		$data['content_view']	= "main/indexUser";
+		$this->load->view('layout_admin/index',$data);
+	}
+
+	public function dashboardSupir()
+	{
+		$year  					= date('Y');
+		$data['breadcump'] 		= "Dashboard";
+		$data['title_page']		= "Dashboard";
+		$data['content_view']	= "main/indexSupir";
+		$data['no_plat'] 		= $this->transaksi_model->getTugasSupirByIdSupir($this->session->userdata('id_user'))->no_plat;
 		$this->load->view('layout_admin/index',$data);
 	}
 

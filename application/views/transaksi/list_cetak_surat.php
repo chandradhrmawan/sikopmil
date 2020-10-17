@@ -40,16 +40,21 @@
                 <?php 
                     foreach ($data_pemesanan as $key => $value):
                     $btn_stat = '';
+                    $status_sewa = '';
                     if($value->status_sewa == 1){
                         $status_sewa = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
+                    }if($value->status_sewa == 11){
+                        $status_sewa = '<span class="label label-warning">Menunggu Persetujuan Admin</span>';
                     }elseif($value->status_sewa == 2){
-                        $status_sewa = '<span class="label label-success">Sudah Disetujui Atasan</span>';
+                        $status_sewa = '<span class="label label-success">Sudah Disetujui Admin</span>';
                     }elseif($value->status_sewa == 3){
                         $status_sewa = '<span class="label label-info">Dalam Proses Peminjaman</span>';
                     }elseif($value->status_sewa == 4){
                         $status_sewa = '<span class="label label-default">Peminjaman Selesai</span>';
                     }elseif($value->status_sewa == 5){
                         $status_sewa = '<span class="label label-danger">Permohonan Ditolak</span>';
+                    }elseif($value->status_sewa == 6){
+                        $status_sewa = '<span class="label label-danger">Permohonan Dibatalkan</span>';
                     } 
 
                 ?>
@@ -121,8 +126,6 @@
       });
       getLocation()
 
-
-
     });
 
 
@@ -140,9 +143,6 @@
         alert("Geolocation is not supported by this browser.");
       }
     }
-
-
-
 
     function modalProses(id_sewa){
       $('#form')[0].reset(); // reset form on modals
@@ -167,107 +167,6 @@
     function reload_table()
     {
       $('#table').DataTable().ajax.reload();
-    }
-
-    function proses()
-    {
-      
-      var url;
-      url = "<?php echo site_url('transaksi/Sewa/updateStatusSewa')?>";
-       // ajax adding data to database
-       $.ajax({
-        url : url,
-        type: "POST",
-        data: $('#form').serialize(),
-        dataType: "JSON",
-        success: function(data)
-        {
-          if(data.status==true){
-            $('#modal_form').modal('hide');
-            swal('Pesan','Update Data Berhasil', 'success');
-            //window.location.reload();
-            // reload_table();
-        
-          }else{
-            $('#modal_form').modal('hide');
-            swal('Pesan','Update Data Gagal', 'error');
-            //window.location.reload();
-            // reload_table();           
-
-          }
-         },
-         error: function (jqXHR, textStatus, errorThrown)
-         {
-          alert('Error adding / update data');
-         }
-      });
-     }
-
-     function edit_data(id)
-     {
-      save_method = 'update';
-      $('#type').val("edit");
-      $('#form')[0].reset(); 
-      $('#modal_form').modal('show');
-      $('.modal-title').text('Edit Data User'); 
-      //Ajax Load data from ajax
-      $.ajax({
-        url : "<?php echo site_url('master/Jabatan/ajax_get_data_by_id')?>/" + id,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-
-          $('[name="id_jabatan"]').val(data.id_jabatan);
-          $('[name="nm_jabatan"]').val(data.nm_jabatan);
-                   
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-            alert('Error get data from ajax');
-          }
-        });
-    }
-
-    function delete_data(id){
-
-      swal({
-        title: "Konfirmasi Hapus Data",
-        text: "Apakah anda yakin, ingin menghapus Data ini?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Ya',
-        cancelButtonText: "Tidak",
-        closeOnConfirm: true,
-        closeOnCancel: true
-      },
-      function(isConfirm){
-        if (isConfirm){
-          $.ajax({
-            url : "<?php echo site_url('master/Jabatan/delete_via_ajax')?>",
-            type: "POST",
-            data:{"id":id},
-            dataType: "JSON",
-          success: function(data)
-          {
-            if(data.status==true){
-              swal('Pesan', 'Data berhasil dihapus', 'success');
-            }else{
-              swal('Pesan', 'Data Gagal dihapus', 'error');
-            }
-            reload_table();
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-            alert('Error get data from ajax');
-          }
-        });
-        } else {
-          swal("Cancelled", "Data Batal dihapus", "error");
-          return false
-        }
-      });
     }
 
     const modalSuratJalan = (id_sewa) => {

@@ -40,6 +40,9 @@ L.marker(
     title: "Office Location", 
     alt: "Office Location", 
     icon: officeIcon,
+    no_plat:null,
+    nama_supir:null,
+    nama_kendaraan:null
   }
 ).addTo(map).on('click', markerOnClick).addTo(map);
 
@@ -53,6 +56,9 @@ dataSupir.forEach(valx => {
       title: "Car Location", 
       alt: "Car Location",
       icon: carIcon,
+      no_plat:valx.no_plat,
+      nama_supir:valx.nama,
+      nama_kendaraan:valx.judul
     }).addTo(map).on('click', markerOnClick).addTo(map);
 })
 </script>

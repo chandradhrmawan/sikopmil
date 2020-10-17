@@ -20,7 +20,7 @@
                 <?php 
                 $notif = $this->transaksi_model->getRiwayatSewaByIduserNotif($this->session->userdata('id_user'));
                 if(!empty($this->session->userdata('id_user'))): ?>
-                     <li><a href="<?=base_url()?>index/riwayat_sewa">RIWAYAT SEWA
+                     <li><a href="<?=base_url()?>index/riwayat_sewa">RIWAYAT PINJAM
                         <span class="header-cart-count bg-primary"><?=$notif?></span>
                      </a></li>
                     <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Akun<b class="caret"></b></a>

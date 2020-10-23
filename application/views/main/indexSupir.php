@@ -6,7 +6,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?=$no_plat?></h3>
+              <h3><?=(isset($no_plat)) ? $no_plat : ''?></h3>
 
               <p>No Polisi Kendaraan yang akan di supir</p>
             </div>

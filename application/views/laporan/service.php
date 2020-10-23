@@ -15,10 +15,10 @@
 
             <div class="form-group">
               <label>Status</label>
-              <select name="status" id="status" class="form-control">
-                <option value="1">Belum Lunas</option>
-                <option value="2">Lunas</option>
-                <option value="3">Ditolak</option>
+              <select name="status_lunas" id="status_lunas" class="form-control">
+                <option value="">Semua</option>
+                <option value="0">Belum Lunas</option>
+                <option value="1">Lunas</option>
               </select>
             </div>
 
@@ -54,10 +54,10 @@
   const printPrev = () => {
     let tgl_awal   = $('#tgl_awal').val()
     let tgl_akhir  = $('#tgl_akhir').val()
-    let status     = $('#status').val()
+    let status_lunas  = $('#status_lunas').val()
 
     $.ajax({
-        url : "<?php echo site_url('laporan/Service/listData')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir+"&status="+status,
+        url : "<?php echo site_url('laporan/Service/listData')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir+"&status_lunas="+status_lunas,
         type: "GET",
         dataType: "JSON",
         success: function(data)

@@ -30,6 +30,7 @@
                         <th>Nama Kendaraan</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
+                        <th>Nama Supir</th>
                         <th>Total Biaya</th>
                         <th>Lampiran</th>
                         <th>Status</th>
@@ -39,7 +40,6 @@
                 <tbody>
                 <?php 
                     foreach ($data_pengembalian as $key => $value): 
-
                       if(!empty($value->lampiran)){
                         $img = "<img src='".base_url()."uploads/pengembalian/".$value->lampiran."' width='100' height='100'>";
                       }else{
@@ -62,13 +62,14 @@
                         <td><?=$value->judul?></td>
                         <td><?=view_date_hi($value->tgl_pinjam)?></td>
                         <td><?=view_date_hi($value->tgl_pengembalian)?></td>
-                        <td><?=$value->total_biaya?></td>
+                        <td><?=$value->nama?></td>
+                        <td>Rp. <?=number_format($value->total_biaya)?></td>
                         <td><?=$img?></td>
                         <td><?=$status?></td>
                         <td>
                           
                           <?php if($this->session->userdata('id_role') == 4): ?>
-                            <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Surat Perjalanan <span class="fa fa-floppy-o"></span></button>
+                            <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Nota Perjalanan <span class="fa fa-floppy-o"></span></button>
                           <?php else: ?>
                             <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalSuratJalanProses(<?=$value->id_pengembalian?>)">Proses Nota <span class="fa fa-floppy-o"></span></button>
                           <?php endif; ?>

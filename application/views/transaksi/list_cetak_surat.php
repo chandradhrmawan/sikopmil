@@ -27,8 +27,8 @@
                         <th>No</th>
                         <th>Nomor Polisi</th>
                         <th>Nama Kendaraan</th>
-                        <th>Nama Penyewa</th>
-                        <th>Tanggal Sewa</th>
+                        <th>Nama Pemohon</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
                         <th>Status Berangkat</th>
@@ -67,10 +67,19 @@
                         <td><?=view_date_hi($value->tgl_pinjam)?></td>
                         <td><?=view_date_hi($value->tgl_kembali)?></td>
                         <td>
-                          <select <?=($value->status_perjalanan == 1) ? 'disabled' : '' ?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
+
+                          <?php if($this->session->userdata('id_role') == 2): ?>
+                            <select disabled class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
                               <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
                               <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>
-                          </select> 
+                            </select> 
+                          <?php else: ?>
+                            <select <?=($value->status_perjalanan == 1) ? 'disabled' : '' ?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
+                              <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
+                              <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>
+                            </select> 
+                          <?php endif; ?>
+
                         </td>
                         <td><?=$status_sewa?></td>
                         <td align="center">

@@ -160,6 +160,9 @@
                                                     <div class="form-group">
                                                         <input class="form-control" type="text" name="user-name" value="Nama Pemesan : <?=$this->session->userdata('username')?>" disabled />
                                                     </div>
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="number" name="no_hp" id="no_hp" value="" required="required"/><i class="form-control-feedback icon fa fa-phone"></i>
+                                                    </div>
                                                      <div class="form-group">
                                                         <input class="form-control datepicker" type="text" id="tgl_pesan" placeholder="Tanggal Pesan" required="required" /><i class="form-control-feedback icon fa fa-calendar"></i>
                                                     </div>
@@ -448,6 +451,7 @@ function save_pesan()
 
         let post_data = {
             id_kendaraan        :$('#id_kendaraan').val(),
+            no_hp               :$('#no_hp').val(),
             tgl_pesan           :$('#tgl_pesan').val(),
             tgl_kembali         :$('#tgl_kembali').val(),
             tujuan_perjalanan   :$('#tujuan_perjalanan').val(),
@@ -488,6 +492,10 @@ function validateForm()
         status:true
     }
 
+    if($('#no_hp').val() == ""){
+        ret.status = false;
+        ret.msg += 'Nomor Handphone Tidak Boleh Kosong\n';
+    } 
     if($('#tgl_pesan').val() == ""){
         ret.status = false;
         ret.msg += 'Tanggal Pesan Tidak Boleh Kosong\n';

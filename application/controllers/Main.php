@@ -65,7 +65,7 @@ class Main extends CI_Controller {
 		$data['breadcump'] 		= "Dashboard";
 		$data['title_page']		= "Dashboard";
 		$data['content_view']	= "main/indexSupir";
-		$data['no_plat'] 		= $this->transaksi_model->getTugasSupirByIdSupir($this->session->userdata('id_user'))->no_plat;
+		$data['no_plat'] 		= @$this->transaksi_model->getTugasSupirByIdSupir($this->session->userdata('id_user'))->no_plat;
 		$this->load->view('layout_admin/index',$data);
 	}
 

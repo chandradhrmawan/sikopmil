@@ -59,7 +59,8 @@ class Service extends CI_Controller {
 						  'tgl_service'  => date('Y-m-d h:i:s'),
 						  'note' 		 => $this->input->post('keperluan'),
 						  'status' 		 => 1,
-						  'status_lunas' => 0
+						  'status_lunas' => 0,
+						  'id_user' 	 => $this->session->userdata('id_user')
 		);
 
 		$insertHdr = $this->transaksi_model->saveHdrService($dataHdr);
@@ -73,7 +74,7 @@ class Service extends CI_Controller {
 					'nama_service' 	 => $value,
 					'jumlah' 		 => $_POST['jumlah'][$key],
 					'harga'			 => $_POST['harga'][$key],
-					'sub_total' 	 => $_POST['sub_total'][$key]
+					'sub_total' 	 => ($_POST['harga'][$key] * $_POST['jumlah'][$key])
 				);
 				$grand_total += $_POST['sub_total'][$key];
 				$insertDtl = $this->transaksi_model->saveDtlService($dataDtl);

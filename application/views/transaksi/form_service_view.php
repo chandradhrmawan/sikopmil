@@ -59,7 +59,7 @@
                 <th>Jumlah (Unit)</th>
                 <th>Harga (Rp)</th>
                 <th>Sub Total</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
               </tr>
               </thead>
               <tbody>
@@ -68,16 +68,16 @@
                   <td class="increment"><?=$key+1?></td>
                   <td><input type="text" name="nama_service[]" class="form-control" value="<?=$value->nama_service?>" readonly></td>
                   <td><input type="number" name="jumlah[]" id="jumlah1" onkeyup="lookup(this)" class="form-control" value="<?=$value->jumlah?>" readonly></td>
-                  <td><input type="number" name="harga[]" id="harga1" onkeyup="lookup(this)" class="form-control" value="<?=$value->harga?>" readonly></td>
-                  <td><input type="text" name="sub_total[]" id="sub_total1" class="form-control" readonly="true" value="<?=$value->sub_total?>"></td>
-                  <td></td>
+                  <td><input type="text" name="harga[]" id="harga1" onkeyup="lookup(this)" class="form-control" value="<?=number_format($value->harga)?>" readonly></td>
+                  <td><input type="text" name="sub_total[]" id="sub_total1" class="form-control" readonly="true" value="<?=number_format($value->sub_total)?>"></td>
+                  <!-- <td></td> -->
                 </tr>
               <?php endforeach; ?>
               </tbody>
             </table>               
         </div>
         <div class="form-group">
-          <button name="cancel" onclick="doCancel()" type="button" id="cancel" class="btn btn-warning btn-flat"><span class="fa fa-times"></span> Batal</button>
+          <button name="cancel" onclick="doCancel()" type="button" id="cancel" class="btn btn-warning btn-flat"><span class="fa fa-arrow-left"></span> Kembali</button>
           <!-- <button name="save" onclick="doSave()" type="button" id="save" class="btn btn-success btn-flat"><span class="fa fa-plus"></span> Simpan</button> -->
         </div>
       </div>

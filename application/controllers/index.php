@@ -101,6 +101,7 @@ class Index extends CI_Controller {
 		$data = array('id_user' => $this->session->userdata('id_user'),
 			'id_kendaraan' 		=> $post['id_kendaraan'],
 			'tgl_sewa' 			=> date('Y/m/d H:i:s'),
+			'no_hp' 			=> $post['no_hp'],
 			'tgl_pinjam' 		=> formatDate($post['tgl_pesan']),
 			'tgl_kembali' 		=> formatDate($post['tgl_kembali']),
 			'tujuan_perjalanan' => $post['tujuan_perjalanan'],

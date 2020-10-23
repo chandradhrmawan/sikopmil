@@ -31,12 +31,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama Mekanik</th>
                         <th>Nomor Polisi</th>
                         <th>Nama Kendaraan</th>
                         <th>Tanggal Service</th>
                         <th>Total</th>
                         <th>Note</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                         <th>Status Lunas</th>
                         <th style="width: 200px;">Aksi</th>
                     </tr>
@@ -46,9 +47,9 @@
                     foreach ($data_service as $key => $value):
                       $status = "";
                       if($value->status == 1){
-                        $status = '<span class="label label-warning">Menunggu Persetujuan</span>';
+                        $status = '<span class="label label-warning">Belum Lunas</span>';
                       }else if($value->status == 2){
-                        $status = '<span class="label label-success">Diterima</span>';
+                        $status = '<span class="label label-success">Lunas</span>';
                       }else if($value->status == 3){
                         $status = '<span class="label label-danger">Ditolak</span>';
                       }
@@ -61,12 +62,13 @@
                 ?>
                     <tr>
                         <td><?=$key+1?></td>
+                        <td><?=$value->nama?></td>
                         <td><?=$value->no_plat?></td>
                         <td><?=$value->judul?></td>
                         <td><?=view_date_hi($value->tgl_service)?></td>
                         <td>Rp.<?=($value->total)?$value->total:0?></td>
                         <td><?=$value->note?></td>
-                        <td><?=$status?></td>
+                        <!-- <td><?=$status?></td> -->
                         <td><?=$status_lunas?></td>
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_hdr_service?>)">Detail <span class="fa fa-eye"></span></button>
                             <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalCetak(<?=$value->id_hdr_service?>)">Cetak <span class="fa fa-file-o"></span></button>

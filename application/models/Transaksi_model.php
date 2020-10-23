@@ -309,24 +309,26 @@ class Transaksi_model extends CI_Model {
 
 	public function getDataService()
 	{
-		$this->db->select("a.*,b.judul,b.no_plat");
+		$this->db->select("a.*,b.judul,b.no_plat,c.nama");
 		$this->db->from("tx_hdr_service a");
 		$this->db->join("mst_kendaraan b","a.id_kendaraan = b.id_kendaraan","inner");
+		$this->db->join("mst_users c","a.id_user = c.id_user","inner");
 		$this->db->order_by("a.id_hdr_service","desc");
 		return $this->db->get()->result();
 	}
 
 	public function getReportService($where)
 	{
-		$this->db->select("*");
+		$this->db->select("a.*,b.*,c.nama");
 		$this->db->from("tx_hdr_service a");
 		$this->db->join("mst_kendaraan b","a.id_kendaraan = b.id_kendaraan","inner");
+		$this->db->join("mst_users c","a.id_user = c.id_user","inner");
 		if(!empty($where['tgl_awal']) && !empty($where['tgl_akhir'])){
 			$this->db->where('a.tgl_service >= ', $where['tgl_awal']);
 			$this->db->where('a.tgl_service <= ', $where['tgl_akhir']);	
 		}
-		if(!empty($where['status'])){
-			$this->db->where('a.status = ', $where['status']);
+		if($where['status_lunas'] != ''){
+			$this->db->where('a.status_lunas = ', $where['status_lunas']);
 		}
 		return $this->db->get()->result();
 	}

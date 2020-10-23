@@ -35,7 +35,7 @@
                         <th>Tujuan Perjalanan</th>
                         <th>Jarak Perjalanan</th> -->
                         <th>Status</th>
-                        <th style="width: 130px;">Aksi</th>
+                        <th style="width: 200px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +81,8 @@
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_sewa?>)">Detail <span class="fa fa-eye"></span></button>
 
                         <?php if($this->session->userdata('id_role') == 2): ?>
-                          <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesApprove(<?=$value->id_sewa?>)">Proses <span class="fa fa-file-o"></span></button></td>
+                          <button class="btn btn-success btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesApprove(<?=$value->id_sewa?>)">Approve <span class="fa fa-check"></span></button>
+                          <button class="btn btn-danger btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesReject(<?=$value->id_sewa?>)">Reject <span class="fa fa-times"></span></button></td>
                         <?php else: ?>
                           <button class="btn btn-primary btn-flat btn-sm" <?=$btn_stat?> type="button" onClick="modalProsesAdmin(<?=$value->id_sewa?>)">Pilih Supir <span class="fa fa-file-o"></span></button></td>
                         <?php endif; ?>
@@ -275,12 +276,111 @@
     }
 
     function modalProsesApprove(id_sewa){
-      $('#form1')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Proses Data'); // Set Title to Bootstrap modal title
-      $('#id_sewa').val(id_sewa);
-      $('#label_supir').hide();
-      $('#label_reject').hide();
+      swal({
+        title: "Konfirmasi Approve Data",
+        text: "Apakah anda yakin, ingin Approve Data ini?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Ya',
+        cancelButtonText: "Tidak",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(isConfirm){
+        if (isConfirm){
+          var url;
+          url = "<?php echo site_url('transaksi/Sewa/updateStatusSewa')?>";
+
+          var postData = {
+            id_sewa:id_sewa,
+            status_sewa:11,
+            ket_reject:''
+          }
+
+           // ajax adding data to database
+           $.ajax({
+            url : url,
+            type: "POST",
+            data: postData,
+            dataType: "JSON",
+            success: function(data)
+            {
+              if(data.status==true){
+                $('#modal_form').modal('hide');
+                swal('Pesan','Approve Data Berhasil', 'success');
+                setTimeout(function(){  window.location.reload(); }, 2000);
+            
+              }else{
+                $('#modal_form').modal('hide');
+                swal('Pesan','Approve Data Gagal', 'error');
+              }
+             },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+              alert('Error adding / update data');
+             }
+          });
+
+        } else {
+          swal("Cancelled", "Data Batal Diapprove", "error");
+          return false
+        }
+      });
+    }
+
+    function modalProsesReject(id_sewa){
+      swal({
+        title: "Konfirmasi Reject Data",
+        text: "Apakah anda yakin, ingin Reject Data ini?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Ya',
+        cancelButtonText: "Tidak",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(isConfirm){
+        if (isConfirm){
+          var url;
+          url = "<?php echo site_url('transaksi/Sewa/updateStatusSewa')?>";
+
+          var postData = {
+            id_sewa:id_sewa,
+            status_sewa:5,
+            ket_reject:''
+          }
+
+           // ajax adding data to database
+           $.ajax({
+            url : url,
+            type: "POST",
+            data: postData,
+            dataType: "JSON",
+            success: function(data)
+            {
+              if(data.status==true){
+                $('#modal_form').modal('hide');
+                swal('Pesan','Reject Data Berhasil', 'success');
+                setTimeout(function(){  window.location.reload(); }, 2000);
+            
+              }else{
+                $('#modal_form').modal('hide');
+                swal('Pesan','Reject Data Gagal', 'error');
+              }
+             },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+              alert('Error adding / update data');
+             }
+          });
+
+        } else {
+          swal("Cancelled", "Data Batal Diapprove", "error");
+          return false
+        }
+      });
     }
 
     function modalProsesAdmin(id_sewa){

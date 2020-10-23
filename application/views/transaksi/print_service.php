@@ -80,16 +80,14 @@
       <!-- accepted payments column -->
       <div class="col-xs-6">
         <?php
-          $status = "";
-          if($data_hdr_service->status == 1){
-             $status = "Belum Lunas";
-          }elseif($data_hdr_service->status == 2){
-              $status = "Lunas";
-          }elseif($data_hdr_service->status == 3){
-              $status = "Ditolak";
+          $status = "Belum Lunas";
+          if($data_hdr_service->status_lunas == 1){
+             $status = "Lunas";
+          }elseif($data_hdr_service->status_lunas == 0){
+              $status = "Belum Lunas";
           }
         ?>
-        <p class="lead">Status : <b><?=$status?></b></p>
+        <p class="lead">Status Lunas : <b><?=$status?></b></p>
         <p>Deskripsi Service:</p>
         
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">

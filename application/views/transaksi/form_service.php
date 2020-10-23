@@ -9,6 +9,7 @@
             <div class="form-group">
               <label>No Polisi</label>
               <select class="form-control" name="no_polisi" id="no_polisi" onchange="getNamaKendaraan(this.value)">
+                <option value="">-- Pilih Kendaraan --</option>
                 <?php foreach ($data_kendaraan as $key => $value): ?>
                   <option value="<?=$value->id_kendaraan?>"><?=$value->no_plat.'-'.$value->judul?></option>
                 <?php endforeach; ?>

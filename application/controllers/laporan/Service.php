@@ -24,9 +24,9 @@ class Service extends CI_Controller {
 	public function listData()
 	{
 		$data =	array(
-			'tgl_awal'  => formatDate($this->input->get('tgl_awal')),
-			'tgl_akhir' => formatDate($this->input->get('tgl_akhir')),
-			'status' 	=> $this->input->get('status')
+			'tgl_awal'  	=> formatDate($this->input->get('tgl_awal')),
+			'tgl_akhir' 	=> formatDate($this->input->get('tgl_akhir')),
+			'status_lunas' 	=> $this->input->get('status_lunas')
 		);
 		$result = $this->transaksi_model->getReportService($data);
 		$content = "";
@@ -37,6 +37,7 @@ class Service extends CI_Controller {
 			$content .= "
 			<tr>
 				<td>$no</td>
+				<td>$value->nama</td>
 				<td>$tgl_service</td>
 				<td>$value->no_plat</td>
 				<td>$value->judul</td>
@@ -54,6 +55,7 @@ class Service extends CI_Controller {
               <thead>
               <tr>
                 <th>No</th>
+                <th>Nama Mekanik</th>
                 <th>Tgl Service</th>
                 <th>No Plat</th>
                 <th>Nama Kendaraan</th>

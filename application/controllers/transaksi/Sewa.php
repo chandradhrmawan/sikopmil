@@ -15,8 +15,8 @@ class Sewa extends CI_Controller {
 
 	public function index()
 	{				
-		$data['breadcump'] 		= "Data Pemesanan";
-		$data['title_page']		= "Data Pemesanan";
+		$data['breadcump'] 		= "Data Peminjaman";
+		$data['title_page']		= "Data Peminjaman";
 		$data['content_view']	= "transaksi/list_pemesanan";
 		$data['data_pemesanan'] = $this->transaksi_model->getAllRiwayatSewa();
 		$data['data_supir']  	= $this->master_model->getAllSupir();
@@ -37,9 +37,10 @@ class Sewa extends CI_Controller {
 		$id_sewa =  $this->input->post('id_sewa');
 		$data = array(
 			'status_sewa' 	=> $this->input->post('status_sewa'),
-			'id_supir' 		=> $this->input->post('id_user'),
+			'id_supir' 		=> $this->session->userdata('id_user'),
 			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
+
 		$data2 = array(
 			'id_sewa' 			=> $id_sewa,
 			'status_perjalanan' => 0
@@ -47,12 +48,12 @@ class Sewa extends CI_Controller {
 
 		if($this->session->userdata('id_role') == 1){
 			$data['status_sewa'] = 2;
+			$update2 = $this->transaksi_model->insTxKordinat($data2);
 		}
 
 		$update1  = $this->transaksi_model->updateStatusSewa($id_sewa,$data);
-		$update2 = $this->transaksi_model->insTxKordinat($data2);
 		
-		if($update1 && $update2){
+		if($update1){
 			$ret = array (
 				'status' => TRUE,
 				'data'   => $data

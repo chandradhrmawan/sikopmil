@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2020 at 01:03 PM
+-- Generation Time: Oct 24, 2020 at 08:57 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `mst_users` (
   `status` varchar(255) DEFAULT NULL,
   `id_role` int(255) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_users`
@@ -291,7 +291,8 @@ INSERT INTO `mst_users` (`id_user`, `nama`, `username`, `password`, `nip`, `id_j
 (9, 'pegawai', 'pegawai', '21232f297a57a5a743894a0e4a801fc3', '1231', 3, '1', 3, 'jakarta'),
 (10, 'pegawai1', 'pegawai1', '21232f297a57a5a743894a0e4a801fc3', '1231', 3, '1', 3, 'jakarta'),
 (11, 'supir1', 'supir1', '21232f297a57a5a743894a0e4a801fc3', '1231', 3, '1', 4, 'jakarta'),
-(12, 'mekanik', 'mekanik', '21232f297a57a5a743894a0e4a801fc3', '1231', 3, '1', 5, 'jakarta');
+(12, 'mekanik', 'mekanik', '21232f297a57a5a743894a0e4a801fc3', '1231', 3, '1', 5, 'jakarta'),
+(13, 'supir3', 'supir3', '21232f297a57a5a743894a0e4a801fc3', '468486', 9, '1', 4, '123');
 
 -- --------------------------------------------------------
 
@@ -306,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `tx_dtl_service` (
   `jumlah` int(255) DEFAULT NULL,
   `harga` bigint(255) DEFAULT NULL,
   `sub_total` bigint(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_dtl_service`
@@ -316,7 +317,10 @@ INSERT INTO `tx_dtl_service` (`id_dtl_service`, `id_hdr_service`, `nama_service`
 (1, 8, 'Ganti Oli', 1, 1500, 1500),
 (2, 8, 'Ganti Aki', 250, 200, 50000),
 (3, 9, 'ganti oli', 1, 50000, 50000),
-(4, 9, 'ganti lampu depan', 2, 25000, 50000);
+(4, 9, 'ganti lampu depan', 2, 25000, 50000),
+(5, 10, 'oli', 2, 25000, 50000),
+(6, 11, 'coba', 5, 2500000, 12500000),
+(7, 11, 'coba2', 10, 5000000, 50000000);
 
 -- --------------------------------------------------------
 
@@ -332,23 +336,26 @@ CREATE TABLE IF NOT EXISTS `tx_hdr_service` (
   `status` int(255) DEFAULT NULL,
   `note` varchar(500) DEFAULT NULL,
   `keterangan` varchar(500) DEFAULT NULL,
-  `status_lunas` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `status_lunas` int(1) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_hdr_service`
 --
 
-INSERT INTO `tx_hdr_service` (`id_hdr_service`, `tgl_service`, `id_kendaraan`, `total`, `status`, `note`, `keterangan`, `status_lunas`) VALUES
-(1, '2020-10-03 21:15:48.000000', 1, 1500, 1, NULL, NULL, 0),
-(2, '2020-10-03 11:20:05.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
-(3, '2020-10-03 11:21:13.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
-(4, '2020-10-03 11:31:10.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
-(5, '2020-10-03 11:31:38.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0),
-(6, '2020-10-03 11:32:09.000000', 2, NULL, 1, ' 12323', NULL, 0),
-(7, '2020-10-03 11:32:38.000000', 12, NULL, 1, ' 232323', NULL, 0),
-(8, '2020-10-03 11:33:17.000000', 14, 50000, 3, 'service rutin', '', 0),
-(9, '2020-10-04 08:06:38.000000', 4, 100000, 2, ' Service rutin bulnanan', 'Coba Terima ya', 1);
+INSERT INTO `tx_hdr_service` (`id_hdr_service`, `tgl_service`, `id_kendaraan`, `total`, `status`, `note`, `keterangan`, `status_lunas`, `id_user`) VALUES
+(1, '2020-10-03 21:15:48.000000', 1, 1500, 1, NULL, NULL, 0, NULL),
+(2, '2020-10-03 11:20:05.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0, NULL),
+(3, '2020-10-03 11:21:13.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0, NULL),
+(4, '2020-10-03 11:31:10.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0, NULL),
+(5, '2020-10-03 11:31:38.000000', 12, NULL, 1, ' Ganti Oli', NULL, 0, NULL),
+(6, '2020-10-03 11:32:09.000000', 2, NULL, 1, ' 12323', NULL, 0, NULL),
+(7, '2020-10-03 11:32:38.000000', 12, NULL, 1, ' 232323', NULL, 0, NULL),
+(8, '2020-10-03 11:33:17.000000', 14, 50000, 3, 'service rutin', '', 0, NULL),
+(9, '2020-10-04 08:06:38.000000', 4, 100000, 2, ' Service rutin bulnanan', 'Coba Terima ya', 1, NULL),
+(10, '2020-10-23 02:19:11.000000', 1, 50000, 1, 'coba service dulu sekali2', NULL, 0, 12),
+(11, '2020-10-23 02:23:05.000000', 3, 62500000, 1, ' 1', NULL, 1, 12);
 
 -- --------------------------------------------------------
 
@@ -364,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
   `lon_kordinat` varchar(255) DEFAULT NULL,
   `last_update` datetime DEFAULT NULL,
   `counter` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_kordinat`
@@ -373,7 +380,8 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
 INSERT INTO `tx_kordinat` (`id_kordinat`, `id_sewa`, `status_perjalanan`, `lat_kordinat`, `lon_kordinat`, `last_update`, `counter`) VALUES
 (1, 20, 1, '-6.1940851', '106.8616141', '2020-10-07 04:14:43', 22),
 (2, 27, 1, '-6.132874', '106.980442', '2020-10-07 01:27:37', 12),
-(6, 32, 1, '-7.9691776', '112.6531072', '2020-10-17 12:30:08', 32);
+(6, 32, 1, '-6.2087634', '106.84559899999999', '2020-10-23 01:52:25', 45),
+(9, 33, 1, '-6.2087634', '106.84559899999999', '2020-10-23 02:10:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -432,28 +440,33 @@ CREATE TABLE IF NOT EXISTS `tx_sewa` (
   `id_supir` int(255) DEFAULT NULL,
   `keterangan` varchar(500) DEFAULT NULL,
   `flag_berangkat` int(1) DEFAULT NULL,
-  `is_read` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+  `is_read` int(1) DEFAULT NULL,
+  `no_hp` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_sewa`
 --
 
-INSERT INTO `tx_sewa` (`id_sewa`, `id_user`, `id_kendaraan`, `tgl_sewa`, `tgl_pinjam`, `tgl_kembali`, `tujuan_perjalanan`, `lokasi_tujuan`, `lon`, `lat`, `jarak`, `status_sewa`, `id_supir`, `keterangan`, `flag_berangkat`, `is_read`) VALUES
-(7, 6, 1, '2020-09-20 17:58:31.000000', '2020-01-09 00:00:00.000000', '0000-00-00 00:00:00.000000', 'Dinas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 3, 0, 'Sudah Penuh', 0, NULL),
-(19, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 0, 'Test tolak ya', 0, NULL),
-(20, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', 0, NULL),
-(21, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, 1, NULL, 0, NULL),
-(23, 7, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', 0, NULL),
-(24, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 0, 'Tolak ya', 0, NULL),
-(25, 6, 1, '2020-09-25 15:36:38.000000', '2020-09-25 20:36:00.000000', '2020-09-26 20:36:00.000000', 'Perjalnan Dinas', 'Bandung', '107.60507047', '-6.93398334', '84.17 Km', 2, 1, '', 0, NULL),
-(26, 9, 13, '2020-10-04 05:00:22.000000', '2020-10-04 04:59:00.000000', '2020-10-31 05:00:00.000000', 'Dinas Keluar Kota', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', NULL, NULL),
-(27, 10, 2, '2020-10-04 19:57:14.000000', '2020-10-04 19:56:00.000000', '2020-10-31 19:57:00.000000', 'Dinas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', NULL, NULL),
-(28, 9, 13, '2020-10-05 14:40:54.000000', '2020-10-05 14:40:00.000000', '2020-10-31 14:40:00.000000', 'sppd', 'banten', '106.16369470', '-6.03276100', '80.54 Km', 5, NULL, NULL, NULL, NULL),
-(29, 9, 2, '2020-10-07 16:21:32.000000', '2020-10-07 16:21:00.000000', '2020-10-31 16:21:00.000000', 'meeting', 'priok', '106.87079323', '-6.12885785', '1.9 Km', 6, NULL, '', NULL, NULL),
-(30, 9, 2, '2020-10-07 16:39:25.000000', '2020-10-07 16:39:00.000000', '2020-10-31 16:39:00.000000', 'meeting', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 6, NULL, 'coba batalkan', NULL, 1),
-(31, 9, 2, '2020-10-07 16:48:19.000000', '2020-10-07 16:47:00.000000', '2020-10-31 16:48:00.000000', 'meeting', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 6, NULL, 'coba batalkan', NULL, 1),
-(32, 9, 18, '2020-10-17 11:20:20.000000', '2020-10-17 11:19:00.000000', '2020-10-18 11:00:00.000000', 'sppd', 'menteng', '106.83222420', '-6.19502650', '6.63 Km', 2, 7, '', NULL, 1);
+INSERT INTO `tx_sewa` (`id_sewa`, `id_user`, `id_kendaraan`, `tgl_sewa`, `tgl_pinjam`, `tgl_kembali`, `tujuan_perjalanan`, `lokasi_tujuan`, `lon`, `lat`, `jarak`, `status_sewa`, `id_supir`, `keterangan`, `flag_berangkat`, `is_read`, `no_hp`) VALUES
+(7, 6, 1, '2020-09-20 17:58:31.000000', '2020-01-09 00:00:00.000000', '0000-00-00 00:00:00.000000', 'Dinas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 3, 0, 'Sudah Penuh', 0, NULL, NULL),
+(19, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 0, 'Test tolak ya', 0, NULL, NULL),
+(20, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', 0, NULL, NULL),
+(21, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, 1, NULL, 0, NULL, NULL),
+(23, 7, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', 0, NULL, NULL),
+(24, 6, 1, '2020-09-20 18:06:35.000000', '2020-09-01 23:06:00.000000', '2020-09-01 23:06:00.000000', 'DInas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 0, 'Tolak ya', 0, NULL, NULL),
+(25, 6, 1, '2020-09-25 15:36:38.000000', '2020-09-25 20:36:00.000000', '2020-09-26 20:36:00.000000', 'Perjalnan Dinas', 'Bandung', '107.60507047', '-6.93398334', '84.17 Km', 2, 1, '', 0, NULL, NULL),
+(26, 9, 13, '2020-10-04 05:00:22.000000', '2020-10-04 04:59:00.000000', '2020-10-31 05:00:00.000000', 'Dinas Keluar Kota', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', NULL, NULL, NULL),
+(27, 10, 2, '2020-10-04 19:57:14.000000', '2020-10-04 19:56:00.000000', '2020-10-31 19:57:00.000000', 'Dinas', 'Bandung', '107.60495390', '-6.93446940', '84.16 Km', 4, 7, '', NULL, NULL, NULL),
+(28, 9, 13, '2020-10-05 14:40:54.000000', '2020-10-05 14:40:00.000000', '2020-10-31 14:40:00.000000', 'sppd', 'banten', '106.16369470', '-6.03276100', '80.54 Km', 5, NULL, NULL, NULL, NULL, NULL),
+(29, 9, 2, '2020-10-07 16:21:32.000000', '2020-10-07 16:21:00.000000', '2020-10-31 16:21:00.000000', 'meeting', 'priok', '106.87079323', '-6.12885785', '1.9 Km', 6, NULL, '', NULL, NULL, NULL),
+(30, 9, 2, '2020-10-07 16:39:25.000000', '2020-10-07 16:39:00.000000', '2020-10-31 16:39:00.000000', 'meeting', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 6, NULL, 'coba batalkan', NULL, 1, NULL),
+(31, 9, 2, '2020-10-07 16:48:19.000000', '2020-10-07 16:47:00.000000', '2020-10-31 16:48:00.000000', 'meeting', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 6, NULL, 'coba batalkan', NULL, 1, NULL),
+(32, 9, 18, '2020-10-17 11:20:20.000000', '2020-10-17 11:19:00.000000', '2020-10-18 11:00:00.000000', 'sppd', 'menteng', '106.83222420', '-6.19502650', '6.63 Km', 2, 7, '', NULL, 1, NULL),
+(33, 9, 18, '2020-10-23 13:55:21.000000', '2020-10-23 13:55:00.000000', '2020-10-31 13:55:00.000000', 'dinas', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 2, 13, '', NULL, NULL, NULL),
+(34, 9, 12, '2020-10-23 14:48:26.000000', '2020-10-23 14:48:00.000000', '2020-10-24 14:48:00.000000', 'dinas', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 8, '', NULL, NULL, NULL),
+(35, 9, 5, '2020-10-23 16:01:00.000000', '2020-10-22 16:00:00.000000', '2020-10-24 16:00:00.000000', 'sppd', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, NULL),
+(36, 9, 5, '2020-10-23 16:02:05.000000', '2020-10-23 16:01:00.000000', '2020-10-24 16:01:00.000000', 'sppd', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, '0215468746487848');
 
 --
 -- Indexes for dumped tables
@@ -592,22 +605,22 @@ MODIFY `id_tipe` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `mst_users`
 --
 ALTER TABLE `mst_users`
-MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tx_dtl_service`
 --
 ALTER TABLE `tx_dtl_service`
-MODIFY `id_dtl_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id_dtl_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tx_hdr_service`
 --
 ALTER TABLE `tx_hdr_service`
-MODIFY `id_hdr_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id_hdr_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tx_kordinat`
 --
 ALTER TABLE `tx_kordinat`
-MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tx_pengembalian`
 --
@@ -617,7 +630,7 @@ MODIFY `id_pengembalian` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 -- AUTO_INCREMENT for table `tx_sewa`
 --
 ALTER TABLE `tx_sewa`
-MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

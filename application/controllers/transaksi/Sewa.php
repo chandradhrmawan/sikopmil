@@ -37,7 +37,7 @@ class Sewa extends CI_Controller {
 		$id_sewa =  $this->input->post('id_sewa');
 		$data = array(
 			'status_sewa' 	=> $this->input->post('status_sewa'),
-			'id_supir' 		=> $this->session->userdata('id_user'),
+			'id_supir' 		=> $this->input->post('id_user'),
 			'keterangan' 	=> $this->input->post('ket_reject'),
 		);
 

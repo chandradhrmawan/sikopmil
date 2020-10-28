@@ -27,8 +27,8 @@
                         <th>No</th>
                         <th>Nomor Polisi</th>
                         <th>Nama Kendaraan</th>
-                        <th>Nama Penyewa</th>
-                        <th>Tanggal Sewa</th>
+                        <th>Nama Pemohon</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
                         <!-- <th>Lokasi Tujuan</th>

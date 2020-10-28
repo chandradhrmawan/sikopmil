@@ -42,7 +42,6 @@
 <script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript">
-
  const doPrint = () => {
     $('#box-input').hide();
     $('#btn-print').hide();
@@ -71,6 +70,7 @@
       });
   }
 
+  printPrev();
 </script>
 
 

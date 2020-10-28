@@ -161,7 +161,7 @@
                                                         <input class="form-control" type="text" name="user-name" value="Nama Pemesan : <?=$this->session->userdata('username')?>" disabled />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" name="no_hp" id="no_hp" value="" required="required"/><i class="form-control-feedback icon fa fa-phone"></i>
+                                                        <input class="form-control" type="text" name="no_hp" id="no_hp" placeholder="Nomor Handphone" value="" required="required"/><i class="form-control-feedback icon fa fa-phone"></i>
                                                     </div>
                                                      <div class="form-group">
                                                         <input class="form-control datepicker" type="text" id="tgl_pesan" placeholder="Tanggal Pesan" required="required" /><i class="form-control-feedback icon fa fa-calendar"></i>
@@ -295,6 +295,15 @@
 // New York
 /*var startlat = -6.17539420;
 var startlon = 106.82718300;*/
+
+$('input[name="no_hp"]').keyup(function(e)
+                                {
+  if (/\D/g.test(this.value))
+  {
+    // Filter non-digits from input value.
+    this.value = this.value.replace(/\D/g, '');
+  }
+});
 
 var startlat = "<?=$location['lat']?>";
 var startlon = "<?=$location['lon']?>";

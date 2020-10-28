@@ -73,7 +73,7 @@
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_hdr_service?>)">Detail <span class="fa fa-eye"></span></button>
                             <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalCetak(<?=$value->id_hdr_service?>)">Cetak <span class="fa fa-file-o"></span></button>
                         <?php if($this->session->userdata('id_role') == 1){ ?>
-                            <button class="btn btn-warning btn-flat btn-sm" type="button" onclick="modalProses(<?=$value->id_hdr_service?>)">Proses <span class="fa fa-floppy-o"></span></button>
+                            <!-- <button class="btn btn-warning btn-flat btn-sm" type="button" onclick="modalProses(<?=$value->id_hdr_service?>)">Proses <span class="fa fa-floppy-o"></span></button> -->
                             <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalProsesBayar(<?=$value->id_hdr_service?>)">Proses Pembayaran <span class="fa fa-money"></span></button>
                         <?php  } ?>
 

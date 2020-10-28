@@ -47,10 +47,13 @@
   $(function () {
     getGeoLocation()
      $('.select2').select2()
-    $('.textarea').wysihtml5()
-    $('.datepicker').datepicker({
-      autoclose: true
-    })
+     $('.textarea').wysihtml5()
+     $('.datepicker').datepicker({
+      autoclose: true,
+      language: "id",
+      todayHighlight: true,
+      dateFormat: 'dd/mm/yyyy' 
+     })
 
     let id_role = "<?=$this->session->userdata('id_role')?>";
 

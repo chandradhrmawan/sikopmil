@@ -292,7 +292,7 @@
 						</tr>
 						<tr>
 							<td><h2>Km Akhir : </h2></td>
-							<td><h2>'.$data_pengembalian->km_selesai.'</h2></td>
+							<td><h2>'.($data_pengembalian->km_selesai + $data_sewa->km_akhir).'</h2></td>
 							
 						</tr>
 						<tr>

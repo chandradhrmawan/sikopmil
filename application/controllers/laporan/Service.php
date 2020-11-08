@@ -75,4 +75,15 @@ class Service extends CI_Controller {
         </div>";
         echo json_encode($html);
 	}
+
+	public function exportExcel()
+	{	
+		$data =	array(
+			'tgl_awal'  	=> formatDate($this->input->get('tgl_awal')),
+			'tgl_akhir' 	=> formatDate($this->input->get('tgl_akhir')),
+			'status_lunas' 	=> $this->input->get('status_lunas')
+		);
+		$data['listData'] = $this->transaksi_model->getReportService($data);
+		$this->load->view('laporan/excel/service',$data);
+	}
 }

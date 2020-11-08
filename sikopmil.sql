@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2020 at 08:57 PM
+-- Generation Time: Nov 08, 2020 at 06:36 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -50,7 +50,9 @@ INSERT INTO `mst_detail_menu` (`id`, `id_menu`, `slug_url`, `title`, `status`, `
 (14, '17', 'laporan/Sewa', 'Laporan Sewa', '2', NULL, '1'),
 (15, '17', 'laporan/Service', 'Laporan Service', '2', NULL, '1,5,2'),
 (16, '17', 'laporan/Users', 'Laporan Users', '2', NULL, '1'),
-(17, '17', 'laporan/Supir', 'Laporan Supir', '2', NULL, '1');
+(17, '17', 'laporan/Supir', 'Laporan Supir', '2', NULL, '1'),
+(18, '14', 'transaksi/service/jadwal', 'Jadwal Service', '2', NULL, '1'),
+(19, '14', 'transaksi/service', 'Service Kendaraan', '2', NULL, '1,5');
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,7 @@ INSERT INTO `mst_kendaraan` (`id_kendaraan`, `id_jenis`, `id_merk`, `id_tipe`, `
 (4, '1', '1', '1', 'MERCEDES-AMG GT 2018', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', 'B2138129', '7487283728', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'Daihatsu_Terios_L_1.png', 1),
 (5, '1', '1', '1', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', 'B2138129', '7487283728', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'yaris_01.png', 1),
 (12, '1', '1', '1', 'ACURA ILX 2019', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '12311', '21333', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
-(13, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2323', '2323', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 3723, 'color-bronze-mica-metallic.png', 1),
+(13, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '2323', '2323', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 4723, 'color-bronze-mica-metallic.png', 1),
 (14, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '1215477', '27272727', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, '805286128p.png', 1),
 (15, '1', '1', '2', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '23', '23', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
 (16, '2', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '123', '123', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
@@ -172,7 +174,7 @@ INSERT INTO `mst_menu` (`id`, `slug_url`, `title`, `status`, `icon`, `role`) VAL
 (10, 'master/config', 'Startpoint', 2, 'fa fa-map', '1'),
 (12, 'transaksi/monitoring', 'Monitoring', 2, 'fa fa-desktop', '1'),
 (13, 'transaksi/surat_jalan', 'Cetak Surat Jalan', 2, 'fa fa-files-o', '1,4,2'),
-(14, 'transaksi/service', 'Service Kendaraan', 2, 'fa fa-cog', '1,5'),
+(14, '#', 'Service', 2, 'fa fa-cog', '1,5'),
 (15, 'transaksi/pengembalian', 'Pengembalian Kendaraan', 2, 'fa fa-address-book-o', '1,4'),
 (17, '#', 'Laporan', 2, 'fa fa-file', '1,2,5'),
 (18, 'login/auth/doLogout', 'Logout', 2, 'fa fa-trash', '1,4,2,5');
@@ -307,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `tx_dtl_service` (
   `jumlah` int(255) DEFAULT NULL,
   `harga` bigint(255) DEFAULT NULL,
   `sub_total` bigint(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_dtl_service`
@@ -320,7 +322,10 @@ INSERT INTO `tx_dtl_service` (`id_dtl_service`, `id_hdr_service`, `nama_service`
 (4, 9, 'ganti lampu depan', 2, 25000, 50000),
 (5, 10, 'oli', 2, 25000, 50000),
 (6, 11, 'coba', 5, 2500000, 12500000),
-(7, 11, 'coba2', 10, 5000000, 50000000);
+(7, 11, 'coba2', 10, 5000000, 50000000),
+(8, 12, 'ganti oli', 2, 12000, 24000),
+(9, 13, 'ganti oli', 2, 2500, 5000),
+(10, 14, 'ganti aku', 2, 5000, 10000);
 
 -- --------------------------------------------------------
 
@@ -338,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `tx_hdr_service` (
   `keterangan` varchar(500) DEFAULT NULL,
   `status_lunas` int(1) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_hdr_service`
@@ -354,8 +359,34 @@ INSERT INTO `tx_hdr_service` (`id_hdr_service`, `tgl_service`, `id_kendaraan`, `
 (7, '2020-10-03 11:32:38.000000', 12, NULL, 1, ' 232323', NULL, 0, NULL),
 (8, '2020-10-03 11:33:17.000000', 14, 50000, 3, 'service rutin', '', 0, NULL),
 (9, '2020-10-04 08:06:38.000000', 4, 100000, 2, ' Service rutin bulnanan', 'Coba Terima ya', 1, NULL),
-(10, '2020-10-23 02:19:11.000000', 1, 50000, 1, 'coba service dulu sekali2', NULL, 0, 12),
-(11, '2020-10-23 02:23:05.000000', 3, 62500000, 1, ' 1', NULL, 1, 12);
+(10, '2020-10-23 02:19:11.000000', 1, 50000, 1, 'coba service dulu sekali2', NULL, 1, 12),
+(11, '2020-10-23 02:23:05.000000', 3, 62500000, 1, ' 1', NULL, 1, 12),
+(12, '2020-11-08 05:10:02.000000', 0, 24000, 1, ' ', NULL, 0, 12),
+(13, '2020-11-08 05:12:01.000000', 12, 5000, 1, ' Coba service dari modal', NULL, 0, 12),
+(14, '2020-11-08 05:18:31.000000', 1, 10000, 1, 'coba2', NULL, 0, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tx_jadwal_service`
+--
+
+CREATE TABLE IF NOT EXISTS `tx_jadwal_service` (
+`id_jadwal` int(255) NOT NULL,
+  `id_kendaraan` varchar(255) DEFAULT NULL,
+  `tgl_jadwal_service` datetime(6) DEFAULT NULL,
+  `tgl_aktual_service` datetime(6) DEFAULT NULL,
+  `status_service` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tx_jadwal_service`
+--
+
+INSERT INTO `tx_jadwal_service` (`id_jadwal`, `id_kendaraan`, `tgl_jadwal_service`, `tgl_aktual_service`, `status_service`) VALUES
+(1, '1', '2020-11-08 15:35:03.000000', '2020-11-08 05:18:31.000000', 2),
+(2, '3', '0000-00-00 00:00:00.000000', NULL, 1),
+(3, '12', '0000-00-00 00:00:00.000000', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -371,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
   `lon_kordinat` varchar(255) DEFAULT NULL,
   `last_update` datetime DEFAULT NULL,
   `counter` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_kordinat`
@@ -380,8 +411,12 @@ CREATE TABLE IF NOT EXISTS `tx_kordinat` (
 INSERT INTO `tx_kordinat` (`id_kordinat`, `id_sewa`, `status_perjalanan`, `lat_kordinat`, `lon_kordinat`, `last_update`, `counter`) VALUES
 (1, 20, 1, '-6.1940851', '106.8616141', '2020-10-07 04:14:43', 22),
 (2, 27, 1, '-6.132874', '106.980442', '2020-10-07 01:27:37', 12),
-(6, 32, 1, '-6.2087634', '106.84559899999999', '2020-10-23 01:52:25', 45),
-(9, 33, 1, '-6.2087634', '106.84559899999999', '2020-10-23 02:10:05', NULL);
+(6, 32, 1, '-6.2087634', '106.84559899999999', '2020-11-08 05:54:22', 115),
+(9, 33, 1, '-6.2783488', '106.8662784', '2020-10-28 03:19:31', 953),
+(10, 37, 0, NULL, NULL, NULL, NULL),
+(11, 38, 0, NULL, NULL, NULL, NULL),
+(12, 39, 0, NULL, NULL, NULL, NULL),
+(13, 41, 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -398,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `tx_pengembalian` (
   `id_supir` int(255) DEFAULT NULL,
   `tgl_pengembalian` datetime(6) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6),
   `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_pengembalian`
@@ -416,7 +451,8 @@ INSERT INTO `tx_pengembalian` (`id_pengembalian`, `id_sewa`, `total_biaya`, `lam
 (20, 26, 232332, NULL, 2323, 7, '2020-10-07 15:59:57.204045', 1),
 (21, 23, 35000, '04102020053148.png', 15100, 7, '2020-10-07 16:13:07.343023', 3),
 (22, 27, 50000, '04102020080225.png', 200, 7, '2020-10-07 16:10:57.150790', 2),
-(23, 20, 200, NULL, 1500, 7, '2020-10-07 16:15:57.243937', 1);
+(23, 20, 200, NULL, 1500, 7, '2020-10-07 16:15:57.243937', 1),
+(24, 41, 2500000, NULL, 1000, 7, '2020-10-28 03:22:39.000000', 1);
 
 -- --------------------------------------------------------
 
@@ -442,7 +478,7 @@ CREATE TABLE IF NOT EXISTS `tx_sewa` (
   `flag_berangkat` int(1) DEFAULT NULL,
   `is_read` int(1) DEFAULT NULL,
   `no_hp` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tx_sewa`
@@ -466,7 +502,12 @@ INSERT INTO `tx_sewa` (`id_sewa`, `id_user`, `id_kendaraan`, `tgl_sewa`, `tgl_pi
 (33, 9, 18, '2020-10-23 13:55:21.000000', '2020-10-23 13:55:00.000000', '2020-10-31 13:55:00.000000', 'dinas', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 2, 13, '', NULL, NULL, NULL),
 (34, 9, 12, '2020-10-23 14:48:26.000000', '2020-10-23 14:48:00.000000', '2020-10-24 14:48:00.000000', 'dinas', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 5, 8, '', NULL, NULL, NULL),
 (35, 9, 5, '2020-10-23 16:01:00.000000', '2020-10-22 16:00:00.000000', '2020-10-24 16:00:00.000000', 'sppd', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, NULL),
-(36, 9, 5, '2020-10-23 16:02:05.000000', '2020-10-23 16:01:00.000000', '2020-10-24 16:01:00.000000', 'sppd', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, '0215468746487848');
+(36, 9, 5, '2020-10-23 16:02:05.000000', '2020-10-23 16:01:00.000000', '2020-10-24 16:01:00.000000', 'sppd', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, '0215468746487848'),
+(37, 9, 18, '2020-10-27 21:46:22.000000', '2020-10-27 21:46:00.000000', '2020-10-28 21:46:00.000000', 'jalan2', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 2, 6, '', NULL, NULL, '021564654'),
+(38, 9, 5, '2020-10-27 21:53:48.000000', '2020-10-27 21:53:00.000000', '2020-10-31 21:53:00.000000', 'coba', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 2, NULL, '', NULL, NULL, '21323123'),
+(39, 9, 4, '2020-10-27 21:55:44.000000', '2020-10-27 21:55:00.000000', '2020-10-31 21:55:00.000000', 'caca', 'jakarta', '106.77735040', '-6.33187850', '14.05 Km', 2, 13, '', NULL, NULL, '213231'),
+(40, 13, 5, '2020-10-28 14:55:38.000000', '2020-10-28 14:55:00.000000', '2020-10-31 14:55:00.000000', 'dinas', 'bandung', '107.60495390', '-6.93446940', '84.16 Km', 1, NULL, NULL, NULL, NULL, '021546864684'),
+(41, 9, 13, '2020-10-28 14:58:17.000000', '2020-10-28 14:58:00.000000', '2020-10-29 14:58:00.000000', 'caca', 'jakarta', '106.82718300', '-6.17539420', '6.97 Km', 4, 7, '', NULL, NULL, '65496874684');
 
 --
 -- Indexes for dumped tables
@@ -545,6 +586,12 @@ ALTER TABLE `tx_hdr_service`
  ADD PRIMARY KEY (`id_hdr_service`) USING BTREE;
 
 --
+-- Indexes for table `tx_jadwal_service`
+--
+ALTER TABLE `tx_jadwal_service`
+ ADD PRIMARY KEY (`id_jadwal`);
+
+--
 -- Indexes for table `tx_kordinat`
 --
 ALTER TABLE `tx_kordinat`
@@ -610,27 +657,32 @@ MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT for table `tx_dtl_service`
 --
 ALTER TABLE `tx_dtl_service`
-MODIFY `id_dtl_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id_dtl_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tx_hdr_service`
 --
 ALTER TABLE `tx_hdr_service`
-MODIFY `id_hdr_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id_hdr_service` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `tx_jadwal_service`
+--
+ALTER TABLE `tx_jadwal_service`
+MODIFY `id_jadwal` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tx_kordinat`
 --
 ALTER TABLE `tx_kordinat`
-MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id_kordinat` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tx_pengembalian`
 --
 ALTER TABLE `tx_pengembalian`
-MODIFY `id_pengembalian` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+MODIFY `id_pengembalian` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tx_sewa`
 --
 ALTER TABLE `tx_sewa`
-MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `id_sewa` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

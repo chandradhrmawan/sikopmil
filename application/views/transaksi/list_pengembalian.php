@@ -72,6 +72,7 @@
                             <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Nota Perjalanan <span class="fa fa-floppy-o"></span></button>
                           <?php else: ?>
                             <button class="btn btn-primary btn-flat btn-sm" type="button" onclick="modalSuratJalanProses(<?=$value->id_pengembalian?>)">Proses Nota <span class="fa fa-floppy-o"></span></button>
+                            <button class="btn btn-success btn-flat btn-sm" type="button" onclick="modalSuratJalan(<?=$value->id_sewa?>)">Cetak Nota Perjalanan <span class="fa fa-floppy-o"></span></button>
                           <?php endif; ?>
 
                         </td>

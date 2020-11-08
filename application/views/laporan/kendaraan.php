@@ -35,8 +35,9 @@
 
             <div class="form-group">
               <button type="button" class="btn btn-primary btn-flat" style="margin-right: 5px;" onclick="printPrev()">
-          <i class="fa fa-search"></i> Show Data
-        </button>
+              <i class="fa fa-search"></i> Show Data</button>
+              <button type="button" class="btn btn-success btn-flat" style="margin-right: 5px;" onclick="exportExcel()">
+              <i class="fa fa-file-excel-o"></i> Export Excel</button>
             </div>
       </div>
     </div>
@@ -75,17 +76,6 @@
         {
 
           $('#table-show').html(data)
-          /*$('#judul').val(data.judul)
-          $('#lokasi_tujuan').val(data.lokasi_tujuan)
-          $('#tujuan_perjalanan').val(data.tujuan_perjalanan)
-          $('#jarak').val(data.jarak)
-          $('#tgl_sewa').val(data.tgl_sewa)
-          $('#tgl_pinjam').val(data.tgl_pinjam)
-          $('#tgl_kembali').val(data.tgl_kembali)
-          $('#keterangan').val(data.keterangan)
-          $('#km_awal').val(data.km_akhir+' Km')
-          $('#id_sewa').val(id_sewa)
-          $('#id_supir').val(data.id_supir)*/
                 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -98,6 +88,15 @@
   const doCancel = () => {
     var url = "<?php echo site_url('transaksi/Service/index')?>"
     window.location.href = url
+  }
+
+  const exportExcel = () => {
+    let id_jenis = $('#id_jenis').val()
+    let id_merk  = $('#id_merk').val()
+    let model    = $('#model').val()
+
+    let url = "<?php echo site_url('laporan/Kendaraan/exportExcel')?>?id_jenis="+id_jenis+"&id_merk="+id_merk+"&model="+model
+    window.open(url,"_blank")
   }
 
 </script>

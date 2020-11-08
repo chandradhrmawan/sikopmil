@@ -22,12 +22,23 @@ class Service extends CI_Controller {
 		$this->load->view('layout_admin/index',$data);	
 	}
 
+	public function jadwal()
+	{				
+		$data['breadcump'] 			= "Jadwal Service";
+		$data['title_page']			= "Jadwal Service";
+		$data['content_view']		= "transaksi/list_jadwal_service";
+		$data['data_service']  		= $this->transaksi_model->getDataJadwalService();
+		$data['data_kendaraan_service']  		= $this->transaksi_model->listKendaraanJadwalService();
+		$this->load->view('layout_admin/index',$data);	
+	}
+
 	public function formAdd()
 	{
 		$data['breadcump'] 			= "Service";
 		$data['title_page']			= "Service";
 		$data['content_view']		= "transaksi/form_service";
 		$data['data_kendaraan'] 	= $this->master_model->getAll('mst_kendaraan');
+		$data['data_service']  		= $this->transaksi_model->getDataJadwalService(1);
 		$this->load->view('layout_admin/index',$data);	
 	}
 
@@ -64,6 +75,13 @@ class Service extends CI_Controller {
 		);
 
 		$insertHdr = $this->transaksi_model->saveHdrService($dataHdr);
+
+		$id_jadwal = $this->input->post('id_jadwal');
+		$dataJadwal = [
+			'tgl_aktual_service' => date('Y-m-d h:i:s'),
+			'status_service' 	 => 2
+		];
+		$upJadwalService = $this->transaksi_model->updateJadwalService($id_jadwal,$dataJadwal);
 
 		if(!empty($insertHdr)){
 			$arrDtl = $this->input->post('nama_service');
@@ -149,5 +167,31 @@ class Service extends CI_Controller {
 				);
 		$ret = $this->transaksi_model->updateStatusLunas($id_hdr_service,$update);
 		echo json_encode(array('status' => true));
+	}
+
+	public function findDataJadwalService($id_jadwal)
+	{
+		$data = $this->transaksi_model->findDataJadwalService($id_jadwal);
+		$data->tgl_jadwal_service = view_date_hi($data->tgl_jadwal_service);
+		$data->tgl_aktual_service = view_date_hi($data->tgl_aktual_service);
+		echo json_encode($data);
+	}
+
+	public function doSaveJadwalService()
+	{
+		$postData = [
+			'id_kendaraan' => $this->input->post('id_kendaraan'),
+			'tgl_jadwal_service' =>$this->input->post('tgl_jadwal_service'),
+			'status_service' => 1
+		];
+
+		$ins = $this->transaksi_model->insJadwalService($postData);
+		echo json_encode(array('status' => $ins));
+	}
+
+	public function getDetailByIdkendaraan($id_kendaraan)
+	{
+		$data = $this->transaksi_model->getDetailByIdkendaraan($id_kendaraan);
+		echo json_encode($data);
 	}
 }

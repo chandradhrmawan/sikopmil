@@ -15,7 +15,11 @@ function format_date_hi($time)
 
 function view_date_hi($time)
 {
-	return date("d/m/Y H.i",strtotime($time));
+	if(!empty($time)){
+		return date("d/m/Y H.i",strtotime($time));
+	}else{
+		return null;
+	}
 }
 
 function view_date_dfy($time)

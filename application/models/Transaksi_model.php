@@ -63,6 +63,12 @@ class Transaksi_model extends CI_Model {
 		return true;
 	}
 
+	public function insJadwalService($data)
+	{
+		$this->db->insert('tx_jadwal_service', $data);
+		return true;
+	}
+
 	public function insTxKordinat($data)
 	{
 		$this->db->insert('tx_kordinat', $data);
@@ -115,6 +121,13 @@ class Transaksi_model extends CI_Model {
 		);
 		$this->db->where('id_sewa', $id_sewa);
 		$this->db->update('tx_sewa', $dt);
+		return true;
+	}
+
+	public function updateJadwalService($id_jadwal,$data)
+	{
+		$this->db->where('id_jadwal', $id_jadwal);
+		$this->db->update('tx_jadwal_service', $data);
 		return true;
 	}
 
@@ -315,6 +328,42 @@ class Transaksi_model extends CI_Model {
 		$this->db->join("mst_users c","a.id_user = c.id_user","inner");
 		$this->db->order_by("a.id_hdr_service","desc");
 		return $this->db->get()->result();
+	}
+
+	public function getDataJadwalService($status_service=null)
+	{
+		$this->db->select("a.*,b.judul,b.no_plat");
+		$this->db->from("tx_jadwal_service a");
+		$this->db->join("mst_kendaraan b","a.id_kendaraan = b.id_kendaraan","inner");
+
+		if(!empty($status_service)){
+			$this->db->where("a.status_service",$status_service);
+		}
+
+		$this->db->order_by("a.id_jadwal","desc");
+		return $this->db->get()->result();
+	}
+
+	public function listKendaraanJadwalService()
+	{
+		$sql = "SELECT * 
+				FROM
+					mst_kendaraan 
+				WHERE
+					id_kendaraan NOT IN ( SELECT id_kendaraan FROM tx_jadwal_service WHERE status_service = 1 )
+				";
+		$data = $this->db->query($sql)->result();
+		return $data;
+	}
+
+	public function findDataJadwalService($id_jadwal)
+	{
+		$this->db->select("a.*,b.judul,b.no_plat");
+		$this->db->from("tx_jadwal_service a");
+		$this->db->join("mst_kendaraan b","a.id_kendaraan = b.id_kendaraan","inner");
+		$this->db->where("a.id_jadwal",$id_jadwal);
+		$this->db->order_by("a.id_jadwal","desc");
+		return $this->db->get()->row();
 	}
 
 	public function getReportService($where)

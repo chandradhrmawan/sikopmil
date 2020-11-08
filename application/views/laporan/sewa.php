@@ -17,6 +17,8 @@
               <button type="button" class="btn btn-primary btn-flat" style="margin-right: 5px;" onclick="printPrev()">
           <i class="fa fa-search"></i> Show Data
         </button>
+         <button type="button" class="btn btn-success btn-flat" style="margin-right: 5px;" onclick="exportExcel()">
+              <i class="fa fa-file-excel-o"></i> Export Excel</button>
             </div>
       </div>
     </div>
@@ -59,6 +61,14 @@
           alert('Error get data from ajax');
         }
       });
+  }
+
+  const exportExcel = () => {
+    let tgl_awal   = $('#tgl_awal').val()
+    let tgl_akhir  = $('#tgl_akhir').val()
+
+    let url = "<?php echo site_url('laporan/Sewa/exportExcel')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir
+    window.open(url,"_blank")
   }
 
 </script>

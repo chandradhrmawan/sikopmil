@@ -84,4 +84,14 @@ class Sewa extends CI_Controller {
         </div>";
         echo json_encode($html);
 	}
+
+	public function exportExcel()
+	{	
+		$data =	array(
+			'tgl_awal'  => formatDate($this->input->get('tgl_awal')),
+			'tgl_akhir' => formatDate($this->input->get('tgl_akhir'))
+		);
+		$data['listData'] = $this->transaksi_model->getReportSewa($data);
+		$this->load->view('laporan/excel/sewa',$data);
+	}
 }

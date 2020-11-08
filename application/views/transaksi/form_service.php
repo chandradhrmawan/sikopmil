@@ -7,13 +7,16 @@
       </div>
       <div class="box-body pad">
             <div class="form-group">
+              <label>Pilih Kendaraan Dari Jadwal Service</label>
+              <br/>
+              <button type="button" class="btn btn-info btn-sm btn-flat" onclick="modalJadwalKendaraan()">Pilih Kendaraan <span class="fa fa-search"></span></button>
+            </div>
+
+            <div class="form-group">
               <label>No Polisi</label>
-              <select class="form-control" name="no_polisi" id="no_polisi" onchange="getNamaKendaraan(this.value)">
-                <option value="">-- Pilih Kendaraan --</option>
-                <?php foreach ($data_kendaraan as $key => $value): ?>
-                  <option value="<?=$value->id_kendaraan?>"><?=$value->no_plat.'-'.$value->judul?></option>
-                <?php endforeach; ?>
-              </select>
+              <input type="text" class="form-control" disabled="true" id="no_plat">
+              <input type="hidden" name="no_polisi" id="no_polisi" value="">
+              <input type="hidden" name="id_jadwal" id="id_jadwal" value="">
             </div>
 
             <div class="form-group">
@@ -26,7 +29,7 @@
               <input type="text" class="form-control" disabled="true" id="tgl_service" value="<?=date('d-m-Y')?>">
             </div>
             <div class="form-group">
-              <label>Keterangan</label>
+              <label>Keterangan Service</label>
               <textarea class="form-control" name="keperluan" id="keperluan" cols="5" rows="5"> </textarea>
             </div>
       </div>
@@ -80,14 +83,92 @@
   </div>
 </div>
 </form>
+
+  
+<!-- Bootstrap modal proses -->
+<div class="modal fade" id="modal_table" role="dialog">
+  <div class="modal-dialog" style="width: 750px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="form1" class="form-horizontal">
+          <table class="table table-striped table-bordered table-hover table-checkable order-column table-sm" id="table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>No Plat</th>
+                <th>Nama Kendaraan</th>
+                <th>Tgl Service</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($data_service as $key => $value): ?>
+                <tr>
+                  <td><?=$key+1?></td>
+                  <td><?=$value->no_plat?></td>
+                  <td><?=$value->judul?></td>
+                  <td><?=view_date_hi($value->tgl_jadwal_service)?></td>
+                  <td><button class="btn btn-info btn-sm btn-flat" type="button" onclick="choseCar(<?=$value->id_kendaraan.','.$value->id_jadwal?>)">Pilih <span class="fa fa-check"></span> </button></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+         </form>
+       </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Tutup</button>
+        <!-- <button type="button" id="btnSave" onclick="updateProses()" class="btn btn-primary btn-flat">Kirim</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Bootstrap modal proses -->
+
+
 <script src="<?=base_url()?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 
 
 <script type="text/javascript">
 
-  const getNamaKendaraan = (value) => {
-    let vals = $( "#no_polisi option:selected" ).text();
-    $('#judul').val(vals)
+  var save_method; //for save method string
+  var table;
+
+  $(document).ready(function() { 
+    //TAMPIL DATA TABLE SERVER SIDE
+    table = $('#table').DataTable({ 
+      "processing": true, //Feature control the processing indicator.
+      "serverSide": false //Feature control DataTables' server-side processing mode.
+    });
+  });
+
+  const modalJadwalKendaraan = () =>{
+    $('#modal_table').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Pilih Kendaraan Dari Jadwal Service');
+  }
+
+  const choseCar = (id_kendaraan,id_jadwal) => {
+    var url = "<?php echo site_url('transaksi/Service/getDetailByIdkendaraan/')?>"+id_kendaraan
+       $.ajax({
+        url : url,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          $('#judul').val(data.judul)
+          $('#no_plat').val(data.no_plat)
+          $('#no_polisi').val(data.id_kendaraan)
+          $('#id_jadwal').val(id_jadwal)
+          $('#modal_table').modal('hide');
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          alert('Error adding / update data');
+        }
+      });
   }
 
 

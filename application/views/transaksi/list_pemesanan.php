@@ -231,12 +231,12 @@
                      </div>
                    </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label class="control-label col-md-2">Keterangan</label>
                       <div class="col-md-9">
                         <input name="keterangan" id="keterangan" class="form-control" type="text" disabled="true">
                      </div>
-                   </div>
+                   </div> -->
 
                   </div>
                  </form>

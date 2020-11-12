@@ -61,17 +61,17 @@ class Pengembalian extends CI_Controller {
     	if (!empty($_FILES["bukti"]["name"])) {
 
 	        $config['upload_path']          = './uploads/pengembalian';
-	        $config['allowed_types']        = 'gif|jpg|png';
 	        $config['file_name']            = $name;
 		    $config['overwrite']			= true;
-		    $config['max_size']             = 10024; // 10MB
+	        $config['allowed_types']  		= '*';
+		    $config['max_size']             = 100024; // 100MB
 
 	        $this->load->library('upload', $config);
 
 	        if ( ! $this->upload->do_upload('bukti'))
 	        {
 	            $error = array('error' => $this->upload->display_errors());
-	            return null;
+	            return $this->upload->display_errors();
 	        }
 	        else
 	        {

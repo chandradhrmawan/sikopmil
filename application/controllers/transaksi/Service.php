@@ -180,9 +180,9 @@ class Service extends CI_Controller {
 	public function doSaveJadwalService()
 	{
 		$postData = [
-			'id_kendaraan' => $this->input->post('id_kendaraan'),
-			'tgl_jadwal_service' =>$this->input->post('tgl_jadwal_service'),
-			'status_service' => 1
+			'id_kendaraan'  	 => $this->input->post('id_kendaraan'),
+			'tgl_jadwal_service' => formatDateIns($this->input->post('tgl_jadwal_service')),
+			'status_service'  	 => 1
 		];
 
 		$ins = $this->transaksi_model->insJadwalService($postData);

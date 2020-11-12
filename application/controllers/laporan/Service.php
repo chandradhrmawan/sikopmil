@@ -71,6 +71,8 @@ class Service extends CI_Controller {
               <button type='button' id='btn-print' class='btn btn-info btn-flat' style='margin-right: 5px;' onclick='doPrint()'>
           <i class='fa fa-print'></i> Print Data
         </button>
+        <button type='button' class='btn btn-success btn-flat' style='margin-right: 5px;' onclick='exportExcel()'>
+              <i class='fa fa-file-excel-o'></i> Export Excel</button>
             </div>
         </div>";
         echo json_encode($html);

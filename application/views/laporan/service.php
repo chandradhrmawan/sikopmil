@@ -25,8 +25,8 @@
             <div class="form-group">
               <button type="button" class="btn btn-primary btn-flat" style="margin-right: 5px;" onclick="printPrev()">
               <i class="fa fa-search"></i> Show Data</button>
-              <button type="button" class="btn btn-success btn-flat" style="margin-right: 5px;" onclick="exportExcel()">
-              <i class="fa fa-file-excel-o"></i> Export Excel</button>
+              <!-- <button type="button" class="btn btn-success btn-flat" style="margin-right: 5px;" onclick="exportExcel()">
+              <i class="fa fa-file-excel-o"></i> Export Excel</button> -->
             </div>
       </div>
     </div>

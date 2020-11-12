@@ -7,7 +7,7 @@
           <!-- <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
                   title="Collapse">
             <i class="fa fa-minus"></i></button> -->
-         
+         <?php //debux($this->session->userdata('id_role')); ?>
         </div>
         <!-- /. tools -->
       </div>
@@ -68,7 +68,7 @@
                         <td><?=view_date_hi($value->tgl_kembali)?></td>
                         <td>
 
-                          <?php if($this->session->userdata('id_role') == 2): ?>
+                          <?php if($this->session->userdata('id_role') == 2 || $this->session->userdata('id_role') == 1): ?>
                             <select disabled class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
                               <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
                               <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>

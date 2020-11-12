@@ -13,10 +13,31 @@ function format_date_hi($time)
 	return DateTime::createFromFormat('d/m/Y H.i',$time)->format('Y-m-d H:i');
 }
 
+function formatDateIns($time)
+{
+	$dateDE = $time;
+	$dateObj = \DateTime::createFromFormat("d/m/Y", $dateDE);
+	if (!$dateObj)
+	{
+	    throw new \UnexpectedValueException("Could not parse the date: $date");
+	}
+	$dateUS = $dateObj->format("Y-m-d");
+	return $dateUS;
+}
+
 function view_date_hi($time)
 {
 	if(!empty($time)){
 		return date("d/m/Y H.i",strtotime($time));
+	}else{
+		return null;
+	}
+}
+
+function viewDateOnly($time)
+{
+	if(!empty($time)){
+		return date("d/m/Y",strtotime($time));
 	}else{
 		return null;
 	}

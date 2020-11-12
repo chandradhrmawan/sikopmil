@@ -34,7 +34,7 @@
                         <th>Total Biaya</th>
                         <th>Lampiran</th>
                         <th>Status</th>
-                        <th style="width: 200px;">Aksi</th>
+                        <th style="width: 250px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -172,12 +172,12 @@
                      </div>
                    </div>
 
-                    <div class="form-group">
+                   <!--  <div class="form-group">
                       <label class="control-label col-md-2">Keterangan</label>
                       <div class="col-md-9">
                         <input name="keterangan" id="keterangan" class="form-control" type="text" disabled="true">
                      </div>
-                   </div>
+                   </div> -->
 
                    <div class="form-group">
                       <label class="control-label col-md-2">Km Awal</label>
@@ -391,7 +391,7 @@
 
   const openNewTab = () => {
       let id_sewa = $("#id_sewa").val();
-      let url = '<?php echo site_url('transaksi/Surat_jalan/file/')?>'+id_sewa+''
+      let url = '<?php echo site_url('transaksi/Pengembalian/file/')?>'+id_sewa+''
       window.open(url, '_blank');
   }
 

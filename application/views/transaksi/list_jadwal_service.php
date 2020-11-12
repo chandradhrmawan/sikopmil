@@ -45,8 +45,8 @@
                     <tr>
                         <td><?=$key+1?></td>
                         <td><?=$value->no_plat?></td>
-                        <td><?=view_date_hi($value->tgl_jadwal_service)?></td>
-                        <td><?=view_date_hi($value->tgl_aktual_service)?></td>
+                        <td><?=viewDateOnly($value->tgl_jadwal_service)?></td>
+                        <td><?=viewDateOnly($value->tgl_aktual_service)?></td>
                         <td><?=$status?></td>
                         <td><button class="btn btn-info btn-flat btn-sm" type="button" onclick="modalDetail(<?=$value->id_jadwal?>)">Detail <span class="fa fa-eye"></span></button>
                           </td>

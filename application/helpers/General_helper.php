@@ -16,7 +16,7 @@ function format_date_hi($time)
 function formatDateIns($time)
 {
 	$dateDE = $time;
-	$dateObj = \DateTime::createFromFormat("d/m/Y", $dateDE);
+	$dateObj = \DateTime::createFromFormat("m/d/Y", $dateDE);
 	if (!$dateObj)
 	{
 	    throw new \UnexpectedValueException("Could not parse the date: $date");

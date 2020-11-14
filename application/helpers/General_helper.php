@@ -60,7 +60,7 @@ function getMasterData($field,$table,$key,$id)
 	$CI->db->from($table);
 	$CI->db->where($key,$id);
 	$data =  $CI->db->get()->row();
-	return $data->$field;
+	return isset($data->$field) ? $data->$field : null;
 }
 
 function getStatusUser($id) 

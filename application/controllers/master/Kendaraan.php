@@ -227,7 +227,11 @@ class Kendaraan extends CI_Controller {
     {	
     	if(!empty($file_name)){
 	    	$path_to_file = './uploads/kendaraan/'.$file_name;
-			unlink($path_to_file);
+	    	if(file_exists($path_to_file)){
+				unlink($path_to_file);
+	    	}else{
+	    		return null;
+	    	}
     	}else{
     		return null;
     	}

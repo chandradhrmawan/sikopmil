@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 06:36 PM
+-- Generation Time: Nov 15, 2020 at 11:58 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -96,13 +96,11 @@ CREATE TABLE IF NOT EXISTS `mst_jenis` (
 --
 
 INSERT INTO `mst_jenis` (`id_jenis`, `nm_jenis`) VALUES
-(1, 'Sedan'),
-(2, 'Van'),
-(3, 'Truck'),
-(4, 'Bus'),
-(5, 'Motor'),
-(6, 'Truck'),
-(7, 'Jeep');
+(1, 'Kendaraan Taktis'),
+(2, 'Kendaraan Tempur'),
+(3, 'Kendaraan Sipil'),
+(4, 'Kendaraan Tempur Logistik'),
+(5, 'Kendaraan Angkut Personel');
 
 -- --------------------------------------------------------
 
@@ -145,9 +143,7 @@ INSERT INTO `mst_kendaraan` (`id_kendaraan`, `id_jenis`, `id_merk`, `id_tipe`, `
 (14, '1', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '1215477', '27272727', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, '805286128p.png', 1),
 (15, '1', '1', '2', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '23', '23', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
 (16, '2', '2', '1', 'MERCEDES BENZ E CLASS', 'Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor incididunt lorem ipsum dolor sit amet, con', '123', '123', '2019', NULL, 'Auto', NULL, NULL, '1000 hp', 100, 'agya_01.png', 1),
-(17, '2', '1', '2', '123', '123', '123123', '123123', '2018', NULL, '123', NULL, NULL, '1123123', 100, '25092020042434.png', 1),
-(18, '7', '5', '4', 'Turbo Diesel 4-Cylinder, 16 Valce DOHC', 'Braket senjata kaliber 7,62 mm, Pemadam kebakaran (APAR)', 'F6172J', '123123', '2019', '4 Orang', 'Manual 6 Speed', '80 liter', 'Diesel', '1000cc', 0, '17102020110257.png', 1),
-(19, '2', '2', '3', '123', '23', '123', '123', '232', '2323', '323', '2323', '2323', '23', 0, '17102020110433.png', 1);
+(17, '2', '1', '2', '123', '123', '123123', '123123', '2018', NULL, '123', NULL, NULL, '1123123', 100, '25092020042434.png', 1);
 
 -- --------------------------------------------------------
 
@@ -196,8 +192,7 @@ CREATE TABLE IF NOT EXISTS `mst_merk` (
 
 INSERT INTO `mst_merk` (`id_merk`, `nm_merk`) VALUES
 (1, 'Toyota'),
-(2, 'Avanza'),
-(3, 'Xenia'),
+(3, 'KIA'),
 (4, 'Honda'),
 (5, 'Pindad');
 
@@ -259,10 +254,10 @@ CREATE TABLE IF NOT EXISTS `mst_tipe` (
 --
 
 INSERT INTO `mst_tipe` (`id_tipe`, `nm_tipe`) VALUES
-(1, 'Coupe'),
-(2, 'Hatcback'),
+(1, 'Tank'),
+(2, 'Truck'),
 (3, 'Minivan'),
-(4, 'Kendaraan Taktis');
+(4, 'Bus');
 
 -- --------------------------------------------------------
 

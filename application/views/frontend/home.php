@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Motor Land / Home</title>
+        <title>Sikopmil / Home</title>
         <meta content="" name="description" />
         <meta content="" name="keywords" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -164,21 +164,31 @@
                     <div class="sp-slides">
                         <!-- Slide 1-->
                         <div class="sp-slide">
-                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/tank1.jpg" alt="slider" />
+                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/komodo.jpg" alt="slider" />
                             <div class="main-slider__wrap sp-layer" data-width="" data-position="centerLeft" data-horizontal="62%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
-                                <div class="main-slider__title">KMW Leopard<span class="main-slider__label bg-primary">model 2020</span>
+                                <div class="main-slider__title">Komodo 4x4<span class="main-slider__label bg-primary">model 2020</span>
                                 </div>
-                                <div class="main-slider__subtitle">2A4 MTB</div><a class="main-slider__btn btn btn-white btn-lg" href="<?=base_url()?>index/list_kendaraan"><span class="main-slider__btn-label">TERSEDIA</span></a><a class="main-slider__btn btn btn-primary btn-lg"
-                                href="<?=base_url()?>index/list_kendaraan">PESAN SEKARANG</a>
+                                <div class="main-slider__subtitle">Kendaraan Taktis</div><a class="main-slider__btn btn btn-white btn-lg" href="<?=base_url()?>index/list_kendaraan"><span class="main-slider__btn-label">TERSEDIA</span></a><a class="main-slider__btn btn btn-primary btn-lg"
+                                href="<?=base_url()?>index/list_kendaraan">PILIH</a>
                             </div>
                         </div>
                         <!-- Slide 2-->
                         <div class="sp-slide">
-                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/jet1.jpg" alt="slider" />
+                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/badak.jpg" alt="slider" />
                             <div class="main-slider__wrap sp-layer" data-width="" data-position="centerLeft" data-horizontal="62%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
-                                <div class="main-slider__title">Lockheed Martin F-35<span class="main-slider__label bg-primary">model 2020</span>
+                                <div class="main-slider__title">Badak 6x6<span class="main-slider__label bg-primary">model 2020</span>
                                 </div>
-                                <div class="main-slider__subtitle">Lightning II</div><a class="main-slider__btn btn btn-white" href="<?=base_url()?>index/list_kendaraan">TERSEDIA<span class="main-slider__btn-price"> </span></a><a class="main-slider__btn btn btn-primary" href="<?=base_url()?>index/list_kendaraan">PESAN SEKARANG</a>
+                                <div class="main-slider__subtitle">Kendaraan Tempur</div><a class="main-slider__btn btn btn-white" href="<?=base_url()?>index/list_kendaraan">TERSEDIA<span class="main-slider__btn-price"> </span></a><a class="main-slider__btn btn btn-primary" href="<?=base_url()?>index/list_kendaraan">PILIH</a>
+                            </div>
+                        </div>
+                        <!-- Slide 3-->
+                        <div class="sp-slide">
+                            <img class="sp-image" src="<?=base_url()?>assets/frontend/media/components/b-main-slider/anoa.jpg" alt="slider" />
+                            <div class="main-slider__wrap sp-layer" data-width="" data-position="centerLeft" data-horizontal="62%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
+                                <div class="main-slider__title">Anoa 6x6<span class="main-slider__label bg-primary">model 2020</span>
+                                </div>
+                                <div class="main-slider__subtitle">Kendaraan Tempur</div><a class="main-slider__btn btn btn-white btn-lg" href="<?=base_url()?>index/list_kendaraan"><span class="main-slider__btn-label">TERSEDIA</span></a><a class="main-slider__btn btn btn-primary btn-lg"
+                                href="<?=base_url()?>index/list_kendaraan">PILIH</a>
                             </div>
                         </div>
                     </div>
@@ -190,18 +200,18 @@
                     <div class="col-md-12">
                         <div class="section-advantages-1">
                             <section class="b-advantages-1"><i class="b-advantages-1__icon flaticon-gearbox"></i>
-                                <h3 class="b-advantages-1__title">Largest Dealership of Cars</h3>
-                                <div class="b-advantages-1__info">MotorLand is nisi aliquip ex consequat duis velit esse cillum dolore fugiat nulla pariatur excepteur sint occaecat.</div><span class="ui-decor-2"></span>
+                                <h3 class="b-advantages-1__title">Monitoring Kendaraan</h3>
+                                <div class="b-advantages-1__info">Sikopmil menyediakan fitur monitoring kendaraan militer.</div><span class="ui-decor-2"></span>
                             </section>
                             <!-- end .b-advantages-->
                             <section class="b-advantages-1 active"><i class="b-advantages-1__icon flaticon-steering-wheel"></i>
-                                <h3 class="b-advantages-1__title">We Offers Lower Cars Prices</h3>
-                                <div class="b-advantages-1__info">MotorLand is nisi aliquip ex consequat duis velit esse cillum dolore fugiat nulla pariatur excepteur sint occaecat.</div><span class="ui-decor-2"></span>
+                                <h3 class="b-advantages-1__title">Pengajuan Kendaraan</h3>
+                                <div class="b-advantages-1__info">Sikopmil menyediakan fitur pengajuan kendaraan operasional militer, kendaraan tempur, kendaraan logistik dan kendaraan sipil.</div><span class="ui-decor-2"></span>
                             </section>
                             <!-- end .b-advantages-->
                             <section class="b-advantages-1"><i class="b-advantages-1__icon flaticon-wrench"></i>
-                                <h3 class="b-advantages-1__title">Multipoint Safety Checks</h3>
-                                <div class="b-advantages-1__info">MotorLand is nisi aliquip ex consequat duis velit esse cillum dolore fugiat nulla pariatur excepteur sint occaecat.</div><span class="ui-decor-2"></span>
+                                <h3 class="b-advantages-1__title">Maintenance Service Kendaraan</h3>
+                                <div class="b-advantages-1__info">Sikopmil merupakan aplikasi vehicle management yang menyediakan fitur maintenance kendaraan militer.</div><span class="ui-decor-2"></span>
                             </section>
                             <!-- end .b-advantages-->
                         </div>

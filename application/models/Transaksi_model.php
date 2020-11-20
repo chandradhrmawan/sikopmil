@@ -133,9 +133,10 @@ class Transaksi_model extends CI_Model {
 
 	public function getRiwayatSewaByIduser($id_user)
 	{
-		$this->db->select("a.*,b.nama,c.judul,c.no_plat");
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.nama as nama_supir");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user");
+		$this->db->join("mst_users d","d.id_user = a.id_supir",'left');
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
 		$this->db->where("a.id_user",$id_user);
 		$this->db->order_by("a.id_sewa","desc");

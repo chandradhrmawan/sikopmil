@@ -77,7 +77,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><h2>Nama Driver : </h2></td>
+							<td><h2>Nama Pengemudi : </h2></td>
 							<td><h2>'.$data_sewa->nama_supir.'</h2></td>
 							
 						</tr>

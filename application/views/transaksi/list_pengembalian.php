@@ -30,7 +30,7 @@
                         <th>Nama Kendaraan</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
-                        <th>Nama Supir</th>
+                        <th>Nama Pengemudi</th>
                         <th>Total Biaya</th>
                         <th>Lampiran</th>
                         <th>Status</th>

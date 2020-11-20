@@ -15,8 +15,8 @@ class Supir extends CI_Controller {
 
 	public function index()
 	{				
-		$data['breadcump'] 			= "Laporan Data Supir";
-		$data['title_page']			= "Laporan Data Supir";
+		$data['breadcump'] 			= "Laporan Data Pengemudi";
+		$data['title_page']			= "Laporan Data Pengemudi";
 		$data['content_view']		= "laporan/supir";
 		$this->load->view('layout_admin/index',$data);	
 	}

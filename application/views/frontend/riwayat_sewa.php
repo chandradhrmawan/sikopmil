@@ -131,7 +131,8 @@
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Lokasi Tujuan</th>
-                                            <th>Tujuan Perjalanan</th>
+                                            <th>Keperluan Perjalanan</th>
+                                            <th>Nama Pengemudi</th>
                                             <th>Jarak Perjalanan</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -168,6 +169,7 @@
                                             <td><?=view_date_hi($value->tgl_kembali)?></td>
                                             <td><?=$value->lokasi_tujuan?></td>
                                             <td><?=$value->tujuan_perjalanan?></td>
+                                            <td><?=$value->nama_supir?></td>
                                             <td><?=$value->jarak?></td>
                                             <td><?=$status_sewa?></td>
                                             <td>

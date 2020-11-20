@@ -7,7 +7,7 @@
           <!-- <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
                   title="Collapse">
             <i class="fa fa-minus"></i></button> -->
-         <?php //debux($this->session->userdata('id_role')); ?>
+         <?php /*debux($data_pemesanan);*/ ?>
         </div>
         <!-- /. tools -->
       </div>
@@ -28,6 +28,7 @@
                         <th>Nomor Polisi</th>
                         <th>Nama Kendaraan</th>
                         <th>Nama Pemohon</th>
+                        <th>No Handphone</th>
                         <th>Tanggal Pengajuan</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
@@ -63,6 +64,7 @@
                         <td><?=$value->no_plat?></td>
                         <td><?=$value->judul?></td>
                         <td><?=$value->nama?></td>
+                        <td><?=$value->no_hp?></td>
                         <td><?=view_date_hi($value->tgl_sewa)?></td>
                         <td><?=view_date_hi($value->tgl_pinjam)?></td>
                         <td><?=view_date_hi($value->tgl_kembali)?></td>

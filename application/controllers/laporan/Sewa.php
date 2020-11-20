@@ -15,8 +15,8 @@ class Sewa extends CI_Controller {
 
 	public function index()
 	{				
-		$data['breadcump'] 			= "Laporan Sewa";
-		$data['title_page']			= "Laporan Sewa";
+		$data['breadcump'] 			= "Laporan Pemakaian";
+		$data['title_page']			= "Laporan Pemakaian";
 		$data['content_view']		= "laporan/sewa";
 		$this->load->view('layout_admin/index',$data);	
 	}
@@ -53,7 +53,7 @@ class Sewa extends CI_Controller {
 
 		$date_now = date('d-m-Y h:i:s');
 		$html = "
-		<h3><center>Laporan Data Sewa PT.Sikopmil</center></h3>
+		<h3><center>Laporan Data Pemakaian PT.Sikopmil</center></h3>
 		<h4><center>$date_now</center></h4>
 		<div class='table-responsive'>
 		<table class='table table-striped table-hover table-bordered table-sm'>
@@ -66,7 +66,7 @@ class Sewa extends CI_Controller {
                 <th>Tanggal Sewa</th>
                 <th>Tanggal Pinjam</th>
                 <th>Tanggal Kembali</th>
-                <th>Tujuan Perjalanan</th>
+                <th>Keperjuan Perjalanan</th>
                 <th>Lokasi Tujuan</th>
                 <th>Jarak</th>
                 <th>Km Akhir</th>

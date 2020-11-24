@@ -70,6 +70,7 @@
     let url = "<?php echo site_url('laporan/Sewa/exportExcel')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir
     window.open(url,"_blank")
   }
+  printPrev()
 
 </script>
 

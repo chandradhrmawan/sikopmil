@@ -72,4 +72,11 @@ class Supir extends CI_Controller {
         </div>";
         echo json_encode($html);
 	}
+
+	public function exportExcel()
+	{	
+		$data = $_GET;
+		$data['listData'] = $this->transaksi_model->getReportSupir($data);
+		$this->load->view('laporan/excel/supir',$data);
+	}
 }

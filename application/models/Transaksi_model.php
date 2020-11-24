@@ -438,6 +438,34 @@ class Transaksi_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	public function getReportPengembalian($where)
+	{
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.id_sewa,d.tgl_pinjam");
+		$this->db->from("tx_pengembalian a");
+		$this->db->join("mst_users b","b.id_user = a.id_supir");
+		$this->db->join("tx_sewa d","d.id_sewa = a.id_sewa");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = d.id_kendaraan");
+		if(!empty($where['tgl_awal']) && !empty($where['tgl_akhir'])){
+			$this->db->where('a.tgl_pengembalian >= ', $where['tgl_awal']);
+			$this->db->where('a.tgl_pengembalian <= ', $where['tgl_akhir']);	
+		}
+		$this->db->order_by("a.id_pengembalian","desc");
+		return $this->db->get()->result();
+	}
+
+	public function getReportJadwalService($where)
+	{
+		$this->db->select("a.*,c.judul,c.no_plat");
+		$this->db->from("tx_jadwal_service a");
+		$this->db->join("mst_kendaraan c","c.id_kendaraan = a.id_kendaraan");
+		if(!empty($where['tgl_awal']) && !empty($where['tgl_akhir'])){
+			$this->db->where('a.tgl_jadwal_service >= ', $where['tgl_awal']);
+			$this->db->where('a.tgl_jadwal_service <= ', $where['tgl_akhir']);	
+		}
+		$this->db->order_by("a.id_jadwal","desc");
+		return $this->db->get()->result();
+	}
+
 	public function getLocSupir()
 	{
 		$this->db->select("a.id_kordinat,a.id_sewa,a.status_perjalanan,a.lat_kordinat,a.lon_kordinat,a.last_update,

@@ -99,6 +99,8 @@
     window.open(url,"_blank")
   }
 
+  printPrev()
+
 </script>
 
 

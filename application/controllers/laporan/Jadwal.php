@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengembalian extends CI_Controller {
+class Jadwal extends CI_Controller {
 
   public function __construct()
   {
@@ -15,9 +15,9 @@ class Pengembalian extends CI_Controller {
 
   public function index()
   {       
-    $data['breadcump']      = "Laporan Pengembalian";
-    $data['title_page']     = "Laporan Pengembalian";
-    $data['content_view']   = "laporan/pengembalian";
+    $data['breadcump']      = "Laporan Jadwal";
+    $data['title_page']     = "Laporan Jadwal";
+    $data['content_view']   = "laporan/jadwal";
     $this->load->view('layout_admin/index',$data);  
   }
 
@@ -27,29 +27,26 @@ class Pengembalian extends CI_Controller {
       'tgl_awal'  => formatDate($this->input->get('tgl_awal')),
       'tgl_akhir' => formatDate($this->input->get('tgl_akhir'))
     );
-    $result = $this->transaksi_model->getReportPengembalian($data);
+    $result = $this->transaksi_model->getReportJadwalService($data);
     $content = "";
     foreach ($result as $key => $value) {
       $no = $key+1;
-      $tgl_pengembalian = view_date_hi($value->tgl_pengembalian);
-      $tgl_pinjam = view_date_hi($value->tgl_pinjam);
-      $total_biaya = number_format($value->total_biaya);
+      $tgl_jadwal_service = view_date_hi($value->tgl_jadwal_service);
+      $tgl_aktual_service = view_date_hi($value->tgl_aktual_service);
 
       $content .= "
       <tr>
         <td>$no</td>
         <td>$value->no_plat</td>
         <td>$value->judul</td>
-        <td>$tgl_pinjam</td>
-        <td>$tgl_pengembalian</td>
-        <td>$value->nama</td>
-        <td>Rp.$total_biaya</td>
+        <td>$tgl_jadwal_service</td>
+        <td>$tgl_aktual_service</td>
       </tr>";
     }
 
     $date_now = date('d-m-Y h:i:s');
     $html = "
-    <h3><center>Laporan Data Pemakaian PT.Sikopmil</center></h3>
+    <h3><center>Laporan Data Jadwal Service PT.Sikopmil</center></h3>
     <h4><center>$date_now</center></h4>
     <div class='table-responsive'>
     <table class='table table-striped table-hover table-bordered table-sm'>
@@ -58,10 +55,8 @@ class Pengembalian extends CI_Controller {
                 <th>No</th>
                 <th>Nomor Polisi</th>
                 <th>Nama Kendaraan</th>
-                <th>Tanggal Pinjam</th>
-                <th>Tanggal Kembali</th>
-                <th>Nama Pengemudi</th>
-                <th>Total Biaya</th>
+                <th>Tanggal Jadwal Service</th>
+                <th>Tanggal Aktual Service</th>
               </tr>
               </thead>
               <tbody>
@@ -83,7 +78,7 @@ class Pengembalian extends CI_Controller {
       'tgl_awal'  => formatDate($this->input->get('tgl_awal')),
       'tgl_akhir' => formatDate($this->input->get('tgl_akhir'))
     );
-    $data['listData'] = $this->transaksi_model->getReportPengembalian($data);
-    $this->load->view('laporan/excel/pengembalian',$data);
+    $data['listData'] = $this->transaksi_model->getReportJadwalService($data);
+    $this->load->view('laporan/excel/jadwal',$data);
   }
 }

@@ -49,7 +49,7 @@
     let tgl_akhir  = $('#tgl_akhir').val()
 
     $.ajax({
-        url : "<?php echo site_url('laporan/Pengembalian/listData')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir,
+        url : "<?php echo site_url('laporan/Jadwal/listData')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -67,7 +67,7 @@
     let tgl_awal   = $('#tgl_awal').val()
     let tgl_akhir  = $('#tgl_akhir').val()
 
-    let url = "<?php echo site_url('laporan/Pengembalian/exportExcel')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir
+    let url = "<?php echo site_url('laporan/Jadwal/exportExcel')?>?tgl_awal="+tgl_awal+"&tgl_akhir="+tgl_akhir
     window.open(url,"_blank")
   }
   printPrev()

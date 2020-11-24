@@ -36,6 +36,8 @@
               <button type="button" class="btn btn-primary btn-flat" style="margin-right: 5px;" onclick="printPrev()">
           <i class="fa fa-search"></i> Show Data
         </button>
+        <button type="button" class="btn btn-success btn-flat" style="margin-right: 5px;" onclick="exportExcel()">
+              <i class="fa fa-file-excel-o"></i> Export Excel</button>
             </div>
       </div>
     </div>
@@ -80,6 +82,15 @@
         }
       });
   }
+  const exportExcel = () => {
+    let id_jabatan = $('#id_jabatan').val()
+    let id_role    = $('#id_role').val()
+    let status     = $('#status').val()
+
+    let url = "<?php echo site_url('laporan/Users/exportExcel')?>?id_jabatan="+id_jabatan+"&id_role="+id_role+"&status="+status
+    window.open(url,"_blank")
+  }
+  printPrev()
 
 </script>
 

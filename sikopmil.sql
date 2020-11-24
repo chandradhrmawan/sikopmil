@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2020 at 09:58 PM
+-- Generation Time: Nov 25, 2020 at 12:19 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -52,7 +52,9 @@ INSERT INTO `mst_detail_menu` (`id`, `id_menu`, `slug_url`, `title`, `status`, `
 (16, '17', 'laporan/Users', 'Laporan Users', '2', NULL, '1'),
 (17, '17', 'laporan/Supir', 'Laporan Pengemudi', '2', NULL, '1'),
 (18, '14', 'transaksi/service/jadwal', 'Jadwal Service', '2', NULL, '1'),
-(19, '14', 'transaksi/service', 'Service Kendaraan', '2', NULL, '1,5');
+(19, '14', 'transaksi/service', 'Service Kendaraan', '2', NULL, '1,5'),
+(20, '17', 'laporan/Pengembalian', 'Laporan Pengembalian', '2', NULL, '1'),
+(21, '17', 'laporan/Jadwal', 'Laporan Jadwal Service', '2', NULL, '1');
 
 -- --------------------------------------------------------
 

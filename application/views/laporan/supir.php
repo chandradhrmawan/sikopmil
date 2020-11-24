@@ -54,6 +54,14 @@
       });
   }
 
+  const exportExcel = () => {
+     let nip = $('#nip').val()
+
+    let url = "<?php echo site_url('laporan/Supir/exportExcel')?>?nip="+nip
+    window.open(url,"_blank")
+  }
+  printPrev()
+
 </script>
 
 

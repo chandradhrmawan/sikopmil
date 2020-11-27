@@ -440,7 +440,7 @@ class Transaksi_model extends CI_Model {
 
 	public function getReportPengembalian($where)
 	{
-		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.id_sewa,d.tgl_pinjam");
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.id_sewa,d.tgl_pinjam,d.tujuan_perjalanan");
 		$this->db->from("tx_pengembalian a");
 		$this->db->join("mst_users b","b.id_user = a.id_supir");
 		$this->db->join("tx_sewa d","d.id_sewa = a.id_sewa");

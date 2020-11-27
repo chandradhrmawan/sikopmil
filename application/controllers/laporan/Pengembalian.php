@@ -15,8 +15,8 @@ class Pengembalian extends CI_Controller {
 
   public function index()
   {       
-    $data['breadcump']      = "Laporan Pengembalian";
-    $data['title_page']     = "Laporan Pengembalian";
+    $data['breadcump']      = "Laporan Riwayat Perjalanan";
+    $data['title_page']     = "Laporan Riwayat Perjalanan";
     $data['content_view']   = "laporan/pengembalian";
     $this->load->view('layout_admin/index',$data);  
   }
@@ -40,6 +40,7 @@ class Pengembalian extends CI_Controller {
         <td>$no</td>
         <td>$value->no_plat</td>
         <td>$value->judul</td>
+        <td>$value->tujuan_perjalanan</td>
         <td>$tgl_pinjam</td>
         <td>$tgl_pengembalian</td>
         <td>$value->nama</td>
@@ -58,6 +59,7 @@ class Pengembalian extends CI_Controller {
                 <th>No</th>
                 <th>Nomor Polisi</th>
                 <th>Nama Kendaraan</th>
+                <th>Keperluan Perjalanan</th>
                 <th>Tanggal Pinjam</th>
                 <th>Tanggal Kembali</th>
                 <th>Nama Pengemudi</th>

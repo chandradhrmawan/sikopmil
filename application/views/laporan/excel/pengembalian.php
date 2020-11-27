@@ -13,6 +13,7 @@ header("Expires: 0");
         <th>No</th>
         <th>Nomor Polisi</th>
         <th>Nama Kendaraan</th>
+        <th>Keperluan Perjalanan</th>
         <th>Tanggal Pinjam</th>
         <th>Tanggal Kembali</th>
         <th>Nama Pengemudi</th>
@@ -30,6 +31,7 @@ header("Expires: 0");
                 <td><?=$no?></td>
                 <td><?=$value->no_plat?></td>
                 <td><?=$value->judul?></td>
+                <td><?=$value->tujuan_perjalanan?></td>
                 <td><?=$tgl_pinjam?></td>
                 <td><?=$tgl_pengembalian?></td>
                 <td><?=$value->nama?></td>

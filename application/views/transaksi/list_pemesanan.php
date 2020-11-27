@@ -204,7 +204,7 @@
                    </div>
 
                    <div class="form-group">
-                      <label class="control-label col-md-2">Tujuan Perjalanan</label>
+                      <label class="control-label col-md-2">Keperluan Perjalanaan</label>
                       <div class="col-md-9">
                         <input name="tujuan_perjalanan" id="tujuan_perjalanan" class="form-control" type="text" disabled="true">
                      </div>

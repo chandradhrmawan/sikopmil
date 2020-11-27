@@ -89,9 +89,9 @@
            </div>
 
            <div class="form-group">
-              <label class="control-label col-md-2">Tangagl Jadwal Service</label>
+              <label class="control-label col-md-2">Tanggal Jadwal Service</label>
               <div class="col-md-9">
-                <input type="text" id="tgl_jadwal_service_add" class="form-control datepicker"/>
+                <input type="text" id="tgl_jadwal_service_add" class="form-control datepicker" autocomplete="off" />
              </div>
            </div>
          </div>
@@ -132,14 +132,14 @@
            </div>
 
            <div class="form-group">
-              <label class="control-label col-md-2">Tangagl Jadwal Service</label>
+              <label class="control-label col-md-2">Tanggal Jadwal Service</label>
               <div class="col-md-9">
                 <input type="text" id="tgl_jadwal_service" class="form-control" disabled="true"/>
              </div>
            </div>
 
            <div class="form-group">
-              <label class="control-label col-md-2">Tangagl Aktual Service</label>
+              <label class="control-label col-md-2">Tanggal Aktual Service</label>
               <div class="col-md-9">
                 <input type="text" id="tgl_aktual_service" class="form-control" disabled="true"/>
              </div>

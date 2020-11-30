@@ -6,10 +6,11 @@ class Kendaraan extends CI_Controller {
 	//param for model
 	var $table = 'mst_kendaraan';
 	var $pk    = 'id_kendaraan';
-	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga','path','daya_angkut','kapasitas_bbm','bahan_bakar');
+	var $field = array('id_kendaraan','id_jenis','id_merk','id_tipe','no_plat','no_mesin','status','judul','deskripsi','model','transmisi','tenaga',
+		'km_akhir','path','daya_angkut','kapasitas_bbm','bahan_bakar');
 
 	//param for view
-	var $view_list = array('No','Jenis','Merk','Tipe','No Polisi','No Mesin','Status','Judul','Model','Transmisi','Tenaga','Foto','Aksi');
+	var $view_list = array('No','Jenis','merk','Tipe','No Polisi','No Mesin','Status','Judul','Model','Transmisi','Tenaga','Km Akhir','Foto','Aksi');
 
 	public function __construct()
 	{

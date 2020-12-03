@@ -24,11 +24,11 @@ class Service extends CI_Controller {
 
 	public function jadwal()
 	{				
-		$data['breadcump'] 			= "Jadwal Service";
-		$data['title_page']			= "Jadwal Service";
-		$data['content_view']		= "transaksi/list_jadwal_service";
-		$data['data_service']  		= $this->transaksi_model->getDataJadwalService();
-		$data['data_kendaraan_service']  		= $this->transaksi_model->listKendaraanJadwalService();
+		$data['breadcump'] 				= "Jadwal Service";
+		$data['title_page']				= "Jadwal Service";
+		$data['content_view']			= "transaksi/list_jadwal_service";
+		$data['data_service']  			= $this->transaksi_model->getDataJadwalService();
+		$data['data_kendaraan_service'] = $this->transaksi_model->listKendaraanJadwalService();
 		$this->load->view('layout_admin/index',$data);	
 	}
 

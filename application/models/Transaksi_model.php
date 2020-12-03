@@ -12,13 +12,13 @@ class Transaksi_model extends CI_Model {
 		$this->db->limit($start,$limit);
 
 		if(!empty($where['keyword'])){
-			$this->db->where('a.judul', $where['keyword']);	
+			$this->db->like('LOWER(a.judul)', strtolower($where['keyword']));	
 		}
 		if(!empty($where['id_jenis'])){
-			$this->db->where('a.id_jenis', $where['id_jenis']);	
+			$this->db->like('b.id_jenis', $where['id_jenis']);	
 		}
 		if(!empty($where['id_merk'])){
-			$this->db->where('a.id_merk', $where['id_merk']);	
+			$this->db->like('a.id_merk', $where['id_merk']);	
 		}
 
 		$this->db->order_by("a.id_kendaraan","desc");
@@ -347,11 +347,13 @@ class Transaksi_model extends CI_Model {
 
 	public function listKendaraanJadwalService()
 	{
-		$sql = "SELECT * 
+		$sql = "SELECT *,
+				MOD(km_akhir, 10000) as stat_service
 				FROM
 					mst_kendaraan 
 				WHERE
 					id_kendaraan NOT IN ( SELECT id_kendaraan FROM tx_jadwal_service WHERE status_service = 1 )
+				AND (MOD(km_akhir, 10000) = 0)
 				";
 		$data = $this->db->query($sql)->result();
 		return $data;

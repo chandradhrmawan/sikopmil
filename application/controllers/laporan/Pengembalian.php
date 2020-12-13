@@ -15,8 +15,8 @@ class Pengembalian extends CI_Controller {
 
   public function index()
   {       
-    $data['breadcump']      = "Laporan Riwayat Perjalanan";
-    $data['title_page']     = "Laporan Riwayat Perjalanan";
+    $data['breadcump']      = "Laporan Pengembalian Kendaraan";
+    $data['title_page']     = "Laporan Pengembalian Kendaraan";
     $data['content_view']   = "laporan/pengembalian";
     $this->load->view('layout_admin/index',$data);  
   }
@@ -50,7 +50,7 @@ class Pengembalian extends CI_Controller {
 
     $date_now = date('d-m-Y h:i:s');
     $html = "
-    <h3><center>Laporan Data Pemakaian PT.Sikopmil</center></h3>
+    <h3><center>Laporan Pengembalian Kendaraan</center></h3>
     <h4><center>$date_now</center></h4>
     <div class='table-responsive'>
     <table class='table table-striped table-hover table-bordered table-sm'>

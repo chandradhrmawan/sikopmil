@@ -46,7 +46,7 @@ class Users extends CI_Controller {
 
 		$date_now = date('d-m-Y h:i:s');
 		$html = "
-		<h3><center>Laporan Data Users PT.Sikopmil</center></h3>
+		<h3><center>Laporan Data Users Sikopmil</center></h3>
 		<h4><center>$date_now</center></h4>
 		<div class='table-responsive'>
 		<table class='table table-striped table-hover table-bordered table-sm'>

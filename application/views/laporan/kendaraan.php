@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group">
-              <label>Modal</label>
+              <label>Model</label>
               <select name="model" id="model" class="form-control">
                 <option value="">--</option>
                 <?php foreach ($data_model as $key => $value): ?>

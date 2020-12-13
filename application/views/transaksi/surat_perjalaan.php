@@ -354,16 +354,7 @@
 
 	<table border="0" cellspacing="2" cellpadding="2">
 	<tr>
-		<td><h2>PT INDONESIA KENDARAAN TERMINAL</h2></td>
-	</tr>
-	<tr>
-		<td><h2>Jalan Sindang Laut, Cilincing Jakarta Utara</h2></td>
-	</tr>
-	<tr>
-		<td><h2>Phone : +622143932251</h2></td>
-	</tr>
-	<tr>
-		<td><h2>Fax : +622143932250</h2></td>
+		<td><h2>SIKOPMIL</h2></td>
 	</tr>
 	</table>
 	</table>

@@ -34,7 +34,10 @@ class Master_model extends CI_Model {
 		$this->db->select("*");
 		$this->db->from("mst_users");
 		$this->db->where("id_role",4);
-		$this->db->where_not_in('id_user', array_unique($dataUser));
+
+		if(!isset($dataUser)){
+			$this->db->where_not_in('id_user', array_unique($dataUser));
+		}
 		return $this->db->get()->result();
 	}
 

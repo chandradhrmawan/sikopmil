@@ -287,6 +287,12 @@ class Transaksi_model extends CI_Model {
 		$this->db->where('id_sewa', $data['id_sewa']);
 		$this->db->update('tx_sewa', $dtSewa);
 
+		$dtKordinat = array(
+	        'status_perjalanan' => 2
+		);
+		$this->db->where('id_sewa', $data['id_sewa']);
+		$this->db->update('tx_kordinat', $dtKordinat);
+
 		return true;
 	}
 
@@ -476,6 +482,7 @@ class Transaksi_model extends CI_Model {
 		$this->db->join("tx_sewa b","a.id_sewa = b.id_sewa");
 		$this->db->join("mst_kendaraan c","c.id_kendaraan = b.id_kendaraan");
 		$this->db->join("mst_users d","d.id_user = b.id_supir");
+		$this->db->where("a.status_perjalanan != 2");
 		return $this->db->get()->result();
 	}
 

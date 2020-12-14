@@ -6,9 +6,9 @@
                                 <div class="col-md-3">
                                     <div class="footer-section">
                                         <a class="footer__logo" href="">
-                                            <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/general/logo.png" alt="Logo" />
+                                            <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/general/SIKOPMIL.png" alt="Logo" />
                                         </a>
-                                        <div class="footer__info">Duis aute irure reprehend voluptate velit ese acium fugiat nula pariatur exceptus ipsum dolor sit amet consectetur adipisic elita sed eiusmod tempor.</div>
+                                        <!-- <div class="footer__info">Duis aute irure reprehend voluptate velit ese acium fugiat nula pariatur exceptus ipsum dolor sit amet consectetur adipisic elita sed eiusmod tempor.</div> -->
                                         <ul class="social-net list-inline">
                                             <li class="social-net__item"><a class="social-net__link text-primary_h" href="facebook.com"><i class="icon fa fa-facebook"></i></a>
                                             </li>
@@ -26,49 +26,30 @@
                                 </div>
                                 <div class="col-md-4">
                                     <section class="footer-section footer-section_list-columns">
-                                        <h3 class="footer-section__title ui-title-inner">Top Brands</h3>
+                                        <h3 class="footer-section__title ui-title-inner">Top Merk</h3>
                                         <ul class="footer-list footer-list_columns list-unstyled">
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Alfa Romeo</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Ferrari</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">BMW Series</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Mercedes</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Aston Martin</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Toyota</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Opel</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Land Rover</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Mclaren</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Peogeot</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Renault</a>
-                                            </li>
+                                            <?php
+                                             $brand = getTopBrands();
+                                             foreach ($brand as $key => $value) { ?>
+                                                <li class="footer-list__item"><a class="footer-list__link" href=""><?=$value->nm_merk?></a>
+                                            <?php } ?>
                                         </ul>
                                     </section>
                                 </div>
                                 <div class="col-md-2">
                                     <section class="footer-section footer-section_list-one">
-                                        <h3 class="footer-section__title ui-title-inner">Categories</h3>
+                                        <h3 class="footer-section__title ui-title-inner">Top Tipe</h3>
                                         <ul class="footer-list list-unstyled">
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Trucks</a>
+                                            
+
+                                            <?php
+                                             $tipe = getTopTipe();
+                                             foreach ($tipe as $key => $value) { ?>
+                                                <li class="footer-list__item"><a class="footer-list__link" href=""><?=$value->nm_tipe?></a>
                                             </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Sports Cars</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Crossovers</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Hybrid Cars</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Hybrid SUVs</a>
-                                            </li>
-                                            <li class="footer-list__item"><a class="footer-list__link" href="">Future Cars</a>
-                                            </li>
+                                            <?php } ?>
+
+
                                         </ul>
                                     </section>
                                 </div>
@@ -77,9 +58,9 @@
                                         <h3 class="footer-section__title ui-title-inner">Address Information</h3>
                                         <div class="footer-contact footer-contact_lg">Call us<span class="text-primary"> (042) 789 35490</span>
                                         </div>
-                                        <div class="footer-contact"><i class="icon icon-xs fa fa-envelope-o"></i>support@motorland.com</div>
-                                        <div class="footer-contact"><i class="icon icon-lg fa fa-map-marker"></i>Fairview Ave, El Monte, CA, 91732</div>
-                                        <div class="footer-contact"><i class="icon fa fa-clock-o"></i>Mon - Fri : 0900am to 0600pm</div>
+                                        <div class="footer-contact"><i class="icon icon-xs fa fa-envelope-o"></i>support@sikopmil.com</div>
+                                        <!-- <div class="footer-contact"><i class="icon icon-lg fa fa-map-marker"></i>Fairview Ave, El Monte, CA, 91732</div>
+                                        <div class="footer-contact"><i class="icon fa fa-clock-o"></i>Mon - Fri : 0900am to 0600pm</div> -->
                                     </section>
                                 </div>
                             </div>

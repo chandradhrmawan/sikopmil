@@ -91,6 +91,7 @@ class Main extends CI_Controller {
 	{
 		$result = $this->transaksi_model->getChartKendaraan();
 		$jml  	= 0;
+		$row 	= [];
 		foreach ($result as $key => $value) {
 			$data['name'] = $value->tahun;
 			$data['y'] 	= (int)$value->persen;
@@ -103,6 +104,7 @@ class Main extends CI_Controller {
 	{
 		$result = $this->transaksi_model->getChartTipe();
 		$jml  	= 0;
+		$row 	= [];
 		foreach ($result as $key => $value) {
 			$data['name'] = $value->nm_tipe;
 			$data['y'] 	= (int)$value->persen;

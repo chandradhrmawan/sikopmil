@@ -107,3 +107,21 @@ function formatDate($date)
 		return date_format($create,"Y/m/d H:i");
 	}
 }
+
+function getTopBrands()
+{
+	$CI = &get_instance();
+	$CI->db->select("*");
+	$CI->db->from("mst_merk");
+	$data =  $CI->db->get()->result();
+	return $data;
+}
+
+function getTopTipe()
+{
+	$CI = &get_instance();
+	$CI->db->select("*");
+	$CI->db->from("mst_tipe");
+	$data =  $CI->db->get()->result();
+	return $data;
+}

@@ -219,7 +219,7 @@
                     </div>
                 </div>
             </div>
-            <section class="section-default">
+            <!-- <section class="section-default">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
@@ -245,7 +245,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-1.jpg" alt="foto" />
@@ -259,7 +258,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-2.jpg" alt="foto" />
@@ -273,7 +271,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Toyota Avalon TX</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-3.jpg" alt="foto" />
@@ -287,7 +284,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-4.jpg" alt="foto" />
@@ -301,7 +297,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-5.jpg" alt="foto" />
@@ -315,7 +310,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-1.jpg" alt="foto" />
@@ -329,7 +323,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-2.jpg" alt="foto" />
@@ -343,7 +336,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Toyota Avalon TX</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-3.jpg" alt="foto" />
@@ -357,7 +349,6 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                     <div class="b-goods-feat">
                         <div class="b-goods-feat__img">
                             <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/components/b-goods/featured-4.jpg" alt="foto" />
@@ -371,12 +362,10 @@
                         <h3 class="b-goods-feat__name"><a href="car-details.html">Lexus GX 490i Hybird</a></h3>
                         <div class="b-goods-feat__info">Duis aute irure reprehender voluptate velit ese acium fugiat nulla pariatur excepteur ipsum.</div>
                     </div>
-                    <!-- end .b-goods-featured-->
                 </div>
-                <!-- end .featured-carousel-->
-            </section>
+            </section> -->
             <!-- end .section-default-->
-            <section class="section-type-3 section-default area-bg area-bg_light">
+            <!-- <section class="section-type-3 section-default area-bg area-bg_light">
                 <div class="area-bg__inner">
                     <div class="container">
                         <div class="row">
@@ -464,14 +453,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end .b-thumb-slider-->
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- end .section-default-->
-            <section class="section-default">
+            <!-- <section class="section-default">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
@@ -500,7 +488,6 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                     <section class="b-team">
                                         <div class="b-team__inner">
                                             <div class="b-team__media">
@@ -521,7 +508,6 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                     <section class="b-team">
                                         <div class="b-team__inner">
                                             <div class="b-team__media">
@@ -542,7 +528,6 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                     <section class="b-team">
                                         <div class="b-team__inner">
                                             <div class="b-team__media">
@@ -563,7 +548,6 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                     <section class="b-team">
                                         <div class="b-team__inner">
                                             <div class="b-team__media">
@@ -584,7 +568,6 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                     <section class="b-team">
                                         <div class="b-team__inner">
                                             <div class="b-team__media">
@@ -605,16 +588,14 @@
                                             </ul>
                                         </div>
                                     </section>
-                                    <!-- end .b-team-->
                                 </div>
-                                <!-- end .team-carousel-->
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- end .section-default-->
-            <section class="section-isotope">
+           <!--  <section class="section-isotope">
                 <div class="section-isotope__header bg-grey">
                     <div class="container">
                         <div class="row">
@@ -713,8 +694,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- end .b-isotope-->
-            </section>
+            </section> -->
             
             <?php include('footer.php') ?>
         </div>

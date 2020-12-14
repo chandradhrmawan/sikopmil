@@ -6,7 +6,7 @@
                                 <div class="col-md-3">
                                     <div class="footer-section">
                                         <a class="footer__logo" href="">
-                                            <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/general/SIKOPMIL.png" alt="Logo" />
+                                            <img class="img-responsive" src="<?=base_url()?>assets/frontend/media/general/headersikopmil.jpg" alt="Logo" />
                                         </a>
                                         <!-- <div class="footer__info">Duis aute irure reprehend voluptate velit ese acium fugiat nula pariatur exceptus ipsum dolor sit amet consectetur adipisic elita sed eiusmod tempor.</div> -->
                                         <ul class="social-net list-inline">

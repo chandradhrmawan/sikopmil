@@ -6,8 +6,8 @@
             </button>
             <!-- Mobile Trigger End-->
             <a class="navbar-brand scroll" href="">
-                <img class="normal-logo img-responsive" src="<?=base_url()?>assets/frontend/media/general/SIKOPMIL.png" alt="logo" />
-                <img class="scroll-logo hidden-xs img-responsive" src="<?=base_url()?>assets/frontend/media/general/SIKOPMIL.png" alt="logo" />
+                <img class="normal-logo img-responsive" src="<?=base_url()?>assets/frontend/media/general/headersikopmil.jpg" alt="logo" />
+                <img class="scroll-logo hidden-xs img-responsive" src="<?=base_url()?>assets/frontend/media/general/headersikopmil.jpg" alt="logo" />
             </a>
         </div>
         <div class="header-navibox-2">

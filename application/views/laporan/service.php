@@ -46,9 +46,11 @@
  const doPrint = () => {
     $('#box-input').hide();
     $('#btn-print').hide();
+    $('#btn-excel').hide();
     window.print();
     $('#box-input').show();
     $('#btn-print').show();
+    $('#btn-excel').hide();
   }
 
   const printPrev = () => {

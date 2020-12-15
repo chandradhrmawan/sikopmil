@@ -132,10 +132,10 @@
                         <div class="container">
                             <div class="header-topbarbox-1">
                                 <ul>
-                                    <li><i class="icon fa fa-clock-o"></i> Mon - Fri : 0900am to 0600pm</li>
+                                    <!-- <li><i class="icon fa fa-clock-o"></i> Mon - Fri : 0900am to 0600pm</li> -->
                                     <li><i class="icon fa fa-phone"></i><a href="tel:+0427983549">+ 042 798 3549</a>
                                     </li>
-                                    <li><i class="icon fa fa-envelope-o"></i><a href="mailto:support@motorland.com">support@motorland.com</a>
+                                    <li><i class="icon fa fa-envelope-o"></i><a href="mailto:support@sikopmil.com">support@sikopmil.com</a>
                                     </li>
                                 </ul>
                             </div>

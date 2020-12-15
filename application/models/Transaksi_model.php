@@ -603,4 +603,14 @@ class Transaksi_model extends CI_Model {
 				a.id_tipe";
 		return $this->db->query($sql)->result();
 	}
+
+	public function getReportJabatan($data)
+	{
+		$this->db->select("*");
+		$this->db->from("mst_jabatan");
+		if(!empty($data['nm_jabatan'])){
+			$this->db->like('LOWER(nm_jabatan)', strtolower($data['nm_jabatan']));
+		}
+		return $this->db->get()->result();
+	}
 }

@@ -25,12 +25,16 @@ class Pengembalian extends CI_Controller {
 	}
 
 	public function doSavePengembalian()
-	{	
+	{
+
+		$dataSewa = $this->transaksi_model->getDetailSewaByIdSewa($this->input->post('id_sewa'));
+		$km_old   = $dataSewa->km_akhir;	
 
 		$data = array('id_sewa' 		 => $this->input->post('id_sewa'),
 					  'total_biaya' 	 => $this->input->post('total_biaya'),
 					  'lampiran' 		 => $this->input->post('lampiran'),
-					  'km_selesai'  	 => $this->input->post('km_selesai'),
+					  // 'km_selesai'  	 => $this->input->post('km_selesai'),
+					  'km_selesai'  	 => $km_old,
 					  'id_supir' 		 => $this->input->post('id_supir'),
 					  'tgl_pengembalian' => date('Y-m-d h:i:s'),
 					  'status' 			 => 1,

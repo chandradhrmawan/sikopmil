@@ -276,7 +276,7 @@ class Transaksi_model extends CI_Model {
 
 		$dtKendaraan = array(
 	        // 'km_akhir' => $km_old + $data['km_selesai'],
-	        'km_akhir' => $data['km_selesai'],
+	        'km_akhir' => $data['km_selesai_post'],
 	        'status'   => 1
 		);
 		$this->db->where('id_kendaraan', $dataSewa->id_kendaraan);

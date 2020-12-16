@@ -28,12 +28,11 @@ class Pengembalian extends CI_Controller {
 	{
 
 		$dataSewa = $this->transaksi_model->getDetailSewaByIdSewa($this->input->post('id_sewa'));
-		$km_old   = $dataSewa->km_akhir;	
+		$km_old   = !empty($dataSewa->km_akhir) ? (int)$dataSewa->km_akhir : 0;	
 
-		$data = array('id_sewa' 		 => $this->input->post('id_sewa'),
+		$postData = array('id_sewa'      => $this->input->post('id_sewa'),
 					  'total_biaya' 	 => $this->input->post('total_biaya'),
 					  'lampiran' 		 => $this->input->post('lampiran'),
-					  // 'km_selesai'  	 => $this->input->post('km_selesai'),
 					  'km_selesai'  	 => $km_old,
 					  'id_supir' 		 => $this->input->post('id_supir'),
 					  'tgl_pengembalian' => date('Y-m-d h:i:s'),
@@ -41,22 +40,33 @@ class Pengembalian extends CI_Controller {
 					  'lampiran' 		 => $this->_uploadImage(date('dmYhis'))
 		);
 
-		$insert = $this->transaksi_model->savePengembalian($data);
-		$update = $this->transaksi_model->updatePengembalian($data);
+		$upData = array('id_sewa' 		 => $this->input->post('id_sewa'),
+					  'total_biaya' 	 => $this->input->post('total_biaya'),
+					  'lampiran' 		 => $this->input->post('lampiran'),
+					  'km_selesai_post'  => $this->input->post('km_selesai'),
+					  'km_selesai'  	 => $km_old,
+					  'id_supir' 		 => $this->input->post('id_supir'),
+					  'tgl_pengembalian' => date('Y-m-d h:i:s'),
+					  'status' 			 => 1,
+					  'lampiran' 		 => $this->_uploadImage(date('dmYhis'))
+		);
+
+		$insert = $this->transaksi_model->savePengembalian($postData);
+		$update = $this->transaksi_model->updatePengembalian($upData);
 
 		if($insert && $update){
 				$ret = array (
 					'status' => TRUE,
-					'data'   => $data
+					'message'   => 'Insert Or Update Success'
 				);
 			}else{
 				$ret = array (
 					'status' => FALSE,
-					'data'   => $data
+					'message'   => 'Insert Or Update Failed'
 				);
 			}
 
-			echo  json_encode($ret);
+			echo json_encode($ret);
 	}
 
 

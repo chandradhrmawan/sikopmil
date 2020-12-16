@@ -298,6 +298,11 @@
     }
 
     const fillDataSewa = (id_sewa) => {
+
+      if(id_sewa == ""){
+        return false
+      }
+
       $.ajax({
         url : "<?php echo site_url('index/getDetailSewaByIdSewa')?>/" + id_sewa,
         type: "GET",

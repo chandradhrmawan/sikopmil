@@ -59,7 +59,7 @@ class Kendaraan extends CI_Controller {
 					continue;
 				}elseif($fields == 'status'){
 
-					if($regulasi->$fields == 1){
+					/*if($regulasi->$fields == 1){
                         $row[] = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
                     }elseif($regulasi->$fields == 2){
                         $row[] = '<span class="label label-success">Sudah Disetujui Atasan</span>';
@@ -71,6 +71,12 @@ class Kendaraan extends CI_Controller {
                         $row[] = '<span class="label label-danger">Permohonan Ditolak</span>';
                     }elseif($regulasi->$fields == 0){
                         $row[] = '<span class="label label-info">Tersedia</span>';
+                    } */
+
+                    if($regulasi->$fields == 1){
+                        $row[] = '<span class="label label-success">Tersedia</span>';
+                    }else{
+                        $row[] = '<span class="label label-info">Tidak Tersedia</span>';
                     } 
 
 

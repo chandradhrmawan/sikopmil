@@ -42,6 +42,7 @@
                     foreach ($data_pemesanan as $key => $value):
                     $btn_stat = '';
                     $status_sewa = '';
+                    $dis_btn = '';
                     if($value->status_sewa == 1){
                         $status_sewa = '<span class="label label-warning">Menunggu Persetujuan Atasan</span>';
                     }if($value->status_sewa == 11){
@@ -52,6 +53,7 @@
                         $status_sewa = '<span class="label label-info">Dalam Proses Peminjaman</span>';
                     }elseif($value->status_sewa == 4){
                         $status_sewa = '<span class="label label-default">Peminjaman Selesai</span>';
+                        $dis_btn = 'disabled';
                     }elseif($value->status_sewa == 5){
                         $status_sewa = '<span class="label label-danger">Permohonan Ditolak</span>';
                     }elseif($value->status_sewa == 6){
@@ -71,12 +73,12 @@
                         <td>
 
                           <?php if($this->session->userdata('id_role') == 2 || $this->session->userdata('id_role') == 1): ?>
-                            <select disabled class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
+                            <select disabled <?=$dis_btn?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
                               <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
                               <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>
                             </select> 
                           <?php else: ?>
-                            <select <?=($value->status_perjalanan == 1) ? 'disabled' : '' ?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
+                            <select <?=$dis_btn?> <?=($value->status_perjalanan == 1) ? 'disabled' : '' ?> class="form-control" id="status_jalan" onchange="updateStatusJalan(this.value,<?=$value->id_sewa?>)">
                               <option value="0" <?=($value->status_perjalanan == 0) ? 'selected' : ''?>>Belum</option>
                               <option value="1" <?=($value->status_perjalanan == 1) ? 'selected' : ''?>>Ya</option>
                             </select> 

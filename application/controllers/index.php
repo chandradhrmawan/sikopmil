@@ -135,6 +135,7 @@ class Index extends CI_Controller {
 		$data->tgl_sewa 	= view_date_hi($data->tgl_sewa);
 		$data->tgl_kembali  = view_date_hi($data->tgl_kembali);
 		$data->tgl_pinjam   = view_date_hi($data->tgl_pinjam);
+		$data->km_akhir     = (!empty($data->km_akhir)) ? (int) $data->km_akhir : 0;
 		echo json_encode($data);
 	}
 

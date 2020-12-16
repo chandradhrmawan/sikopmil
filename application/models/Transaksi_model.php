@@ -191,7 +191,7 @@ class Transaksi_model extends CI_Model {
 	{
 		$this->db->select("a.*,b.nama,b.nip,e.nm_jabatan,d.nama as nama_supir,
 						c.km_akhir,b.alamat,c.no_plat,c.judul,
-						c.model,c.transmisi,c.tenaga,c.no_mesin");
+						c.model,c.transmisi,c.tenaga,c.no_mesin,c.deskripsi");
 		$this->db->from("tx_sewa a");
 		$this->db->join("mst_users b","b.id_user = a.id_user","inner");
 		$this->db->join("mst_jabatan e","e.id_jabatan = b.id_jabatan","inner");
@@ -244,7 +244,7 @@ class Transaksi_model extends CI_Model {
 
 	public function getDataPengembalian($id_supir)
 	{
-		$this->db->select("a.*,b.nama,c.judul,c.no_plat,d.id_sewa,d.tgl_pinjam");
+		$this->db->select("a.*,b.nama,c.judul,c.no_plat,c.deskripsi,d.id_sewa,d.tgl_pinjam");
 		$this->db->from("tx_pengembalian a");
 		$this->db->join("mst_users b","b.id_user = a.id_supir");
 		$this->db->join("tx_sewa d","d.id_sewa = a.id_sewa");
